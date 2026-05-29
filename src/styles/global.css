@@ -77,6 +77,7 @@ h1, h2, h3, h4 {
   cursor: pointer; transition: transform 0.18s, box-shadow 0.18s, background 0.18s, color 0.18s;
   min-height: 52px; line-height: 1; white-space: nowrap; text-align: center;
 }
+.btn svg { width: 20px; height: 20px; flex: 0 0 auto; }
 .btn-red { background: var(--red); color: #fff; box-shadow: 0 10px 22px -10px rgba(122, 22, 14, 0.75); }
 .btn-red:hover { background: var(--red-deep); transform: translateY(-2px); }
 .btn-ghost { background: transparent; color: var(--ink); border-color: rgba(28, 21, 18, 0.26); }
@@ -307,6 +308,8 @@ footer.site-footer ul a { color: #c4b8b0; font-size: 0.95rem; }
 footer.site-footer ul a:hover { color: var(--red-bright); }
 .foot-bottom { border-top: 1px solid rgba(255, 255, 255, 0.12); padding-top: 1.6rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: 0.84rem; color: #a89c94; }
 .licence { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 0.5rem 0.9rem; font-weight: 600; color: #d3c7bf; }
+footer.site-footer .licence svg { width: 20px; height: 20px; color: #d3c7bf; }
+footer.site-footer .licence:hover svg { color: var(--red-bright); }
 
 /* --- Mobile sticky CTA bar --------------------------------------------- */
 .mobar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; display: none; gap: 0.6rem; padding: 0.7rem 0.9rem; background: rgba(247, 241, 232, 0.96); backdrop-filter: blur(10px); border-top: 1px solid var(--cream-line); box-shadow: 0 -8px 24px -16px rgba(38, 18, 15, 0.5); }
