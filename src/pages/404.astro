@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+---
+
+<BaseLayout title="Page not found" noindex={true}>
+  <section class="page-hero">
+    <div class="wrap" style="text-align:center">
+      <span class="eyebrow center">Woof — lost the scent</span>
+      <h1 style="margin:0 auto">This page has wandered off</h1>
+      <p class="lead" style="margin:1.1rem auto 1.6rem">
+        We couldn't find the page you were after. Let's get you back on the lead.
+      </p>
+      <div class="hero-actions" style="justify-content:center">
+        <a class="btn btn-red" href="/">Back to home</a>
+        <a class="btn btn-ghost" href="/contact/">Contact us</a>
+      </div>
+      <p style="margin-top:1.5rem;color:var(--ink-soft)">Or call us on <a href={site.phoneHref} style="color:var(--red);font-weight:700">{site.phoneDisplay}</a></p>
+    </div>
+  </section>
+</BaseLayout>

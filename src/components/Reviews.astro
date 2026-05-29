@@ -1,0 +1,46 @@
+---
+import { reviews } from "../data/content";
+interface Props { limit?: number; }
+const { limit = 6 } = Astro.props;
+const list = reviews.slice(0, limit);
+---
+
+<section class="sec reviews" id="reviews">
+  <div class="wrap">
+    <div class="rev-top reveal">
+      <div>
+        <span class="eyebrow">Loved locally</span>
+        <h2>Don't just take our word for it</h2>
+      </div>
+      <div class="rev-score">
+        <span class="big">5.0</span>
+        <div>
+          <div class="stars">★★★★★</div>
+          <small>Rated by hundreds of local dog owners</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="rev-grid">
+      {
+        list.map((r) => (
+          <article class="rev reveal">
+            <div class="stars">★★★★★</div>
+            <p>“{r.text}”</p>
+            <div class="who">
+              <span class="av">{r.initial}</span>
+              <div>
+                {r.name}
+                <span>{r.where}</span>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="rev-foot">
+      <a class="btn btn-light" href="/contact/">Book Your Free Trial Day</a>
+    </div>
+  </div>
+</section>

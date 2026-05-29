@@ -1,0 +1,74 @@
+---
+import Logo from "./Logo.astro";
+import Icon from "./Icon.astro";
+import { site, nav } from "../data/site";
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+---
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap nav">
+    <Logo size={48} />
+    <nav class="links" aria-label="Primary">
+      {
+        nav.map((item) => (
+          <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="header-cta">
+      <a class="tel-link" href={site.phoneHref}>
+        <Icon name="phone" />
+        {site.phoneDisplay}
+      </a>
+      <a class="btn btn-red" href="/contact/">Book a Free Trial</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mm-top">
+    <span class="logo-chip"><Logo size={44} withName={false} /></span>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">&times;</button>
+  </div>
+  {nav.map((item) => <a class="mlink" href={item.href}>{item.label}</a>)}
+  <a class="mlink" href="/contact/">Contact</a>
+  <div class="mm-cta">
+    <a class="btn btn-red" href="/contact/">Book a Free Trial</a>
+    <a class="btn btn-outline-light" href={site.phoneHref}>Call {site.phoneDisplay}</a>
+  </div>
+</div>
+
+<script>
+  const header = document.getElementById("siteHeader");
+  const burger = document.getElementById("burger");
+  const menu = document.getElementById("mobileMenu");
+  const close = document.getElementById("mmClose");
+
+  const setMenu = (open: boolean) => {
+    menu?.classList.toggle("open", open);
+    burger?.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
+  };
+
+  burger?.addEventListener("click", () => setMenu(true));
+  close?.addEventListener("click", () => setMenu(false));
+  menu?.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => setMenu(false))
+  );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenu(false);
+  });
+
+  const onScroll = () =>
+    header?.classList.toggle("scrolled", window.scrollY > 8);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>

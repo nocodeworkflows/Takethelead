@@ -1,0 +1,54 @@
+---
+import Logo from "./Logo.astro";
+import Icon from "./Icon.astro";
+import { site, services } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <Logo size={48} light={true} />
+        <p class="fdesc">
+          Family-run, vet-nurse-led dog day care, boarding, walking, training &
+          grooming across {site.areasLabel}. Fully licensed & insured.
+        </p>
+        <div style="display:flex;gap:.6rem;margin-top:1.2rem">
+          <a href={site.social.facebook} aria-label="Facebook" class="licence" target="_blank" rel="noopener" style="display:inline-grid;place-items:center;width:42px;height:42px;padding:0">
+            <Icon name="facebook" class="" />
+          </a>
+          <a href={site.social.instagram} aria-label="Instagram" class="licence" target="_blank" rel="noopener" style="display:inline-grid;place-items:center;width:42px;height:42px;padding:0">
+            <Icon name="instagram" />
+          </a>
+          <a href={site.whatsappHref} aria-label="WhatsApp" class="licence" target="_blank" rel="noopener" style="display:inline-grid;place-items:center;width:42px;height:42px;padding:0">
+            <Icon name="whatsapp" />
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h5>Services</h5>
+        <ul>
+          {services.map((s) => <li><a href={`/${s.slug}/`}>{s.title}</a></li>)}
+        </ul>
+      </div>
+
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/contact/">Contact & Booking</a></li>
+          <li><a href={site.phoneHref}>{site.phoneDisplay}</a></li>
+          <li><a href={site.emailHref}>{site.email}</a></li>
+        </ul>
+        <div style="margin-top:1rem"><span class="licence">Fully Licensed & Insured</span></div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© {year} {site.name}. All rights reserved.</span>
+      <span>{site.areasLabel} · Family-run · Vet-nurse led</span>
+    </div>
+  </div>
+</footer>

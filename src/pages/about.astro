@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import TrustStrip from "../components/TrustStrip.astro";
+import Reviews from "../components/Reviews.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { site } from "../data/site";
+import { whyFeatures } from "../data/content";
+import { images } from "../data/images";
+---
+
+<BaseLayout
+  title="About Us"
+  description={`Meet the family behind ${site.name} — vet-nurse-led, fully licensed dog care across ${site.areasLabel}.`}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs reveal"><a href="/">Home</a> &nbsp;/&nbsp; About</p>
+      <span class="eyebrow reveal">Our story</span>
+      <h1 class="reveal">Dog people, <em>through and through</em></h1>
+      <p class="lead reveal">
+        Take The Lead Services is a family-run, vet-nurse-led dog care business
+        on the Surrey–Hampshire border. We started with one simple belief: that
+        every dog deserves to be treated like one of the family.
+      </p>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <section class="sec">
+    <div class="wrap split">
+      <div class="reveal prose">
+        <span class="eyebrow">Who we are</span>
+        <h2 style="font-size:clamp(1.9rem,4vw,2.8rem);color:var(--ink);margin:.6rem 0 1rem">
+          Premium care, genuine love
+        </h2>
+        <p>
+          What began as a passion for dogs has grown into a fully-licensed home
+          for day care, boarding, walking, training and grooming — all built
+          around the wellbeing of the dogs in our care.
+        </p>
+        <p>
+          Being vet-nurse led sets us apart. It means there's always a trained
+          eye on health and safety, from spotting an early limp to managing
+          medication with total confidence. Combined with our secure 4-acre
+          private woodland, it's care you can genuinely trust.
+        </p>
+        <p>
+          We keep our groups small and carefully matched, so every dog — whether
+          a bouncy puppy or a wise older soul — has a calm, safe and happy day.
+        </p>
+      </div>
+      <div class="ph reveal">
+        <img src={images.about} alt="The team at Take The Lead Services" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="sec why">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">Our promise</span>
+        <h2>What every dog gets with us</h2>
+      </div>
+      <div class="svc-grid">
+        {
+          whyFeatures.map((f) => (
+            <article class="svc reveal">
+              <span class="ic"><Icon name={f.icon} /></span>
+              <h3 style="font-size:1.25rem">{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Reviews limit={3} />
+
+  <CtaBand
+    title="Come and meet us"
+    text="The best way to see what makes us different is to visit. Book a free meet & greet today."
+  />
+</BaseLayout>

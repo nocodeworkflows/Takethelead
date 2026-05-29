@@ -1,0 +1,38 @@
+---
+import { faqs } from "../data/content";
+
+// FAQ structured data for rich results
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Good to know</span>
+      <h2>Frequently asked questions</h2>
+      <p>Everything you need to know before your dog's first visit.</p>
+    </div>
+    <div class="faq">
+      {
+        faqs.map((f, i) => (
+          <details class="acc reveal" open={i === 0}>
+            <summary>
+              {f.q}
+              <span class="plus" aria-hidden="true" />
+            </summary>
+            <div class="body">{f.a}</div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</section>

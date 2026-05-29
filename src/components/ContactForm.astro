@@ -1,0 +1,113 @@
+---
+import Icon from "./Icon.astro";
+import { services } from "../data/site";
+interface Props { preselect?: string; }
+const { preselect } = Astro.props;
+---
+
+<form class="lead-form" id="leadForm" novalidate>
+  <div id="formBody">
+    <h3>Book a free trial day</h3>
+    <p class="fsub">Fill this in and we'll be in touch the same day to arrange your free meet & greet.</p>
+
+    <div class="row2">
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
+      </div>
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required />
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label for="service">Service you're interested in</label>
+        <select id="service" name="service">
+          <option value="">Choose a service…</option>
+          {
+            services.map((s) => (
+              <option value={s.title} selected={preselect === s.slug}>
+                {s.title}
+              </option>
+            ))
+          }
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="dog">Your dog's name & breed</label>
+        <input id="dog" name="dog" type="text" placeholder="e.g. Bramble, Cockapoo" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="message">Anything we should know? (optional)</label>
+      <textarea id="message" name="message" placeholder="Days needed, your dog's character, any questions…"></textarea>
+    </div>
+
+    <!-- honeypot: bots fill this, humans don't -->
+    <div class="hp" aria-hidden="true">
+      <label for="company">Company</label>
+      <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <button class="btn btn-red" type="submit" id="submitBtn">Send my request</button>
+    <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
+    <p class="form-note">We'll never share your details. By submitting you agree to be contacted about your enquiry.</p>
+  </div>
+
+  <div class="form-success" id="formSuccess">
+    <div class="check"><Icon name="check" /></div>
+    <h3>Thank you — request received!</h3>
+    <p class="fsub">We've got your details and we'll be in touch the same day to arrange your free meet & greet. Keep an eye on your phone and inbox.</p>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById("leadForm") as HTMLFormElement | null;
+  const body = document.getElementById("formBody");
+  const success = document.getElementById("formSuccess");
+  const feedback = document.getElementById("formFeedback");
+  const btn = document.getElementById("submitBtn") as HTMLButtonElement | null;
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    if (feedback) { feedback.textContent = ""; feedback.classList.remove("error"); }
+    if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        body?.style.setProperty("display", "none");
+        success?.classList.add("show");
+        return;
+      }
+      const out = await res.json().catch(() => ({}));
+      throw new Error(out.error || "Something went wrong");
+    } catch (err) {
+      if (feedback) {
+        feedback.classList.add("error");
+        feedback.textContent =
+          "Sorry, we couldn't send that. Please call us on 07903 555424 or email hello@taketheleadservices.co.uk.";
+      }
+      if (btn) { btn.disabled = false; btn.textContent = "Send my request"; }
+    }
+  });
+</script>

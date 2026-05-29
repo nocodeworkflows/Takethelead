@@ -1,0 +1,182 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import TrustStrip from "../components/TrustStrip.astro";
+import Reviews from "../components/Reviews.astro";
+import FAQ from "../components/FAQ.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { site, services, areas } from "../data/site";
+import { steps, whyFeatures } from "../data/content";
+import { images } from "../data/images";
+---
+
+<BaseLayout>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">Family-run · Vet-nurse led</span>
+        <h1>Day care your dog <em>can't wait</em> to get to.</h1>
+        <p class="lead">
+          Premium, fully-licensed dog day care, home boarding, walking, training
+          & grooming across {site.areasLabel} — with a secure 4-acre private
+          woodland and a team that genuinely loves dogs.
+        </p>
+        <div class="hero-badges">
+          <span class="pill"><Icon name="check" />5★ Licensed Daycare</span>
+          <span class="pill"><Icon name="check" />Fully Insured</span>
+          <span class="pill"><Icon name="check" />DBS Checked</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-red" href="/contact/">Book a Free Trial Day</a>
+          <a class="btn btn-ghost" href="#services">Explore Services</a>
+        </div>
+        <div class="hero-rating">
+          <span class="stars">★★★★★</span>
+          <span>Loved by hundreds of local dog owners</span>
+        </div>
+      </div>
+
+      <div class="hero-media reveal">
+        <div class="hero-photo">
+          <img
+            src={images.heroMain}
+            alt="A happy dog enjoying day care at Take The Lead Services' private woodland"
+            width="720"
+            height="540"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="float-top">
+          <b>4</b><span>Acre Woodland</span>
+        </div>
+        <div class="float-card">
+          <span class="ic"><Icon name="heart" /></span>
+          <div>
+            <b>Free trial day</b>
+            <span>See if it's the right fit — no cost</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <!-- SERVICES -->
+  <section class="sec" id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">What we do</span>
+        <h2>Everything your dog needs, all in one place</h2>
+        <p>From day care and holidays to walks, training and grooming — premium care, delivered with genuine love.</p>
+      </div>
+      <div class="svc-grid">
+        {
+          services.map((s) => (
+            <article class={`svc reveal${s.feature ? " feat" : ""}`}>
+              <span class="ic"><Icon name={s.icon} /></span>
+              {s.tagline && <span class="svc-tag">{s.tagline}</span>}
+              <h3>{s.title}</h3>
+              <p>{s.excerpt}</p>
+              <a class="svc-link" href={`/${s.slug}/`}>
+                Learn more <Icon name="arrow" />
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="sec why" id="why">
+    <div class="wrap why-grid">
+      <div class="why-media reveal">
+        <div class="ph tall"><img src={images.whyTall} alt="Dogs playing in secure woodland" loading="lazy" /></div>
+        <div class="ph"><img src={images.whySquare1} alt="A dog being cared for" loading="lazy" /></div>
+        <div class="ph"><img src={images.whySquare2} alt="A relaxed dog at home boarding" loading="lazy" /></div>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Why Take The Lead</span>
+        <h2 style="font-size:clamp(2rem,4.4vw,3.1rem);color:var(--ink);margin:.6rem 0">More than day care — a second family</h2>
+        <p style="color:var(--ink-soft);font-size:1.08rem">
+          We treat every dog as if they were our own. That means proper space to
+          run, qualified eyes watching over them, and small groups where everyone
+          feels safe.
+        </p>
+        <ul class="feat-list">
+          {
+            whyFeatures.map((f) => (
+              <li>
+                <span class="fic"><Icon name={f.icon} /></span>
+                <div>
+                  <h4>{f.title}</h4>
+                  <p>{f.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="sec" id="how">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>Getting started is easy</h2>
+        <p>Three simple steps to a happier dog and a free trial day.</p>
+      </div>
+      <div class="steps">
+        {
+          steps.map((s, i) => (
+            <article class="step reveal">
+              <span class="num">{i + 1}</span>
+              <span class="sic"><Icon name={s.icon} /></span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="steps-cta">
+        <a class="btn btn-red" href="/contact/">Start with a Free Trial</a>
+      </div>
+    </div>
+  </section>
+
+  <Reviews />
+
+  <!-- AREAS -->
+  <section class="sec" id="areas">
+    <div class="wrap areas-grid">
+      <div class="reveal">
+        <span class="eyebrow">Where we work</span>
+        <h2 style="font-size:clamp(2rem,4.4vw,3.1rem);color:var(--ink);margin:.6rem 0">Proudly serving {site.areasLabel}</h2>
+        <p style="color:var(--ink-soft);font-size:1.08rem">
+          Based in the heart of the Surrey–Hampshire border, with free collection
+          & drop-off across our local area. Not sure if we cover you? Just ask.
+        </p>
+        <div class="chips">
+          {areas.map((a) => <span class="chip">{a}</span>)}
+        </div>
+      </div>
+      <div class="area-card reveal">
+        <h3>Free local collection & drop-off</h3>
+        <p>Save time on busy mornings — we'll come to you.</p>
+        <div class="ac-row"><Icon name="pin" /> Surrey & Hampshire border</div>
+        <div class="ac-row"><Icon name="clock" /> Flexible morning & evening slots</div>
+        <div class="ac-row"><Icon name="tree" /> Days out on secure 4-acre woodland</div>
+        <div class="ac-row"><Icon name="camera" /> Daily photo updates included</div>
+        <a class="btn btn-light" href="/contact/" style="margin-top:1.4rem">Check Availability</a>
+      </div>
+    </div>
+  </section>
+
+  <FAQ />
+
+  <CtaBand />
+</BaseLayout>

@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import TrustStrip from "../components/TrustStrip.astro";
+import Reviews from "../components/Reviews.astro";
+import CtaBand from "../components/CtaBand.astro";
+import ContactForm from "../components/ContactForm.astro";
+import { services, site } from "../data/site";
+import { images } from "../data/images";
+
+export function getStaticPaths() {
+  return services.map((s) => ({
+    params: { service: s.slug },
+    props: { service: s },
+  }));
+}
+
+const { service } = Astro.props;
+
+// Map service slug → image slot
+const imgMap: Record<string, string> = {
+  "dog-day-care": images.dayCare,
+  "home-boarding": images.boarding,
+  "dog-walking": images.walking,
+  "dog-training": images.training,
+  "dog-grooming": images.grooming,
+};
+const photo = imgMap[service.slug] ?? images.heroMain;
+
+const others = services.filter((s) => s.slug !== service.slug);
+---
+
+<BaseLayout
+  title={`${service.title} in ${site.areasLabel}`}
+  description={service.intro}
+  image={photo}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs reveal"><a href="/">Home</a> &nbsp;/&nbsp; {service.title}</p>
+      <span class="eyebrow reveal">{service.tagline ?? "Our services"}</span>
+      <h1 class="reveal">{service.title} in <em>{site.areasLabel}</em></h1>
+      <p class="lead reveal">{service.intro}</p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-red" href="/contact/">Book a Free Trial</a>
+        <a class="btn btn-ghost" href={site.phoneHref}>
+          <Icon name="phone" /> {site.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <section class="sec">
+    <div class="wrap split">
+      <div class="reveal">
+        <span class="eyebrow">What's included</span>
+        <h2 style="font-size:clamp(1.9rem,4vw,2.8rem);color:var(--ink);margin:.6rem 0 1rem">
+          Everything your dog needs, nothing they don't
+        </h2>
+        <div class="prose">
+          <ul>
+            {service.highlights.map((h) => <li>{h}</li>)}
+          </ul>
+        </div>
+        <div class="pricing-note">
+          <strong>Pricing & availability:</strong> every dog is different, so we
+          tailor our care (and price) to your needs. Get in touch for a quick,
+          no-obligation quote and your free meet & greet.
+        </div>
+        <div class="hero-actions" style="margin-top:1.4rem">
+          <a class="btn btn-red" href="/contact/">Get My Free Quote</a>
+        </div>
+      </div>
+      <div class="ph reveal">
+        <img src={photo} alt={`${service.title} with Take The Lead Services`} loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Other services -->
+  <section class="sec why">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">Explore more</span>
+        <h2>Other ways we can help</h2>
+      </div>
+      <div class="svc-grid">
+        {
+          others.slice(0, 3).map((s) => (
+            <article class="svc reveal">
+              <span class="ic"><Icon name={s.icon} /></span>
+              <h3>{s.title}</h3>
+              <p>{s.excerpt}</p>
+              <a class="svc-link" href={`/${s.slug}/`}>Learn more <Icon name="arrow" /></a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Reviews limit={3} />
+
+  <!-- Inline booking -->
+  <section class="sec contact" id="contact">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">Get started</span>
+        <h2 style="color:var(--ink)">Book your free {service.title.toLowerCase()} trial</h2>
+        <p>Tell us about your dog and we'll be in touch the same day.</p>
+      </div>
+      <div style="max-width:680px;margin:0 auto" class="reveal">
+        <ContactForm preselect={service.slug} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import ContactForm from "../components/ContactForm.astro";
+import FAQ from "../components/FAQ.astro";
+import { site } from "../data/site";
+---
+
+<BaseLayout
+  title="Contact & Booking"
+  description={`Book a free trial day or get a quote. Call ${site.phoneDisplay} or message ${site.name} — covering ${site.areasLabel}.`}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs reveal"><a href="/">Home</a> &nbsp;/&nbsp; Contact</p>
+      <span class="eyebrow reveal">Let's chat</span>
+      <h1 class="reveal">Book a <em>free trial day</em></h1>
+      <p class="lead reveal">
+        Ready to give your dog the best day out? Send us a message or give us a
+        call — we'll get back to you the same day to arrange your free meet &
+        greet.
+      </p>
+    </div>
+  </section>
+
+  <section class="sec contact">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h2>We'd love to hear about your dog</h2>
+        <p class="lead">However you like to chat, we're here. No pushy sales — just honest, friendly advice.</p>
+
+        <div class="contact-card">
+          <span class="ic"><Icon name="phone" /></span>
+          <div>
+            <b>Call or text</b>
+            <a href={site.phoneHref}>{site.phoneDisplay}</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="ic"><Icon name="whatsapp" /></span>
+          <div>
+            <b>WhatsApp</b>
+            <a href={site.whatsappHref} target="_blank" rel="noopener">Message us on WhatsApp</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="ic"><Icon name="mail" /></span>
+          <div>
+            <b>Email</b>
+            <a href={site.emailHref}>{site.email}</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="ic"><Icon name="pin" /></span>
+          <div>
+            <b>Areas covered</b>
+            <span>{site.areasLabel} & surrounding villages</span>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="ic"><Icon name="clock" /></span>
+          <div>
+            <b>Opening hours</b>
+            {site.hours.map((h) => <span style="display:block">{h.day}: {h.time}</span>)}
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <FAQ />
+</BaseLayout>

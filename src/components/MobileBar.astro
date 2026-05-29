@@ -1,0 +1,11 @@
+---
+import Icon from "./Icon.astro";
+import { site } from "../data/site";
+---
+
+<div class="mobar" aria-label="Quick contact">
+  <a class="btn btn-ghost" href={site.phoneHref}>
+    <Icon name="phone" /> Call
+  </a>
+  <a class="btn btn-red" href="/contact/">Book Free Trial</a>
+</div>
