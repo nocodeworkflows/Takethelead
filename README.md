@@ -39,22 +39,33 @@ The client edits content through a built-in CMS — **Keystatic** — with no co
 - **How saving works:** every change is committed to this repo, which triggers
   a Cloudflare Pages rebuild. The live site updates ~1 minute later.
 
-What's editable in the CMS (stored as JSON under [`/content`](./content)):
+Almost all site content is editable in the CMS (stored as JSON under
+[`/content`](./content)):
 
-| Section | Where |
+| Section | Where in Keystatic |
 | --- | --- |
-| Services (titles, copy, highlights, icon, order, homepage highlight) | Services collection |
-| Reviews | Reviews collection |
-| FAQs | FAQs collection |
-| Phone, email, WhatsApp, hours, socials, areas label | Site settings |
-| Areas covered (chips) | Areas covered |
+| Services (titles, copy, highlights, icon, order, homepage highlight, photo, pricing note) | **Services** collection |
+| Reviews | **Reviews** collection |
+| FAQs | **FAQs** collection |
+| Trust badges (dark strip) | **Trust badges** collection |
+| "How it works" steps | **How it works** collection |
+| "Why us" feature tiles | **Why us** collection |
+| Homepage copy (hero, all section headings/intros, float cards, areas card) | **Homepage content** singleton |
+| About page copy (hero, body paragraphs, promise, closing CTA) | **About page content** singleton |
+| Contact page copy (hero, side column) | **Contact page content** singleton |
+| Default call-to-action band | **Call-to-action band** singleton |
+| Phone, email, WhatsApp, hours, socials, areas label, meta description | **Site settings** singleton |
+| Areas covered (chips) | **Areas covered** singleton |
+| Photos — hero, why-us, about, social share | **Photos** singleton |
+
+> **Tip:** in heading fields, wrap words in `*asterisks*` to make them the
+> highlighted (red italic) part, e.g. `Book a *free trial day*`.
 
 Still in code (developer edits):
 
 | What | File |
 | --- | --- |
-| "How it works" steps & "why us" differentiators (use icon keys) | `src/data/content.ts` |
-| **All photos (Weebly URLs)** | `src/data/images.ts` |
+| Default photo URLs / Weebly base (used when a Photos field is left blank) | `src/data/images.ts` |
 | Navigation (auto-derived from Services) | `src/lib/content.ts` |
 | Global styling / theme | `src/styles/global.css` |
 | CMS schema (add/rename fields) | `keystatic.config.ts` |
@@ -70,15 +81,14 @@ edit the local files directly (no login needed).
 
 ### Images
 
-Photos are hot-linked from the existing Weebly upload folder
-(`https://www.taketheleadservices.co.uk/uploads/1/7/4/6/17463779/…`). To add
-the real photos, open **`src/data/images.ts`** and replace each `FALLBACK`
-with `weebly("filename.jpg")`. Get filenames by right-clicking a photo on the
-live site → *Copy image address*. Any slot left as `FALLBACK` safely shows the
-one known-good image, so nothing ever appears broken.
+Photos can be changed in the CMS — **Photos** singleton, and the **photo**
+field on each Service. Paste a full image URL (e.g. right-click a photo on the
+live Weebly site → *Copy image address*). Any field left **blank** falls back
+to the default in `src/data/images.ts`, so nothing ever appears broken.
 
-To use a self-hosted logo instead of the built-in SVG, drop the file in
-`/public` and update `src/components/Logo.astro`.
+`src/data/images.ts` holds those defaults and the Weebly base URL helper. To
+use a self-hosted logo instead of the built-in SVG, drop the file in `/public`
+and update `src/components/Logo.astro`.
 
 ## Deploy to Cloudflare Pages (free)
 

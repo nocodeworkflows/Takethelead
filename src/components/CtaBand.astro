@@ -1,14 +1,17 @@
 ---
-import { getSiteSettings } from "../lib/content";
+import { getSiteSettings, getCta } from "../lib/content";
 const site = await getSiteSettings();
+const cta = await getCta();
 interface Props {
   title?: string;
   text?: string;
 }
 const {
-  title = "Ready to give your dog the best day out?",
-  text = "Book a free meet & greet and trial day — no pressure, no cost. See why local dogs love it here.",
+  title = cta?.title || "Ready to give your dog the best day out?",
+  text = cta?.text ||
+    "Book a free meet & greet and trial day — no pressure, no cost. See why local dogs love it here.",
 } = Astro.props;
+const primaryLabel = cta?.primaryLabel || "Book a Free Trial";
 ---
 
 <section class="cta-band">
@@ -18,7 +21,7 @@ const {
       <p>{text}</p>
     </div>
     <div class="cta-actions">
-      <a class="btn btn-light" href="/contact/">Book a Free Trial</a>
+      <a class="btn btn-light" href="/contact/">{primaryLabel}</a>
       <a class="btn btn-outline-light" href={site.phoneHref}>Call {site.phoneDisplay}</a>
     </div>
   </div>

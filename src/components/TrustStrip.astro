@@ -1,12 +1,7 @@
 ---
 import Icon from "./Icon.astro";
-const items = [
-  { icon: "shield", label: "Fully Licensed & Insured" },
-  { icon: "heart", label: "Vet-Nurse Led" },
-  { icon: "check", label: "DBS Checked" },
-  { icon: "tree", label: "Secure 4-Acre Woodland" },
-  { icon: "star", label: "5★ Rated Locally" },
-];
+import { getTrustItems } from "../lib/content";
+const items = await getTrustItems();
 ---
 
 <section class="trust">

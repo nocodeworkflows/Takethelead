@@ -1,0 +1,47 @@
+{
+  "heroEyebrow": "Family-run · Vet-nurse led",
+  "heroHeading": "Day care your dog *can't wait* to get to.",
+  "heroLead": "Premium, fully-licensed dog day care, home boarding, walking, training & grooming across Surrey & Hampshire — with a secure 4-acre private woodland and a team that genuinely loves dogs.",
+  "heroBadges": [
+    "5★ Licensed Daycare",
+    "Fully Insured",
+    "DBS Checked"
+  ],
+  "ratingText": "Loved by hundreds of local dog owners",
+  "floatTopNumber": "4",
+  "floatTopLabel": "Acre Woodland",
+  "floatCardTitle": "Free trial day",
+  "floatCardText": "See if it's the right fit — no cost",
+  "servicesEyebrow": "What we do",
+  "servicesHeading": "Everything your dog needs, all in one place",
+  "servicesIntro": "From day care and holidays to walks, training and grooming — premium care, delivered with genuine love.",
+  "whyEyebrow": "Why Take The Lead",
+  "whyHeading": "More than day care — a second family",
+  "whyIntro": "We treat every dog as if they were our own. That means proper space to run, qualified eyes watching over them, and small groups where everyone feels safe.",
+  "howEyebrow": "How it works",
+  "howHeading": "Getting started is easy",
+  "howIntro": "Three simple steps to a happier dog and a free trial day.",
+  "areasEyebrow": "Where we work",
+  "areasHeading": "Proudly serving Surrey & Hampshire",
+  "areasIntro": "Based in the heart of the Surrey–Hampshire border, with free collection & drop-off across our local area. Not sure if we cover you? Just ask.",
+  "areaCardTitle": "Free local collection & drop-off",
+  "areaCardText": "Save time on busy mornings — we'll come to you.",
+  "areaCardRows": [
+    {
+      "icon": "pin",
+      "text": "Surrey & Hampshire border"
+    },
+    {
+      "icon": "clock",
+      "text": "Flexible morning & evening slots"
+    },
+    {
+      "icon": "tree",
+      "text": "Days out on secure 4-acre woodland"
+    },
+    {
+      "icon": "camera",
+      "text": "Daily photo updates included"
+    }
+  ]
+}

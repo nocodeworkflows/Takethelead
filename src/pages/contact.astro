@@ -3,8 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import ContactForm from "../components/ContactForm.astro";
 import FAQ from "../components/FAQ.astro";
-import { getSiteSettings } from "../lib/content";
+import { getSiteSettings, getContactPage } from "../lib/content";
+import { emphasis } from "../lib/emphasis";
 const site = await getSiteSettings();
+const cp = await getContactPage();
 ---
 
 <BaseLayout
@@ -14,22 +16,18 @@ const site = await getSiteSettings();
   <section class="page-hero">
     <div class="wrap">
       <p class="crumbs reveal"><a href="/">Home</a> &nbsp;/&nbsp; Contact</p>
-      <span class="eyebrow reveal">Let's chat</span>
-      <h1 class="reveal">Book a <em>free trial day</em></h1>
-      <p class="lead reveal">
-        Ready to give your dog the best day out? Send us a message or give us a
-        call — we'll get back to you the same day to arrange your free meet &
-        greet.
-      </p>
+      <span class="eyebrow reveal">{cp?.heroEyebrow}</span>
+      <h1 class="reveal" set:html={emphasis(cp?.heroHeading)} />
+      <p class="lead reveal">{cp?.heroLead}</p>
     </div>
   </section>
 
   <section class="sec contact">
     <div class="wrap contact-grid">
       <div class="reveal">
-        <span class="eyebrow">Get in touch</span>
-        <h2>We'd love to hear about your dog</h2>
-        <p class="lead">However you like to chat, we're here. No pushy sales — just honest, friendly advice.</p>
+        <span class="eyebrow">{cp?.sideEyebrow}</span>
+        <h2>{cp?.sideHeading}</h2>
+        <p class="lead">{cp?.sideText}</p>
 
         <div class="contact-card">
           <span class="ic"><Icon name="phone" /></span>

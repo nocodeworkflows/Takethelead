@@ -10,6 +10,7 @@
 // ---------------------------------------------------------------------------
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "../../keystatic.config";
+import { images as defaultImages } from "../data/images";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -37,6 +38,8 @@ export type Service = {
   icon: string;
   intro: string;
   highlights: string[];
+  photo: string;
+  pricingNote: string;
 };
 
 export type SiteSettings = {
@@ -100,6 +103,8 @@ export async function getServices(): Promise<Service[]> {
       icon: entry.icon || "paw",
       intro: entry.intro || "",
       highlights: [...(entry.highlights || [])],
+      photo: entry.photo || "",
+      pricingNote: entry.pricingNote || "",
       order: entry.order ?? 99,
     }))
     .sort((a, b) => a.order - b.order)
@@ -141,4 +146,64 @@ export type Faq = { q: string; a: string };
 export async function getFaqs(): Promise<Faq[]> {
   const entries = await reader.collections.faqs.all();
   return entries.map(({ entry }) => ({ q: entry.question, a: entry.answer }));
+}
+
+// --- Icon + text collections (trust badges, steps, why features) ----------
+export type IconText = { icon: string; title: string; text: string };
+
+const byOrder = <T extends { order?: number | null }>(a: T, b: T) =>
+  (a.order ?? 99) - (b.order ?? 99);
+
+export async function getTrustItems(): Promise<{ icon: string; label: string }[]> {
+  const entries = await reader.collections.trustItems.all();
+  return entries
+    .map(({ entry }) => ({ icon: entry.icon || "check", label: entry.label, order: entry.order }))
+    .sort(byOrder)
+    .map(({ order, ...rest }) => rest);
+}
+
+export async function getSteps(): Promise<IconText[]> {
+  const entries = await reader.collections.steps.all();
+  return entries
+    .map(({ entry }) => ({ icon: entry.icon || "paw", title: entry.title, text: entry.text || "", order: entry.order }))
+    .sort(byOrder)
+    .map(({ order, ...rest }) => rest);
+}
+
+export async function getWhyFeatures(): Promise<IconText[]> {
+  const entries = await reader.collections.whyFeatures.all();
+  return entries
+    .map(({ entry }) => ({ icon: entry.icon || "heart", title: entry.title, text: entry.text || "", order: entry.order }))
+    .sort(byOrder)
+    .map(({ order, ...rest }) => rest);
+}
+
+// --- Page singletons ------------------------------------------------------
+export async function getHomepage() {
+  return await reader.singletons.homepage.read();
+}
+export async function getAboutPage() {
+  return await reader.singletons.about.read();
+}
+export async function getContactPage() {
+  return await reader.singletons.contactPage.read();
+}
+export async function getCta() {
+  return await reader.singletons.cta.read();
+}
+
+// --- Images: CMS override merged over the code defaults --------------------
+export async function getImages() {
+  const cms = await reader.singletons.images.read();
+  const pick = (override: string | null | undefined, fallback: string) =>
+    override && override.trim() ? override.trim() : fallback;
+  return {
+    ...defaultImages,
+    heroMain: pick(cms?.heroMain, defaultImages.heroMain),
+    whyTall: pick(cms?.whyTall, defaultImages.whyTall),
+    whySquare1: pick(cms?.whySquare1, defaultImages.whySquare1),
+    whySquare2: pick(cms?.whySquare2, defaultImages.whySquare2),
+    about: pick(cms?.about, defaultImages.about),
+    og: pick(cms?.og, defaultImages.og),
+  };
 }

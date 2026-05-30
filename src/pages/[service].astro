@@ -5,8 +5,7 @@ import TrustStrip from "../components/TrustStrip.astro";
 import Reviews from "../components/Reviews.astro";
 import CtaBand from "../components/CtaBand.astro";
 import ContactForm from "../components/ContactForm.astro";
-import { getSiteSettings, getServices } from "../lib/content";
-import { images } from "../data/images";
+import { getSiteSettings, getServices, getImages } from "../lib/content";
 
 export async function getStaticPaths() {
   const services = await getServices();
@@ -19,16 +18,14 @@ export async function getStaticPaths() {
 const { service } = Astro.props;
 const site = await getSiteSettings();
 const services = await getServices();
+const images = await getImages();
 
-// Map service slug → image slot
-const imgMap: Record<string, string> = {
-  "dog-day-care": images.dayCare,
-  "home-boarding": images.boarding,
-  "dog-walking": images.walking,
-  "dog-training": images.training,
-  "dog-grooming": images.grooming,
-};
-const photo = imgMap[service.slug] ?? images.heroMain;
+// Use the service's own photo if set, otherwise the homepage hero photo.
+const photo = service.photo || images.heroMain;
+
+const pricingNote =
+  service.pricingNote ||
+  "Every dog is different, so we tailor our care (and price) to your needs. Get in touch for a quick, no-obligation quote and your free meet & greet.";
 
 const others = services.filter((s) => s.slug !== service.slug);
 ---
@@ -68,9 +65,7 @@ const others = services.filter((s) => s.slug !== service.slug);
           </ul>
         </div>
         <div class="pricing-note">
-          <strong>Pricing & availability:</strong> every dog is different, so we
-          tailor our care (and price) to your needs. Get in touch for a quick,
-          no-obligation quote and your free meet & greet.
+          <strong>Pricing & availability:</strong> {pricingNote}
         </div>
         <div class="hero-actions" style="margin-top:1.4rem">
           <a class="btn btn-red" href="/contact/">Get My Free Quote</a>
