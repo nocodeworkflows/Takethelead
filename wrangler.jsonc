@@ -1,0 +1,17 @@
+{
+  // Cloudflare Workers config for the Astro Cloudflare adapter.
+  // Marketing pages are static assets; the worker handles /keystatic/* and
+  // /api/* (see the adapter-generated dist/_routes.json).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "takethelead",
+  "compatibility_date": "2026-05-29",
+  "compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
+  "main": "dist/_worker.js/index.js",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "dist"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

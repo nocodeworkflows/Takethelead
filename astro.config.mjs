@@ -14,6 +14,8 @@ export default defineConfig({
   output: "static",
   adapter: cloudflare({
     platformProxy: { enabled: true },
+    // Optimise images with sharp at build time (Cloudflare has no sharp at runtime).
+    imageService: "compile",
   }),
   integrations: [react(), keystatic(), sitemap()],
   compressHTML: true,
