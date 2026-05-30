@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { site } from "../data/site";
+import { getSiteSettings } from "../lib/content";
+const site = await getSiteSettings();
 ---
 
 <BaseLayout title="Page not found" noindex={true}>

@@ -1,0 +1,18 @@
+{
+  "title": "Dog Day Care",
+  "short": "Day Care",
+  "tagline": "Most popular",
+  "feature": true,
+  "icon": "sun",
+  "excerpt": "Supervised, social days out on our secure 4-acre private woodland — so your dog comes home happy and tired, not bored and lonely.",
+  "intro": "A proper day out for your dog. Small, carefully matched groups, constant supervision and acres of secure woodland to explore, sniff and play. Vet-nurse led, so health and safety come first — every single day.",
+  "highlights": [
+    "Secure 4-acre private woodland",
+    "Small, temperament-matched groups",
+    "Constant qualified supervision",
+    "Free collection & drop-off in our local areas",
+    "Photo updates so you never miss a moment",
+    "Free trial day to see if it's the right fit"
+  ],
+  "order": 1
+}

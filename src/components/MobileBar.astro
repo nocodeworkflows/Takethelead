@@ -1,6 +1,7 @@
 ---
 import Icon from "./Icon.astro";
-import { site } from "../data/site";
+import { getSiteSettings } from "../lib/content";
+const site = await getSiteSettings();
 ---
 
 <div class="mobar" aria-label="Quick contact">

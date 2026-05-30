@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /keystatic
+Disallow: /api/
 
 Sitemap: https://www.taketheleadservices.co.uk/sitemap-index.xml

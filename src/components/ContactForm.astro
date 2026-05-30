@@ -1,8 +1,9 @@
 ---
 import Icon from "./Icon.astro";
-import { services } from "../data/site";
+import { getServices } from "../lib/content";
 interface Props { preselect?: string; }
 const { preselect } = Astro.props;
+const services = await getServices();
 ---
 
 <form class="lead-form" id="leadForm" novalidate>

@@ -1,21 +1,18 @@
 // ---------------------------------------------------------------------------
-// Cloudflare Pages Function — handles the booking / contact form.
-// Path: POST /api/contact
+// Booking / contact form handler — Astro endpoint (POST /api/contact).
+// Runs on-demand via the Cloudflare adapter (everything else is static).
 //
 // Setup (Cloudflare dashboard → Pages project → Settings → Environment vars):
 //   RESEND_API_KEY   your Resend API key (free tier: 100 emails/day)
 //   TO_EMAIL         where enquiries are delivered (e.g. hello@taketheleadservices.co.uk)
 //   FROM_EMAIL       a verified Resend sender (e.g. website@taketheleadservices.co.uk)
 //
-// No key set yet? The function still accepts the submission and logs it,
-// so the form keeps working while email delivery is being configured.
+// No key set yet? Submissions are accepted and logged so the form keeps
+// working while email delivery is being configured.
 // ---------------------------------------------------------------------------
+import type { APIRoute } from "astro";
 
-interface Env {
-  RESEND_API_KEY?: string;
-  TO_EMAIL?: string;
-  FROM_EMAIL?: string;
-}
+export const prerender = false;
 
 type Payload = {
   name?: string;
@@ -36,7 +33,11 @@ const json = (data: unknown, status = 200) =>
 const esc = (s = "") =>
   s.replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" })[c] || c);
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
+  // Cloudflare runtime env at runtime; import.meta.env as a local-dev fallback.
+  const env: Record<string, string | undefined> =
+    (locals as any)?.runtime?.env ?? (import.meta.env as any);
+
   let data: Payload;
   try {
     data = await request.json();
@@ -61,7 +62,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   }
 
   const subject = `New booking enquiry — ${name}`;
-  const lines = [
+  const lines: [string, string][] = [
     ["Name", name],
     ["Phone", phone],
     ["Email", email],

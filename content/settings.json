@@ -1,0 +1,25 @@
+{
+  "tagline": "Premium Dog Day Care, Boarding & Walking in Surrey & Hampshire",
+  "description": "Vet-nurse-led, fully licensed dog day care, home boarding, walking, training and grooming across Surrey & Hampshire. Secure 4-acre private woodland. Book a free trial day.",
+  "phoneDisplay": "07903 555424",
+  "phoneNumber": "07903555424",
+  "whatsappNumber": "447903555424",
+  "email": "hello@taketheleadservices.co.uk",
+  "facebook": "https://www.facebook.com/taketheleadservices",
+  "instagram": "https://www.instagram.com/taketheleadservices",
+  "areasLabel": "Surrey & Hampshire",
+  "hours": [
+    {
+      "day": "Monday – Friday",
+      "time": "7:00am – 7:00pm"
+    },
+    {
+      "day": "Saturday",
+      "time": "8:00am – 5:00pm"
+    },
+    {
+      "day": "Sunday",
+      "time": "By arrangement"
+    }
+  ]
+}

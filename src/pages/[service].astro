@@ -5,10 +5,11 @@ import TrustStrip from "../components/TrustStrip.astro";
 import Reviews from "../components/Reviews.astro";
 import CtaBand from "../components/CtaBand.astro";
 import ContactForm from "../components/ContactForm.astro";
-import { services, site } from "../data/site";
+import { getSiteSettings, getServices } from "../lib/content";
 import { images } from "../data/images";
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  const services = await getServices();
   return services.map((s) => ({
     params: { service: s.slug },
     props: { service: s },
@@ -16,6 +17,8 @@ export function getStaticPaths() {
 }
 
 const { service } = Astro.props;
+const site = await getSiteSettings();
+const services = await getServices();
 
 // Map service slug → image slot
 const imgMap: Record<string, string> = {

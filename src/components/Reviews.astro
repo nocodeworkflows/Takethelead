@@ -1,7 +1,8 @@
 ---
-import { reviews } from "../data/content";
+import { getReviews } from "../lib/content";
 interface Props { limit?: number; }
 const { limit = 6 } = Astro.props;
+const reviews = await getReviews();
 const list = reviews.slice(0, limit);
 ---
 

@@ -4,9 +4,11 @@ import Icon from "../components/Icon.astro";
 import TrustStrip from "../components/TrustStrip.astro";
 import Reviews from "../components/Reviews.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { site } from "../data/site";
+import { getSiteSettings } from "../lib/content";
 import { whyFeatures } from "../data/content";
 import { images } from "../data/images";
+
+const site = await getSiteSettings();
 ---
 
 <BaseLayout

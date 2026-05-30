@@ -5,9 +5,13 @@ import TrustStrip from "../components/TrustStrip.astro";
 import Reviews from "../components/Reviews.astro";
 import FAQ from "../components/FAQ.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { site, services, areas } from "../data/site";
+import { getSiteSettings, getServices, getAreas } from "../lib/content";
 import { steps, whyFeatures } from "../data/content";
 import { images } from "../data/images";
+
+const site = await getSiteSettings();
+const services = await getServices();
+const areas = await getAreas();
 ---
 
 <BaseLayout>

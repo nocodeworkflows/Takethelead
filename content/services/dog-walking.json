@@ -1,0 +1,18 @@
+{
+  "title": "Dog Walking",
+  "short": "Dog Walking",
+  "tagline": "Rain or shine",
+  "feature": false,
+  "icon": "paw",
+  "excerpt": "Reliable solo and small-group walks that keep your dog fit, stimulated and content while you're at work or busy.",
+  "intro": "Dependable, insured dog walking tailored to your dog. Whether they need a calm solo stroll or a sociable group adventure, we keep them active, happy and safe — with a key-safe service so it fits seamlessly around your day.",
+  "highlights": [
+    "Solo or small-group walks to suit your dog",
+    "Flexible scheduling around your work day",
+    "Secure key handling & lock-up service",
+    "GPS-tracked routes on request",
+    "Towel-dry and fresh water on return",
+    "Fully insured & DBS checked walkers"
+  ],
+  "order": 3
+}
