@@ -1,0 +1,3 @@
+# The Keystatic admin lives at /keystatic/* (served by the worker). A bare
+# /keystatic request isn't matched by that pattern, so send it to /keystatic/.
+/keystatic /keystatic/ 308
