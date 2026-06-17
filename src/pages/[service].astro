@@ -77,6 +77,19 @@ const others = services.filter((s) => s.slug !== service.slug);
     </div>
   </section>
 
+  <!-- The Stylish Dog sub-brand section (grooming only) -->
+  {service.slug === "dog-grooming" && (
+    <section class="sec stylish-dog-band">
+      <div class="wrap center">
+        <span class="eyebrow">Part of Take The Lead Services</span>
+        <h2 class="stylish-dog-name">
+          <Icon name="scissors" /> The Stylish Dog
+        </h2>
+        <p class="lead">Our dedicated grooming service — gentle, stress-free, and tailored to your dog's coat and temperament.</p>
+      </div>
+    </section>
+  )}
+
   <!-- Other services -->
   <section class="sec why">
     <div class="wrap">
@@ -117,3 +130,16 @@ const others = services.filter((s) => s.slug !== service.slug);
 
   <CtaBand />
 </BaseLayout>
+
+<style>
+  .stylish-dog-band {
+    background: var(--surface, #faf9f7);
+    text-align: center;
+  }
+  .stylish-dog-name {
+    font-style: italic;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--ink);
+    margin: .5rem 0 1rem;
+  }
+</style>
