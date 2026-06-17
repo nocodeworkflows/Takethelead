@@ -3,25 +3,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import TrustStrip from "../components/TrustStrip.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { getImages } from "../lib/content";
+import { getTeamMembers, getTeamPage } from "../lib/content";
 
-const images = await getImages();
+const page = await getTeamPage();
+const members = await getTeamMembers();
 ---
 
-<BaseLayout
-  title="Meet the Team"
-  description="Family-run and vet-nurse led — meet the people who care for your dog every day at Take The Lead Services in Fleet & Farnham."
->
+<BaseLayout title="Meet the Team" description={page?.metaDescription || ""}>
   <!-- HERO -->
   <section class="page-hero">
     <div class="wrap">
       <p class="crumbs reveal"><a href="/">Home</a> &nbsp;/&nbsp; Team</p>
-      <span class="eyebrow reveal">The people behind the paws</span>
-      <h1 class="reveal">Meet the Team</h1>
-      <p class="lead reveal">
-        Family-run and vet-nurse led. Every dog in our care is looked after by experienced,
-        qualified, and genuinely passionate people.
-      </p>
+      <span class="eyebrow reveal">{page?.heroEyebrow}</span>
+      <h1 class="reveal">{page?.heroHeading}</h1>
+      <p class="lead reveal">{page?.heroLead}</p>
     </div>
   </section>
 
@@ -30,40 +25,26 @@ const images = await getImages();
   <section class="sec">
     <div class="wrap">
       <div class="team-grid">
-
-        <!-- Card 1 — uses images.team if available -->
-        <article class="team-card reveal">
-          {images.team && images.team !== ""
-            ? (
-              <div class="team-photo">
-                <img src={images.team} alt="[Name TBC] — Lead Carer" loading="lazy" />
+        {
+          members.map((member) => (
+            <article class="team-card reveal">
+              {member.photo && member.photo !== "" ? (
+                <div class="team-photo">
+                  <img src={member.photo} alt={`${member.name} — ${member.role}`} loading="lazy" />
+                </div>
+              ) : (
+                <div class="team-photo-placeholder">
+                  <Icon name="paw" />
+                </div>
+              )}
+              <div class="team-card-body">
+                <h3 class="team-name">{member.name}</h3>
+                <p class="team-role">{member.role}</p>
+                <p class="team-bio">{member.bio}</p>
               </div>
-            )
-            : (
-              <div class="team-photo-placeholder">
-                <Icon name="paw" />
-              </div>
-            )
-          }
-          <div class="team-card-body">
-            <h3 class="team-name">[Name TBC]</h3>
-            <p class="team-role">Lead Carer — Vet Nurse Qualified</p>
-            <p class="team-bio">[Bio to be added before go-live. Placeholder for layout purposes.]</p>
-          </div>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="team-card reveal">
-          <div class="team-photo-placeholder">
-            <Icon name="paw" />
-          </div>
-          <div class="team-card-body">
-            <h3 class="team-name">[Name TBC]</h3>
-            <p class="team-role">Carer</p>
-            <p class="team-bio">[Bio to be added before go-live. Placeholder for layout purposes.]</p>
-          </div>
-        </article>
-
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>

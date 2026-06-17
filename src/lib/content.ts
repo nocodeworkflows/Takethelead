@@ -116,6 +116,31 @@ export async function getService(slug: string): Promise<Service | undefined> {
   return (await getServices()).find((s) => s.slug === slug);
 }
 
+export type TeamMember = {
+  name: string;
+  role: string;
+  bio: string;
+  photo: string;
+};
+
+let _teamMembers: TeamMember[] | null = null;
+
+export async function getTeamMembers(): Promise<TeamMember[]> {
+  if (_teamMembers) return _teamMembers;
+  const entries = await reader.collections.teamMembers.all();
+  _teamMembers = entries
+    .map(({ entry }) => ({
+      name: entry.name,
+      role: entry.role || "",
+      bio: entry.bio || "",
+      photo: entry.photo || "",
+      order: entry.order ?? 99,
+    }))
+    .sort((a, b) => a.order - b.order)
+    .map(({ order, ...rest }) => rest);
+  return _teamMembers;
+}
+
 export type NavLink = { label: string; href: string };
 export type NavItem = NavLink & { children?: NavLink[] };
 
@@ -200,6 +225,9 @@ export async function getContactPage() {
 }
 export async function getFacilitiesPage() {
   return await reader.singletons.facilities.read();
+}
+export async function getTeamPage() {
+  return await reader.singletons.teamPage.read();
 }
 export async function getCta() {
   return await reader.singletons.cta.read();

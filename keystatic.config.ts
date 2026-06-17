@@ -167,6 +167,29 @@ export default config({
         text: fields.text({ label: "Description", multiline: true }),
       },
     }),
+
+    teamMembers: collection({
+      label: "Team members",
+      slugField: "name",
+      path: "content/team-members/*",
+      format: { data: "json" },
+      schema: {
+        name: fields.slug({
+          name: { label: "Name", validation: { isRequired: true } },
+        }),
+        order: fields.integer({
+          label: "Display order",
+          description: "Lower numbers appear first.",
+          defaultValue: 1,
+        }),
+        role: fields.text({ label: "Role" }),
+        bio: fields.text({ label: "Bio", multiline: true }),
+        photo: fields.text({
+          label: "Photo URL (optional)",
+          description: "Full image URL. Leave blank for a paw-icon placeholder.",
+        }),
+      },
+    }),
   },
 
   singletons: {
@@ -376,6 +399,18 @@ export default config({
           description: "Use {areasLabel} to insert the areas label.",
           multiline: true,
         }),
+      },
+    }),
+
+    teamPage: singleton({
+      label: "Team page content",
+      path: "content/team-page",
+      format: { data: "json" },
+      schema: {
+        metaDescription: fields.text({ label: "Meta description", multiline: true }),
+        heroEyebrow: fields.text({ label: "Hero — eyebrow" }),
+        heroHeading: fields.text({ label: "Hero — heading" }),
+        heroLead: fields.text({ label: "Hero — lead", multiline: true }),
       },
     }),
   },
