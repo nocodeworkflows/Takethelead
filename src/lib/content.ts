@@ -121,6 +121,7 @@ export async function getNav(): Promise<{ label: string; href: string }[]> {
   return [
     ...services.map((s) => ({ label: s.short, href: `/${s.slug}/` })),
     { label: "About", href: "/about/" },
+    { label: "Facilities", href: "/facilities/" },
   ];
 }
 
