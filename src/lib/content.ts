@@ -229,6 +229,9 @@ export async function getFacilitiesPage() {
 export async function getTeamPage() {
   return await reader.singletons.teamPage.read();
 }
+export async function getFaqsPage() {
+  return await reader.singletons.faqsPage.read();
+}
 export async function getCta() {
   return await reader.singletons.cta.read();
 }

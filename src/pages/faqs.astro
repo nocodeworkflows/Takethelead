@@ -2,25 +2,20 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FAQ from "../components/FAQ.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { getSiteSettings } from "../lib/content";
+import { getSiteSettings, getFaqsPage } from "../lib/content";
 
 const site = await getSiteSettings();
+const page = await getFaqsPage();
 ---
 
-<BaseLayout
-  title="FAQs"
-  description="Got questions about dog day care, boarding, walking or grooming in Fleet & Farnham? Find answers to our most common questions here."
->
+<BaseLayout title="FAQs" description={page?.metaDescription || ""}>
   <!-- HERO -->
   <section class="page-hero">
     <div class="wrap">
       <p class="crumbs reveal"><a href="/">Home</a> &nbsp;/&nbsp; FAQs</p>
-      <span class="eyebrow reveal">Got questions?</span>
-      <h1 class="reveal">Frequently Asked Questions</h1>
-      <p class="lead reveal">
-        Everything you need to know about our services. Can't find what you're looking for?
-        Give us a call or drop us a message.
-      </p>
+      <span class="eyebrow reveal">{page?.heroEyebrow}</span>
+      <h1 class="reveal">{page?.heroHeading}</h1>
+      <p class="lead reveal">{page?.heroLead}</p>
     </div>
   </section>
 

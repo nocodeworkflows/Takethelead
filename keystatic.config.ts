@@ -413,5 +413,17 @@ export default config({
         heroLead: fields.text({ label: "Hero — lead", multiline: true }),
       },
     }),
+
+    faqsPage: singleton({
+      label: "FAQs page content",
+      path: "content/faqs-page",
+      format: { data: "json" },
+      schema: {
+        metaDescription: fields.text({ label: "Meta description", multiline: true }),
+        heroEyebrow: fields.text({ label: "Hero — eyebrow" }),
+        heroHeading: fields.text({ label: "Hero — heading" }),
+        heroLead: fields.text({ label: "Hero — lead", multiline: true }),
+      },
+    }),
   },
 });
