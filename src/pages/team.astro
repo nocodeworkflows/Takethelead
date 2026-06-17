@@ -1,0 +1,155 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import TrustStrip from "../components/TrustStrip.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { getImages } from "../lib/content";
+
+const images = await getImages();
+---
+
+<BaseLayout
+  title="Meet the Team"
+  description="Family-run and vet-nurse led — meet the people who care for your dog every day at Take The Lead Services in Fleet & Farnham."
+>
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs reveal"><a href="/">Home</a> &nbsp;/&nbsp; Team</p>
+      <span class="eyebrow reveal">The people behind the paws</span>
+      <h1 class="reveal">Meet the Team</h1>
+      <p class="lead reveal">
+        Family-run and vet-nurse led. Every dog in our care is looked after by experienced,
+        qualified, and genuinely passionate people.
+      </p>
+    </div>
+  </section>
+
+  <!-- TEAM CARDS -->
+  <!-- TODO: Replace with real team bios and photos before go-live -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="team-grid">
+
+        <!-- Card 1 — uses images.team if available -->
+        <article class="team-card reveal">
+          {images.team && images.team !== ""
+            ? (
+              <div class="team-photo">
+                <img src={images.team} alt="[Name TBC] — Lead Carer" loading="lazy" />
+              </div>
+            )
+            : (
+              <div class="team-photo-placeholder">
+                <Icon name="paw" />
+              </div>
+            )
+          }
+          <div class="team-card-body">
+            <h3 class="team-name">[Name TBC]</h3>
+            <p class="team-role">Lead Carer — Vet Nurse Qualified</p>
+            <p class="team-bio">[Bio to be added before go-live. Placeholder for layout purposes.]</p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="team-card reveal">
+          <div class="team-photo-placeholder">
+            <Icon name="paw" />
+          </div>
+          <div class="team-card-body">
+            <h3 class="team-name">[Name TBC]</h3>
+            <p class="team-role">Carer</p>
+            <p class="team-bio">[Bio to be added before go-live. Placeholder for layout purposes.]</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+  <!-- TODO: Replace with real team bios and photos before go-live -->
+
+  <!-- CREDENTIALS STRIP -->
+  <TrustStrip />
+
+  <!-- CTA -->
+  <CtaBand />
+</BaseLayout>
+
+<style>
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .team-card {
+    background: var(--surface);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .team-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .team-photo-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: color-mix(in srgb, var(--red) 10%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--red);
+  }
+
+  .team-photo-placeholder :global(svg) {
+    width: 4rem;
+    height: 4rem;
+    opacity: 0.5;
+  }
+
+  .team-card-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .team-name {
+    font-size: 1.25rem;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .team-role {
+    font-size: 0.9rem;
+    color: var(--red);
+    font-weight: 600;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .team-bio {
+    font-size: 0.95rem;
+    color: var(--ink);
+    opacity: 0.75;
+    margin: 0.5rem 0 0;
+    line-height: 1.6;
+  }
+</style>
