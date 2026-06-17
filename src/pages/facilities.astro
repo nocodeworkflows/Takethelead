@@ -3,25 +3,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import TrustStrip from "../components/TrustStrip.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { getSiteSettings } from "../lib/content";
+import { getSiteSettings, getFacilitiesPage } from "../lib/content";
 
 const site = await getSiteSettings();
+const fac = await getFacilitiesPage();
+
+const ctaText = (fac?.ctaText || "").replace("{areasLabel}", site.areasLabel);
 ---
 
-<BaseLayout
-  title="Facilities"
-  description="See where your dog plays, rests, and thrives. Our purpose-built daycare facility and private woodland in Fleet & Farnham are designed for safety and enrichment."
->
+<BaseLayout title="Facilities" description={fac?.metaDescription || ""}>
   <!-- HERO -->
   <section class="page-hero">
     <div class="wrap">
       <p class="crumbs reveal"><a href="/">Home</a> &nbsp;/&nbsp; Facilities</p>
-      <span class="eyebrow reveal">Where your dog plays, rests and thrives</span>
-      <h1 class="reveal">Our Facilities</h1>
-      <p class="lead reveal">
-        Two distinct spaces designed for your dog's safety and happiness — a purpose-built
-        daycare facility and our private woodland enrichment area.
-      </p>
+      <span class="eyebrow reveal">{fac?.heroEyebrow}</span>
+      <h1 class="reveal">{fac?.heroHeading}</h1>
+      <p class="lead reveal">{fac?.heroLead}</p>
     </div>
   </section>
 
@@ -29,44 +26,22 @@ const site = await getSiteSettings();
   <section class="sec">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">Day Care &amp; Boarding</span>
-        <h2>The Daycare Facility</h2>
-        <p>
-          Our primary space for day care and boarding is a secure, purpose-built facility
-          designed with your dog's comfort and safety at the heart of everything. Fully licensed
-          and supervised throughout the day by qualified staff, it provides a safe and stimulating
-          environment where dogs can play, rest, and socialise.
-        </p>
+        <span class="eyebrow">{fac?.daycareEyebrow}</span>
+        <h2>{fac?.daycareHeading}</h2>
+        <p>{fac?.daycareIntro}</p>
       </div>
       <ul class="feat-list reveal">
-        <li>
-          <span class="fic"><Icon name="check" /></span>
-          <div>
-            <h4>Secure, purpose-built facility</h4>
-            <p>Enclosed and purpose-designed for dog day care and boarding — safe from the moment your dog arrives.</p>
-          </div>
-        </li>
-        <li>
-          <span class="fic"><Icon name="check" /></span>
-          <div>
-            <h4>Indoor rest and play areas</h4>
-            <p>Dedicated indoor spaces give dogs somewhere calm to rest and recharge between activity sessions.</p>
-          </div>
-        </li>
-        <li>
-          <span class="fic"><Icon name="check" /></span>
-          <div>
-            <h4>Constant qualified supervision</h4>
-            <p>Our vet-nurse-led team is present at all times, ensuring every dog receives attentive, expert care.</p>
-          </div>
-        </li>
-        <li>
-          <span class="fic"><Icon name="check" /></span>
-          <div>
-            <h4>Fully licensed and insured</h4>
-            <p>We hold all required licences and insurance, so you can drop off with complete confidence.</p>
-          </div>
-        </li>
+        {
+          (fac?.daycareFeatures || []).map((f) => (
+            <li>
+              <span class="fic"><Icon name="check" /></span>
+              <div>
+                <h4>{f.title}</h4>
+                <p>{f.text}</p>
+              </div>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </section>
@@ -75,44 +50,22 @@ const site = await getSiteSettings();
   <section class="sec why">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">Enrichment Walks</span>
-        <h2>Private Woodland — Enrichment Walks</h2>
-        <p>
-          Separate from the daycare facility, our private woodland is an added benefit that dogs
-          access during structured walk time. It is <strong>not</strong> the daycare area — it is
-          a natural enrichment space used for off-road walks and sensory exploration, available to
-          day care and boarding dogs as part of their daily experience.
-        </p>
+        <span class="eyebrow">{fac?.woodlandEyebrow}</span>
+        <h2>{fac?.woodlandHeading}</h2>
+        <p set:html={fac?.woodlandIntro} />
       </div>
       <ul class="feat-list reveal">
-        <li>
-          <span class="fic"><Icon name="check" /></span>
-          <div>
-            <h4>Private, off-road woodland walks</h4>
-            <p>Dogs explore a dedicated private woodland — away from public footpaths and other hazards.</p>
-          </div>
-        </li>
-        <li>
-          <span class="fic"><Icon name="check" /></span>
-          <div>
-            <h4>Sensory stimulation and natural exploration</h4>
-            <p>Natural terrain, scents, and variety offer meaningful enrichment that complements their time in the facility.</p>
-          </div>
-        </li>
-        <li>
-          <span class="fic"><Icon name="check" /></span>
-          <div>
-            <h4>Structured, supervised access</h4>
-            <p>Woodland time is always structured and supervised — never unsupervised or free-roaming.</p>
-          </div>
-        </li>
-        <li>
-          <span class="fic"><Icon name="check" /></span>
-          <div>
-            <h4>Available for day care and boarding dogs</h4>
-            <p>Both day care and boarding dogs benefit from woodland enrichment as part of their daily routine.</p>
-          </div>
-        </li>
+        {
+          (fac?.woodlandFeatures || []).map((f) => (
+            <li>
+              <span class="fic"><Icon name="check" /></span>
+              <div>
+                <h4>{f.title}</h4>
+                <p>{f.text}</p>
+              </div>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </section>
@@ -121,19 +74,13 @@ const site = await getSiteSettings();
   <section class="sec">
     <div class="wrap">
       <div class="sec-head center reveal">
-        <span class="eyebrow">Credentials &amp; Safety</span>
-        <h2>Safe Hands, Every Time</h2>
-        <p>
-          Every aspect of our facilities is underpinned by professional qualifications,
-          proper licensing, and a genuine commitment to your dog's welfare.
-        </p>
+        <span class="eyebrow">{fac?.safetyEyebrow}</span>
+        <h2>{fac?.safetyHeading}</h2>
+        <p>{fac?.safetyIntro}</p>
       </div>
     </div>
     <TrustStrip />
   </section>
 
-  <CtaBand
-    title="Want to see it for yourself?"
-    text={`Book a free meet & greet and trial day — no pressure, no cost. Come and see our facilities in person across ${site.areasLabel}.`}
-  />
+  <CtaBand title={fac?.ctaTitle || undefined} text={ctaText || undefined} />
 </BaseLayout>

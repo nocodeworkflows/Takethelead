@@ -198,6 +198,9 @@ export async function getAboutPage() {
 export async function getContactPage() {
   return await reader.singletons.contactPage.read();
 }
+export async function getFacilitiesPage() {
+  return await reader.singletons.facilities.read();
+}
 export async function getCta() {
   return await reader.singletons.cta.read();
 }

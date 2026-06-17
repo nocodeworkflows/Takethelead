@@ -328,5 +328,55 @@ export default config({
         og: fields.text({ label: "Social share (Open Graph) image URL" }),
       },
     }),
+
+    facilities: singleton({
+      label: "Facilities page content",
+      path: "content/facilities",
+      format: { data: "json" },
+      schema: {
+        metaDescription: fields.text({ label: "Meta description", multiline: true }),
+
+        heroEyebrow: fields.text({ label: "Hero — eyebrow" }),
+        heroHeading: fields.text({ label: "Hero — heading" }),
+        heroLead: fields.text({ label: "Hero — lead", multiline: true }),
+
+        daycareEyebrow: fields.text({ label: "Daycare — eyebrow" }),
+        daycareHeading: fields.text({ label: "Daycare — heading" }),
+        daycareIntro: fields.text({ label: "Daycare — intro", multiline: true }),
+        daycareFeatures: fields.array(
+          fields.object({
+            title: fields.text({ label: "Title" }),
+            text: fields.text({ label: "Text", multiline: true }),
+          }),
+          { label: "Daycare — features", itemLabel: (p) => p.fields.title.value }
+        ),
+
+        woodlandEyebrow: fields.text({ label: "Woodland — eyebrow" }),
+        woodlandHeading: fields.text({ label: "Woodland — heading" }),
+        woodlandIntro: fields.text({
+          label: "Woodland — intro",
+          description: "Wrap emphasised words in *asterisks*, e.g. It is *not* the daycare area.",
+          multiline: true,
+        }),
+        woodlandFeatures: fields.array(
+          fields.object({
+            title: fields.text({ label: "Title" }),
+            text: fields.text({ label: "Text", multiline: true }),
+          }),
+          { label: "Woodland — features", itemLabel: (p) => p.fields.title.value }
+        ),
+
+        safetyEyebrow: fields.text({ label: "Safety — eyebrow" }),
+        safetyHeading: fields.text({ label: "Safety — heading" }),
+        safetyIntro: fields.text({ label: "Safety — intro", multiline: true }),
+
+        ctaTitle: fields.text({ label: "Closing CTA — title" }),
+        ctaText: fields.text({
+          label: "Closing CTA — text",
+          description: "Use {areasLabel} to insert the areas label.",
+          multiline: true,
+        }),
+      },
+    }),
   },
 });
