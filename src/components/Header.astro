@@ -16,11 +16,32 @@ const isCurrent = (href: string) =>
     <Logo size={48} />
     <nav class="links" aria-label="Primary">
       {
-        nav.map((item) => (
-          <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
-            {item.label}
-          </a>
-        ))
+        nav.map((item) =>
+          item.children ? (
+            <div class="nav-group">
+              <a
+                href={item.href}
+                class="nav-group-trigger"
+                aria-haspopup="true"
+                aria-current={item.children.some((c) => isCurrent(c.href)) ? "page" : undefined}
+              >
+                {item.label}
+                <Icon name="chevron" class="nav-caret" />
+              </a>
+              <div class="dropdown" role="menu">
+                {item.children.map((c) => (
+                  <a href={c.href} role="menuitem" aria-current={isCurrent(c.href) ? "page" : undefined}>
+                    {c.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+              {item.label}
+            </a>
+          )
+        )
       }
     </nav>
     <div class="header-cta">
@@ -41,7 +62,20 @@ const isCurrent = (href: string) =>
     <span class="logo-chip"><Logo size={44} withName={false} /></span>
     <button class="mm-close" id="mmClose" aria-label="Close menu">&times;</button>
   </div>
-  {nav.map((item) => <a class="mlink" href={item.href}>{item.label}</a>)}
+  {
+    nav.map((item) =>
+      item.children ? (
+        <div class="mm-group">
+          <span class="mm-group-label">{item.label}</span>
+          {item.children.map((c) => (
+            <a class="mlink mlink-sub" href={c.href}>{c.label}</a>
+          ))}
+        </div>
+      ) : (
+        <a class="mlink" href={item.href}>{item.label}</a>
+      )
+    )
+  }
   <a class="mlink" href="/contact/">Contact</a>
   <div class="mm-cta">
     <a class="btn btn-red" href="/contact/">Book a Free Trial</a>

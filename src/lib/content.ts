@@ -116,10 +116,17 @@ export async function getService(slug: string): Promise<Service | undefined> {
   return (await getServices()).find((s) => s.slug === slug);
 }
 
-export async function getNav(): Promise<{ label: string; href: string }[]> {
+export type NavLink = { label: string; href: string };
+export type NavItem = NavLink & { children?: NavLink[] };
+
+export async function getNav(): Promise<NavItem[]> {
   const services = await getServices();
   return [
-    ...services.map((s) => ({ label: s.short, href: `/${s.slug}/` })),
+    {
+      label: "Services",
+      href: "/#services",
+      children: services.map((s) => ({ label: s.short, href: `/${s.slug}/` })),
+    },
     { label: "About", href: "/about/" },
     { label: "Facilities", href: "/facilities/" },
     { label: "Team", href: "/team/" },

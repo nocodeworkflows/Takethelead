@@ -102,6 +102,22 @@ nav.links a { font-weight: 600; font-size: 0.95rem; color: var(--ink-soft); posi
 nav.links a::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: var(--red); transition: width 0.2s; }
 nav.links a:hover, nav.links a[aria-current="page"] { color: var(--ink); }
 nav.links a:hover::after, nav.links a[aria-current="page"]::after { width: 100%; }
+/* Services dropdown */
+.nav-group { position: relative; display: flex; align-items: center; }
+.nav-group-trigger { display: inline-flex; align-items: center; gap: 0.28rem; cursor: pointer; }
+.nav-caret { width: 13px; height: 13px; transition: transform 0.2s; }
+.nav-group:hover .nav-caret, .nav-group:focus-within .nav-caret { transform: rotate(180deg); }
+.nav-group::after { content: ""; position: absolute; top: 100%; left: 0; right: 0; height: 16px; } /* invisible hover bridge to the dropdown */
+.dropdown {
+  position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(6px);
+  min-width: 212px; background: var(--card); border: 1px solid var(--cream-line); border-radius: 14px;
+  box-shadow: var(--shadow); padding: 0.45rem; display: flex; flex-direction: column; gap: 0.05rem;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s ease, transform 0.18s ease; z-index: 80;
+}
+.nav-group:hover .dropdown, .nav-group:focus-within .dropdown { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.dropdown a { padding: 0.55rem 0.85rem; border-radius: 9px; font-size: 0.92rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+.dropdown a::after { display: none; }
+.dropdown a:hover, .dropdown a[aria-current="page"] { background: rgba(156, 36, 28, 0.09); color: var(--ink); }
 .header-cta { display: flex; align-items: center; gap: 0.9rem; }
 .tel-link { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700; color: var(--ink); font-size: 0.98rem; }
 .tel-link svg { width: 18px; height: 18px; color: var(--red); }
@@ -118,6 +134,9 @@ nav.links a:hover::after, nav.links a[aria-current="page"]::after { width: 100%;
 .mobile-menu.open { transform: translateX(0); }
 .mobile-menu .mm-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
 .mobile-menu a.mlink { font-family: "Fraunces"; font-size: 1.7rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); color: #f7f1e8; }
+.mobile-menu .mm-group { display: flex; flex-direction: column; }
+.mobile-menu .mm-group-label { font-family: "Hanken Grotesk"; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; color: #f7f1e8; opacity: 0.5; margin: 0.6rem 0 0.2rem; }
+.mobile-menu a.mlink-sub { font-size: 1.25rem; padding-left: 0.2rem; }
 .mobile-menu .mm-cta { margin-top: auto; display: flex; flex-direction: column; gap: 0.8rem; padding-top: 20px; }
 .mm-close { width: 48px; height: 48px; border: 1px solid rgba(255, 255, 255, 0.3); background: transparent; border-radius: 12px; color: #fff; font-size: 1.6rem; cursor: pointer; line-height: 1; }
 
