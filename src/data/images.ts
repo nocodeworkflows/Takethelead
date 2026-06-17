@@ -30,24 +30,24 @@ export const images = {
   logo: "/logo.png",
 
   // Home
-  heroMain: weebly("a79i1518.jpg"),
-  whyTall: FALLBACK,
-  whySquare1: FALLBACK,
-  whySquare2: FALLBACK,
+  heroMain: weebly("chatgpt-image-may-14-2026-02-18-25-pm_orig.png"),
+  whyTall: weebly("a79i2366.jpg"),
+  whySquare1: weebly("a79i1518.jpg"),
+  whySquare2: weebly("a79i9611.jpg"),
 
   // Service hero photos
-  dayCare: FALLBACK,
-  boarding: FALLBACK,
-  walking: FALLBACK,
-  training: FALLBACK,
-  grooming: FALLBACK,
+  dayCare: weebly("published/chatgpt-image-may-14-2026-02-49-50-pm.png"),
+  boarding: weebly("chatgpt-image-may-17-2026-11-36-51-am_orig.png"),
+  walking: weebly("chatgpt-image-may-18-2026-01-27-29-pm_orig.png"),
+  training: weebly("training-puppy_orig.jpg"),
+  grooming: weebly("27066990-1000572143416810-5902798051555064526-n_2.jpg"),
 
   // About / team
-  about: FALLBACK,
-  team: FALLBACK,
+  about: weebly("chatgpt-image-may-14-2026-03-32-52-pm_orig.png"),
+  team: weebly("published/terena.jpg"),
 
   // Open Graph / social share
-  og: weebly("a79i1518.jpg"),
+  og: weebly("chatgpt-image-may-14-2026-02-18-25-pm_orig.png"),
 } as const;
 
 export type ImageKey = keyof typeof images;
