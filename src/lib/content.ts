@@ -123,6 +123,7 @@ export async function getNav(): Promise<{ label: string; href: string }[]> {
     { label: "About", href: "/about/" },
     { label: "Facilities", href: "/facilities/" },
     { label: "Team", href: "/team/" },
+    { label: "FAQs", href: "/faqs/" },
   ];
 }
 

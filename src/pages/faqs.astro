@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FAQ from "../components/FAQ.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { getSiteSettings } from "../lib/content";
+
+const site = await getSiteSettings();
+---
+
+<BaseLayout
+  title="FAQs"
+  description="Got questions about dog day care, boarding, walking or grooming in Fleet & Farnham? Find answers to our most common questions here."
+>
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs reveal"><a href="/">Home</a> &nbsp;/&nbsp; FAQs</p>
+      <span class="eyebrow reveal">Got questions?</span>
+      <h1 class="reveal">Frequently Asked Questions</h1>
+      <p class="lead reveal">
+        Everything you need to know about our services. Can't find what you're looking for?
+        Give us a call or drop us a message.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION (component fetches its own data) -->
+  <FAQ />
+
+  <!-- CTA -->
+  <CtaBand
+    title="Still have a question?"
+    text={`We're happy to chat. Call us on ${site.phoneDisplay} or send a message and we'll get back to you.`}
+  />
+</BaseLayout>
