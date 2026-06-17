@@ -1,0 +1,19 @@
+{
+  "title": "Cat Sitting & Home Visits",
+  "order": 6,
+  "short": "Cat Services",
+  "tagline": "Stress-free care at home",
+  "feature": false,
+  "icon": "cat",
+  "excerpt": "In-home visits so your cat stays in their own territory, stress-free, while you're away.",
+  "intro": "Cats are creatures of habit. Our in-home visit service keeps them in their own environment — no strange kennels, no upheaval. Daily visits, feeding, play, and a reassuring update for you.",
+  "highlights": [
+    "Daily visits at a time that suits your cat's routine",
+    "Feeding, fresh water, and litter tray care",
+    "Playtime and companionship",
+    "Photo updates so you know all is well",
+    "DBS checked, fully insured"
+  ],
+  "photo": "",
+  "pricingNote": "Priced per visit. Get in touch for a tailored quote based on your cat's needs and visit frequency."
+}

@@ -19,6 +19,7 @@ const iconOptions = [
   { label: "Home (boarding)", value: "home" },
   { label: "Paw", value: "paw" },
   { label: "Star (training)", value: "star" },
+  { label: "Cat (cat sitting)", value: "cat" },
   { label: "Scissors (grooming)", value: "scissors" },
   { label: "Heart", value: "heart" },
   { label: "Tree / woodland", value: "tree" },
