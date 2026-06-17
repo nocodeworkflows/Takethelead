@@ -74,10 +74,10 @@ const cp = await getContactPage();
 
   <section class="sec booking-portal">
     <div class="wrap center">
-      <h2>Already know what you need?</h2>
-      <p>Skip straight to our booking portal to see availability and book online.</p>
-      {/* TODO: Replace TODO_PETSITTERPLUS_URL with the real PetSitterPlus portal URL before production go-live */}
-      <a href="TODO_PETSITTERPLUS_URL" class="btn btn-ghost" target="_blank" rel="noopener">Book via our portal &rarr;</a>
+      <h2>{cp?.bookingHeading}</h2>
+      <p>{cp?.bookingText}</p>
+      {/* TODO: Set bookingUrl in Keystatic (Contact page) to the real PetSitterPlus portal URL before go-live */}
+      <a href={cp?.bookingUrl} class="btn btn-ghost" target="_blank" rel="noopener">{cp?.bookingButtonLabel}</a>
     </div>
   </section>
 

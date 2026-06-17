@@ -4,5 +4,9 @@
   "heroLead": "Ready to give your dog the best day out? Send us a message or give us a call — we'll get back to you the same day to arrange your free meet & greet.",
   "sideEyebrow": "Get in touch",
   "sideHeading": "We'd love to hear about your dog",
-  "sideText": "However you like to chat, we're here. No pushy sales — just honest, friendly advice."
+  "sideText": "However you like to chat, we're here. No pushy sales — just honest, friendly advice.",
+  "bookingHeading": "Already know what you need?",
+  "bookingText": "Skip straight to our booking portal to see availability and book online.",
+  "bookingButtonLabel": "Book via our portal →",
+  "bookingUrl": "TODO_PETSITTERPLUS_URL"
 }

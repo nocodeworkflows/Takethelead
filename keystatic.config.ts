@@ -324,6 +324,16 @@ export default config({
         sideEyebrow: fields.text({ label: "Side column — eyebrow" }),
         sideHeading: fields.text({ label: "Side column — heading" }),
         sideText: fields.text({ label: "Side column — text", multiline: true }),
+        bookingHeading: fields.text({ label: "Booking CTA — heading" }),
+        bookingText: fields.text({ label: "Booking CTA — text", multiline: true }),
+        bookingButtonLabel: fields.text({
+          label: "Booking CTA — button label",
+          defaultValue: "Book via our portal →",
+        }),
+        bookingUrl: fields.text({
+          label: "Booking CTA — portal URL",
+          description: "Paste the real PetSitterPlus portal URL here at go-live.",
+        }),
       },
     }),
 
