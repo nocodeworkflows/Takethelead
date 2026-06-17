@@ -5,7 +5,7 @@ import TrustStrip from "../components/TrustStrip.astro";
 import Reviews from "../components/Reviews.astro";
 import CtaBand from "../components/CtaBand.astro";
 import ContactForm from "../components/ContactForm.astro";
-import { getSiteSettings, getServices, getImages } from "../lib/content";
+import { getSiteSettings, getServices, getImages, getStylishDog } from "../lib/content";
 
 export async function getStaticPaths() {
   const services = await getServices();
@@ -28,6 +28,8 @@ const pricingNote =
   "Every dog is different, so we tailor our care (and price) to your needs. Get in touch for a quick, no-obligation quote and your free meet & greet.";
 
 const others = services.filter((s) => s.slug !== service.slug);
+
+const stylishDog = await getStylishDog();
 ---
 
 <BaseLayout
@@ -81,11 +83,11 @@ const others = services.filter((s) => s.slug !== service.slug);
   {service.slug === "dog-grooming" && (
     <section class="sec stylish-dog-band">
       <div class="wrap center">
-        <span class="eyebrow">Part of Take The Lead Services</span>
+        <span class="eyebrow">{stylishDog?.eyebrow}</span>
         <h2 class="stylish-dog-name">
-          <Icon name="scissors" /> The Stylish Dog
+          <Icon name="scissors" /> {stylishDog?.heading}
         </h2>
-        <p class="lead">Our dedicated grooming service — gentle, stress-free, and tailored to your dog's coat and temperament.</p>
+        <p class="lead">{stylishDog?.tagline}</p>
       </div>
     </section>
   )}

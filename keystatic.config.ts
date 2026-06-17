@@ -425,5 +425,16 @@ export default config({
         heroLead: fields.text({ label: "Hero — lead", multiline: true }),
       },
     }),
+
+    stylishDog: singleton({
+      label: "The Stylish Dog band (grooming)",
+      path: "content/stylish-dog",
+      format: { data: "json" },
+      schema: {
+        eyebrow: fields.text({ label: "Eyebrow" }),
+        heading: fields.text({ label: "Heading" }),
+        tagline: fields.text({ label: "Tagline", multiline: true }),
+      },
+    }),
   },
 });
