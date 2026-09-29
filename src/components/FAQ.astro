@@ -1,6 +1,16 @@
 ---
 import { getFaqs } from "../lib/content";
-const faqs = await getFaqs();
+interface Props {
+  /** Show only the first N questions (by order). */
+  limit?: number;
+  /** Group questions under category headings (FAQs page). */
+  grouped?: boolean;
+}
+const { limit, grouped = false } = Astro.props;
+const all = await getFaqs();
+const faqs = limit ? all.slice(0, limit) : all;
+
+const categories = grouped ? [...new Set(faqs.map((f) => f.category))] : [""];
 
 // FAQ structured data for rich results
 const faqLd = {
@@ -23,17 +33,34 @@ const faqLd = {
     </div>
     <div class="faq">
       {
-        faqs.map((f, i) => (
-          <details class="acc reveal" open={i === 0}>
-            <summary>
-              {f.q}
-              <span class="plus" aria-hidden="true" />
-            </summary>
-            <div class="body">{f.a}</div>
-          </details>
+        categories.map((cat) => (
+          <>
+            {grouped && <h3 class="faq-cat">{cat}</h3>}
+            {faqs
+              .filter((f) => !grouped || f.category === cat)
+              .map((f, i) => (
+                <details class="acc reveal" open={!grouped && i === 0}>
+                  <summary>
+                    {f.q}
+                    <span class="plus" aria-hidden="true" />
+                  </summary>
+                  <div class="body">{f.a}</div>
+                </details>
+              ))}
+          </>
         ))
       }
+      {limit && all.length > limit && (
+        <p class="faq-more"><a href="/faqs/">See all {all.length} questions</a></p>
+      )}
     </div>
   </div>
   <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 </section>
+
+<style>
+  .faq-cat { font-size: 1.4rem; color: var(--ink); margin: 2rem 0 0.9rem; }
+  .faq-cat:first-child { margin-top: 0; }
+  .faq-more { text-align: center; margin-top: 1.2rem; }
+  .faq-more a { color: var(--red); font-weight: 700; }
+</style>

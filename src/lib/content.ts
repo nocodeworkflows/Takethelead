@@ -20,11 +20,10 @@ const CONST = {
   shortName: "Take The Lead",
   url: "https://www.taketheleadservices.co.uk",
   credentials: [
-    "Fully Licensed",
-    "Fully Insured",
+    "5★ Licensed Daycare",
+    "Petplan Sanctuary Insured",
     "DBS Checked",
     "Vet-Nurse Led",
-    "5★ Rated",
   ],
 };
 
@@ -40,6 +39,12 @@ export type Service = {
   highlights: string[];
   photo: string;
   pricingNote: string;
+  seoArea: string;
+  prices: { label: string; price: string; detail: string }[];
+  areas: string[];
+  notes: string[];
+  bookingUrl: string;
+  gallery: { src: string; caption: string }[];
 };
 
 export type SiteSettings = {
@@ -53,6 +58,8 @@ export type SiteSettings = {
   whatsappHref: string;
   email: string;
   emailHref: string;
+  training: { phoneDisplay: string; phoneHref: string; email: string; emailHref: string };
+  address: string;
   areasLabel: string;
   hours: { day: string; time: string }[];
   credentials: string[];
@@ -73,15 +80,24 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     description: s?.description || "",
     phoneDisplay: s?.phoneDisplay || "",
     phoneHref: `tel:${phoneNumber}`,
-    whatsappHref: `https://wa.me/${(s?.whatsappNumber || "").replace(/\D/g, "")}`,
+    whatsappHref: s?.whatsappNumber
+      ? `https://wa.me/${s.whatsappNumber.replace(/\D/g, "")}`
+      : "",
     email: s?.email || "",
     emailHref: `mailto:${s?.email || ""}`,
+    training: {
+      phoneDisplay: s?.trainingPhoneDisplay || "",
+      phoneHref: `tel:${(s?.trainingPhoneNumber || "").replace(/\s+/g, "")}`,
+      email: s?.trainingEmail || "",
+      emailHref: `mailto:${s?.trainingEmail || ""}`,
+    },
+    address: s?.address || "",
     areasLabel: s?.areasLabel || "",
     hours: (s?.hours || []).map((h) => ({ day: h.day, time: h.time })),
     credentials: CONST.credentials,
     social: {
-      facebook: s?.facebook || "#",
-      instagram: s?.instagram || "#",
+      facebook: s?.facebook || "",
+      instagram: s?.instagram || "",
     },
   };
   return _settings;
@@ -105,6 +121,18 @@ export async function getServices(): Promise<Service[]> {
       highlights: [...(entry.highlights || [])],
       photo: entry.photo || "",
       pricingNote: entry.pricingNote || "",
+      seoArea: entry.seoArea || "",
+      prices: (entry.prices || []).map((p) => ({
+        label: p.label,
+        price: p.price,
+        detail: p.detail || "",
+      })),
+      areas: [...(entry.areas || [])],
+      notes: [...(entry.notes || [])],
+      bookingUrl: entry.bookingUrl || "",
+      gallery: (entry.gallery || [])
+        .filter((g) => g.src)
+        .map((g) => ({ src: g.src, caption: g.caption || "" })),
       order: entry.order ?? 99,
     }))
     .sort((a, b) => a.order - b.order)
@@ -155,6 +183,7 @@ export async function getNav(): Promise<NavItem[]> {
     { label: "About", href: "/about/" },
     { label: "Facilities", href: "/facilities/" },
     { label: "Team", href: "/team/" },
+    { label: "Reviews", href: "/reviews/" },
     { label: "FAQs", href: "/faqs/" },
   ];
 }
@@ -176,11 +205,19 @@ export async function getReviews(): Promise<Review[]> {
   }));
 }
 
-export type Faq = { q: string; a: string };
+export type Faq = { q: string; a: string; category: string };
 
 export async function getFaqs(): Promise<Faq[]> {
   const entries = await reader.collections.faqs.all();
-  return entries.map(({ entry }) => ({ q: entry.question, a: entry.answer }));
+  return entries
+    .map(({ entry }) => ({
+      q: entry.question,
+      a: entry.answer,
+      category: entry.category || "General",
+      order: entry.order ?? 50,
+    }))
+    .sort(byOrder)
+    .map(({ order, ...rest }) => rest);
 }
 
 // --- Icon + text collections (trust badges, steps, why features) ----------

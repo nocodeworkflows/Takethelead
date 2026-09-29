@@ -3,11 +3,11 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import MobileBar from "../components/MobileBar.astro";
-import { getSiteSettings, getServices, getImages } from "../lib/content";
+import { getSiteSettings, getImages, getAreas } from "../lib/content";
 
 const site = await getSiteSettings();
-const services = await getServices();
 const images = await getImages();
+const areas = await getAreas();
 
 interface Props {
   title?: string;
@@ -33,19 +33,19 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "Take The Lead Services",
-  url: "https://www.taketheleadservices.co.uk",
-  telephone: "+447903555424",
+  name: site.name,
+  url: site.url,
+  telephone: site.phoneHref.replace("tel:0", "+44"),
   email: site.email,
+  image: new URL(images.og, site.url).href,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Fleet",
+    addressLocality: site.address || "Aldershot",
     addressRegion: "Hampshire",
     addressCountry: "GB",
   },
-  areaServed: ["Fleet", "Farnham", "Surrey", "Hampshire"],
-  openingHours: ["Mo-Fr 07:00-19:00", "Sa 08:00-17:00"],
-  sameAs: [site.social.facebook, site.social.instagram],
+  areaServed: areas,
+  sameAs: [site.social.facebook, site.social.instagram].filter(Boolean),
 };
 ---
 
@@ -65,7 +65,7 @@ const jsonLd = {
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={new URL(image, site.url).href} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#9c241c" />
 

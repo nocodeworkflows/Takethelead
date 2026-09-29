@@ -4,6 +4,7 @@ import Icon from "../components/Icon.astro";
 import TrustStrip from "../components/TrustStrip.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { getSiteSettings, getFacilitiesPage } from "../lib/content";
+import { emphasis } from "../lib/emphasis";
 
 const site = await getSiteSettings();
 const fac = await getFacilitiesPage();
@@ -52,7 +53,7 @@ const ctaText = (fac?.ctaText || "").replace("{areasLabel}", site.areasLabel);
       <div class="sec-head reveal">
         <span class="eyebrow">{fac?.woodlandEyebrow}</span>
         <h2>{fac?.woodlandHeading}</h2>
-        <p set:html={fac?.woodlandIntro} />
+        <p set:html={emphasis(fac?.woodlandIntro)} />
       </div>
       <ul class="feat-list reveal">
         {
@@ -69,6 +70,39 @@ const ctaText = (fac?.ctaText || "").replace("{areasLabel}", site.areasLabel);
       </ul>
     </div>
   </section>
+
+  <!-- More sections: home boarding, salon, training field, table rental -->
+  {(fac?.moreSections || []).map((sec, i) => (
+    <section class={`sec${i % 2 === 0 ? "" : " why"}`}>
+      <div class={`wrap${sec.photo ? " split" : ""}`}>
+        <div>
+          <div class="sec-head reveal">
+            <span class="eyebrow">{sec.eyebrow}</span>
+            <h2>{sec.heading}</h2>
+            <p>{sec.intro}</p>
+          </div>
+          {sec.features.length > 0 && (
+            <ul class="feat-list reveal">
+              {sec.features.map((f) => (
+                <li>
+                  <span class="fic"><Icon name="check" /></span>
+                  <div>
+                    <h4>{f.title}</h4>
+                    <p>{f.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        {sec.photo && (
+          <div class="ph reveal">
+            <img src={sec.photo} alt={sec.heading} loading="lazy" />
+          </div>
+        )}
+      </div>
+    </section>
+  ))}
 
   <!-- SECTION 3: Safety & Credentials -->
   <section class="sec">

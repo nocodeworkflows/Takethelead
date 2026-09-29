@@ -13,19 +13,26 @@ const year = new Date().getFullYear();
       <div>
         <Logo size={48} light={true} />
         <p class="fdesc">
-          Family-run, vet-nurse-led dog day care, boarding, walking, training &
-          grooming across {site.areasLabel}. Fully licensed & insured.
+          Vet-nurse-led dog day care, home boarding, walking, training and
+          grooming on the Surrey–Hampshire border. Licensed and insured with
+          Petplan Sanctuary.
         </p>
         <div style="display:flex;gap:.6rem;margin-top:1.2rem">
-          <a href={site.social.facebook} aria-label="Facebook" class="licence" target="_blank" rel="noopener" style="display:inline-grid;place-items:center;width:42px;height:42px;padding:0">
-            <Icon name="facebook" class="" />
-          </a>
-          <a href={site.social.instagram} aria-label="Instagram" class="licence" target="_blank" rel="noopener" style="display:inline-grid;place-items:center;width:42px;height:42px;padding:0">
-            <Icon name="instagram" />
-          </a>
-          <a href={site.whatsappHref} aria-label="WhatsApp" class="licence" target="_blank" rel="noopener" style="display:inline-grid;place-items:center;width:42px;height:42px;padding:0">
-            <Icon name="whatsapp" />
-          </a>
+          {site.social.facebook && (
+            <a href={site.social.facebook} aria-label="Facebook" class="licence" target="_blank" rel="noopener" style="display:inline-grid;place-items:center;width:42px;height:42px;padding:0">
+              <Icon name="facebook" class="" />
+            </a>
+          )}
+          {site.social.instagram && (
+            <a href={site.social.instagram} aria-label="Instagram" class="licence" target="_blank" rel="noopener" style="display:inline-grid;place-items:center;width:42px;height:42px;padding:0">
+              <Icon name="instagram" />
+            </a>
+          )}
+          {site.whatsappHref && (
+            <a href={site.whatsappHref} aria-label="WhatsApp" class="licence" target="_blank" rel="noopener" style="display:inline-grid;place-items:center;width:42px;height:42px;padding:0">
+              <Icon name="whatsapp" />
+            </a>
+          )}
         </div>
       </div>
 
@@ -42,18 +49,21 @@ const year = new Date().getFullYear();
           <li><a href="/about/">About Us</a></li>
           <li><a href="/facilities/">Facilities</a></li>
           <li><a href="/team/">Team</a></li>
+          <li><a href="/reviews/">Reviews</a></li>
           <li><a href="/faqs/">FAQs</a></li>
           <li><a href="/contact/">Contact & Booking</a></li>
+          <li><a href="/terms/">Terms & Conditions</a></li>
           <li><a href={site.phoneHref}>{site.phoneDisplay}</a></li>
+          {site.training.phoneDisplay && <li><a href={site.training.phoneHref}>Training: {site.training.phoneDisplay}</a></li>}
           <li><a href={site.emailHref}>{site.email}</a></li>
         </ul>
-        <div style="margin-top:1rem"><span class="licence">Fully Licensed & Insured</span></div>
+        <div style="margin-top:1rem"><span class="licence">Home boarding licence 25/00868/AWRHOM</span></div>
       </div>
     </div>
 
     <div class="foot-bottom">
       <span>© {year} {site.name}. All rights reserved.</span>
-      <span>{site.areasLabel} · Family-run · Vet-nurse led</span>
+      <span>The Stylish Dog, 55 Guildford Road, Ash, GU12 6BQ</span>
     </div>
   </div>
 </footer>

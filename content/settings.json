@@ -1,25 +1,16 @@
 {
-  "tagline": "Premium Dog Day Care, Boarding & Walking in Surrey & Hampshire",
-  "description": "Vet-nurse-led, fully licensed dog day care, home boarding, walking, training and grooming in Fleet, Farnham & Surrey. Secure purpose-built facilities with access to private woodland. Book a free trial day.",
+  "tagline": "Dog Day Care, Home Boarding, Walking, Training & Grooming in Aldershot, Fleet & Farnham",
+  "description": "5★ licensed dog day care, licensed home boarding, dog walking, training and grooming on the Surrey–Hampshire border. Vet-nurse led, DBS checked and insured with Petplan Sanctuary, with a secure 4-acre private woodland.",
   "phoneDisplay": "07903 555424",
   "phoneNumber": "07903555424",
-  "whatsappNumber": "447903555424",
-  "email": "hello@taketheleadservices.co.uk",
+  "whatsappNumber": "",
+  "email": "taketheleadservices@hotmail.co.uk",
+  "trainingPhoneDisplay": "07714 944241",
+  "trainingPhoneNumber": "07714944241",
+  "trainingEmail": "TTLS.training@hotmail.com",
+  "address": "Aldershot",
   "facebook": "https://www.facebook.com/taketheleadservices",
-  "instagram": "https://www.instagram.com/taketheleadservices",
-  "areasLabel": "Fleet, Farnham & Surrey",
-  "hours": [
-    {
-      "day": "Monday – Friday",
-      "time": "7:00am – 7:00pm"
-    },
-    {
-      "day": "Saturday",
-      "time": "8:00am – 5:00pm"
-    },
-    {
-      "day": "Sunday",
-      "time": "By arrangement"
-    }
-  ]
+  "instagram": null,
+  "areasLabel": "Aldershot, Fleet & Farnham",
+  "hours": []
 }

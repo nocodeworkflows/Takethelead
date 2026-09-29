@@ -21,7 +21,6 @@ const members = await getTeamMembers();
   </section>
 
   <!-- TEAM CARDS -->
-  <!-- TODO: Replace with real team bios and photos before go-live -->
   <section class="sec">
     <div class="wrap">
       <div class="team-grid">
@@ -40,7 +39,7 @@ const members = await getTeamMembers();
               <div class="team-card-body">
                 <h3 class="team-name">{member.name}</h3>
                 <p class="team-role">{member.role}</p>
-                <p class="team-bio">{member.bio}</p>
+                {member.bio && <p class="team-bio">{member.bio}</p>}
               </div>
             </article>
           ))
@@ -48,8 +47,6 @@ const members = await getTeamMembers();
       </div>
     </div>
   </section>
-  <!-- TODO: Replace with real team bios and photos before go-live -->
-
   <!-- CREDENTIALS STRIP -->
   <TrustStrip />
 

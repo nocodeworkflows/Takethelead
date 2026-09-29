@@ -1,47 +1,47 @@
 {
-  "heroEyebrow": "Family-run · Vet-nurse led",
-  "heroHeading": "Day care your dog *can't wait* to get to.",
-  "heroLead": "Premium, fully-licensed dog day care, home boarding, walking, training & grooming across Surrey & Hampshire — with a secure 4-acre private woodland and a team that genuinely loves dogs.",
+  "heroEyebrow": "Vet-nurse led · 5★ licensed daycare",
+  "heroHeading": "Where exceptional dog care *leads the way*",
+  "heroLead": "Day care, home boarding, walking, training and grooming on the Surrey–Hampshire border. Our team are experts in canine behaviour and body language, which means safer handling, better social experiences and a higher standard of care for every dog.",
   "heroBadges": [
     "5★ Licensed Daycare",
-    "Fully Insured",
+    "Petplan Sanctuary Insured",
     "DBS Checked"
   ],
-  "ratingText": "Loved by hundreds of local dog owners",
+  "ratingText": "Trusted by local dog owners for over 10 years",
   "floatTopNumber": "4",
   "floatTopLabel": "Acre Woodland",
-  "floatCardTitle": "Free trial day",
-  "floatCardText": "See if it's the right fit — no cost",
+  "floatCardTitle": "Free meet & greet",
+  "floatCardText": "Your introductory meeting and assessment costs nothing",
   "servicesEyebrow": "What we do",
   "servicesHeading": "Everything your dog needs, all in one place",
-  "servicesIntro": "From day care and holidays to walks, training and grooming — premium care, delivered with genuine love.",
+  "servicesIntro": "Day care, holidays, walks, training and grooming, plus cat sitting and wedding days. Professional, trusted care built around your dog's wellbeing.",
   "whyEyebrow": "Why Take The Lead",
-  "whyHeading": "More than day care — a second family",
-  "whyIntro": "We treat every dog as if they were our own. That means proper space to run, qualified eyes watching over them, and small groups where everyone feels safe.",
+  "whyHeading": "We don't follow industry standards. We set them.",
+  "whyIntro": "We've built a community of dog owners and animal lovers who value professionalism, reliability and a genuine passion for dogs. We support local charities and community events too.",
   "howEyebrow": "How it works",
   "howHeading": "Getting started is easy",
-  "howIntro": "Three simple steps to a happier dog and a free trial day.",
+  "howIntro": "Three simple steps, starting with a free introductory meeting.",
   "areasEyebrow": "Where we work",
-  "areasHeading": "Proudly serving Surrey & Hampshire",
-  "areasIntro": "Based in the heart of the Surrey–Hampshire border, with free collection & drop-off across our local area. Not sure if we cover you? Just ask.",
-  "areaCardTitle": "Free local collection & drop-off",
-  "areaCardText": "Save time on busy mornings — we'll come to you.",
+  "areasHeading": "Proudly serving the Surrey–Hampshire border",
+  "areasIntro": "Our day care service covers the areas below. Dog walking covers Ash, Aldershot, North Camp, Farnborough and Mytchett. Not sure if we cover you? Just ask.",
+  "areaCardTitle": "Collection & drop-off included",
+  "areaCardText": "Our day care team collect and return your dog in secure, professionally fitted dog vans.",
   "areaCardRows": [
     {
       "icon": "pin",
-      "text": "Surrey & Hampshire border"
+      "text": "Dedicated collection area for each team member"
     },
     {
       "icon": "clock",
-      "text": "Flexible morning & evening slots"
+      "text": "Collection 9–10:30am, home 3:30–5pm"
     },
     {
       "icon": "tree",
-      "text": "Days out on secure 4-acre woodland"
+      "text": "Secure 4-acre private woodland"
     },
     {
-      "icon": "camera",
-      "text": "Daily photo updates included"
+      "icon": "key",
+      "text": "Free key holding"
     }
   ]
 }

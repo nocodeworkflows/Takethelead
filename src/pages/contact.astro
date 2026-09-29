@@ -3,15 +3,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import ContactForm from "../components/ContactForm.astro";
 import FAQ from "../components/FAQ.astro";
-import { getSiteSettings, getContactPage } from "../lib/content";
+import { getSiteSettings, getContactPage, getAreas } from "../lib/content";
 import { emphasis } from "../lib/emphasis";
 const site = await getSiteSettings();
 const cp = await getContactPage();
+const areas = await getAreas();
 ---
 
 <BaseLayout
   title="Contact & Booking"
-  description={`Book a free trial day or get a quote. Call ${site.phoneDisplay} or message ${site.name} — covering ${site.areasLabel}.`}
+  description={`Book a free meet & greet or get a quote. Call ${site.phoneDisplay} or message ${site.name}, covering ${site.areasLabel} and nearby.`}
 >
   <section class="page-hero">
     <div class="wrap">
@@ -32,38 +33,62 @@ const cp = await getContactPage();
         <div class="contact-card">
           <span class="ic"><Icon name="phone" /></span>
           <div>
-            <b>Call or text</b>
+            <b>Boarding, day care, walking, grooming & cat sitting</b>
             <a href={site.phoneHref}>{site.phoneDisplay}</a>
+            <a href={site.emailHref} style="display:block">{site.email}</a>
           </div>
         </div>
-        <div class="contact-card">
-          <span class="ic"><Icon name="whatsapp" /></span>
-          <div>
-            <b>WhatsApp</b>
-            <a href={site.whatsappHref} target="_blank" rel="noopener">Message us on WhatsApp</a>
+        {site.training.phoneDisplay && (
+          <div class="contact-card">
+            <span class="ic"><Icon name="star" /></span>
+            <div>
+              <b>Dog training</b>
+              <a href={site.training.phoneHref}>{site.training.phoneDisplay}</a>
+              {site.training.email && <a href={site.training.emailHref} style="display:block">{site.training.email}</a>}
+            </div>
           </div>
-        </div>
-        <div class="contact-card">
-          <span class="ic"><Icon name="mail" /></span>
-          <div>
-            <b>Email</b>
-            <a href={site.emailHref}>{site.email}</a>
+        )}
+        {site.whatsappHref && (
+          <div class="contact-card">
+            <span class="ic"><Icon name="whatsapp" /></span>
+            <div>
+              <b>WhatsApp</b>
+              <a href={site.whatsappHref} target="_blank" rel="noopener">Message us on WhatsApp</a>
+            </div>
           </div>
-        </div>
+        )}
+        {site.social.facebook && (
+          <div class="contact-card">
+            <span class="ic"><Icon name="facebook" /></span>
+            <div>
+              <b>Facebook</b>
+              <a href={site.social.facebook} target="_blank" rel="noopener">facebook.com/taketheleadservices</a>
+            </div>
+          </div>
+        )}
         <div class="contact-card">
           <span class="ic"><Icon name="pin" /></span>
           <div>
-            <b>Areas covered</b>
-            <span>{site.areasLabel} & surrounding villages</span>
+            <b>Day care areas</b>
+            <span>{areas.join(", ")}</span>
           </div>
         </div>
         <div class="contact-card">
-          <span class="ic"><Icon name="clock" /></span>
+          <span class="ic"><Icon name="scissors" /></span>
           <div>
-            <b>Opening hours</b>
-            {site.hours.map((h) => <span style="display:block">{h.day}: {h.time}</span>)}
+            <b>The Stylish Dog grooming salon</b>
+            <span>55 Guildford Road, Ash, GU12 6BQ</span>
           </div>
         </div>
+        {site.hours.length > 0 && (
+          <div class="contact-card">
+            <span class="ic"><Icon name="clock" /></span>
+            <div>
+              <b>Opening hours</b>
+              {site.hours.map((h) => <span style="display:block">{h.day}: {h.time}</span>)}
+            </div>
+          </div>
+        )}
       </div>
 
       <div class="reveal">
@@ -76,10 +101,20 @@ const cp = await getContactPage();
     <div class="wrap center">
       <h2>{cp?.bookingHeading}</h2>
       <p>{cp?.bookingText}</p>
-      {/* TODO: Set bookingUrl in Keystatic (Contact page) to the real PetSitterPlus portal URL before go-live */}
-      <a href={cp?.bookingUrl} class="btn btn-ghost" target="_blank" rel="noopener">{cp?.bookingButtonLabel}</a>
+      <div class="hero-actions" style="justify-content:center">
+        {cp?.bookingUrl && (
+          <a href={cp.bookingUrl} class="btn btn-red" target="_blank" rel="noopener">{cp?.bookingButtonLabel}</a>
+        )}
+        {cp?.trainingBookingUrl && (
+          <a href={cp.trainingBookingUrl} class="btn btn-ghost" target="_blank" rel="noopener">Training booking form</a>
+        )}
+        {cp?.vaccinationUrl && (
+          <a href={cp.vaccinationUrl} class="btn btn-ghost" target="_blank" rel="noopener">Send vaccination records</a>
+        )}
+      </div>
+      <p style="margin-top:1rem"><a href="/terms/" style="color:var(--red);font-weight:700">Read our terms &amp; conditions</a></p>
     </div>
   </section>
 
-  <FAQ />
+  <FAQ limit={6} />
 </BaseLayout>

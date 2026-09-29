@@ -381,3 +381,8 @@ footer.site-footer .licence:hover svg { color: var(--red-bright); }
   .reveal { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
 }
+
+/* Long email addresses must wrap on small screens */
+.contact-grid > * { min-width: 0; }
+.contact-card a, .contact-card span { overflow-wrap: anywhere; }
+.site-footer a { overflow-wrap: anywhere; }

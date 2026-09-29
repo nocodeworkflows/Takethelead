@@ -1,3 +1,26 @@
 # The Keystatic admin lives at /keystatic/* (served by the worker). A bare
 # /keystatic request isn't matched by that pattern, so send it to /keystatic/.
 /keystatic /keystatic/ 308
+
+# Old Weebly URLs -> new pages (keeps search rankings and bookmarks working).
+/index.html / 301
+/services.html /#services 301
+/daycare.html /dog-day-care/ 301
+/dog-boarding.html /home-boarding/ 301
+/dog-walking.html /dog-walking/ 301
+/dog-puppy-training.html /dog-training/ 301
+/dog-puppy-training-booking.html /contact/ 301
+/cat-services.html /cat-services/ 301
+/canine-wedding-days.html /canine-wedding-services/ 301
+/the-stylish-dog-dog-grooming.html /dog-grooming/ 301
+/the-stylish-dog-dog-grooming-services.html /dog-grooming/ 301
+/hire-our-facilities.html /facilities/ 301
+/meet-the-team.html /team/ 301
+/testimonials.html /reviews/ 301
+/frequently-asked-questions.html /faqs/ 301
+/contact.html /contact/ 301
+/general-booking-form.html /contact/ 301
+/vaccination-records.html /contact/ 301
+/terms-conditions.html /terms/ 301
+/grooming-terms--conditions.html /terms/#grooming 301
+/5-questions-to-ask-your-pet-care-professional.html /about/ 301

@@ -28,6 +28,7 @@ const iconOptions = [
   { label: "Shield", value: "shield" },
   { label: "Clock", value: "clock" },
   { label: "Pin / location", value: "pin" },
+  { label: "Key", value: "key" },
 ];
 
 const iconField = (label = "Icon", defaultValue = "paw") =>
@@ -82,6 +83,38 @@ export default config({
           multiline: true,
           description: "Leave blank to use the standard pricing message.",
         }),
+        seoArea: fields.text({
+          label: "Area for page title",
+          description:
+            'Shown as "<Service> in <area>". Only list places this service really covers. Blank uses the site-wide areas label.',
+        }),
+        prices: fields.array(
+          fields.object({
+            label: fields.text({ label: "Item" }),
+            price: fields.text({ label: "Price", description: 'e.g. "£18" or "From £35"' }),
+            detail: fields.text({ label: "Details (optional)", multiline: true }),
+          }),
+          { label: "Price list", itemLabel: (p) => `${p.fields.label.value} — ${p.fields.price.value}` }
+        ),
+        areas: fields.array(fields.text({ label: "Area" }), {
+          label: "Areas covered for this service",
+          itemLabel: (p) => p.value,
+        }),
+        notes: fields.array(fields.text({ label: "Note", multiline: true }), {
+          label: "Please note (eligibility, conditions)",
+          itemLabel: (p) => p.value.slice(0, 60),
+        }),
+        bookingUrl: fields.text({
+          label: "Online booking form URL (optional)",
+          description: "Adds a 'Book online' button. Blank uses the site-wide booking form.",
+        }),
+        gallery: fields.array(
+          fields.object({
+            src: fields.text({ label: "Photo URL" }),
+            caption: fields.text({ label: "Caption (optional)" }),
+          }),
+          { label: "Photo gallery", itemLabel: (p) => p.fields.caption.value || p.fields.src.value }
+        ),
       },
     }),
 
@@ -120,6 +153,21 @@ export default config({
           label: "Answer",
           multiline: true,
           validation: { isRequired: true },
+        }),
+        category: fields.select({
+          label: "Category",
+          options: [
+            { label: "General", value: "General" },
+            { label: "Day care", value: "Day care" },
+            { label: "Home boarding", value: "Home boarding" },
+            { label: "Dog walking", value: "Dog walking" },
+          ],
+          defaultValue: "General",
+        }),
+        order: fields.integer({
+          label: "Order",
+          description: "Lower numbers appear first. The first six also show on the homepage and contact page.",
+          defaultValue: 50,
         }),
       },
     }),
@@ -210,6 +258,13 @@ export default config({
           description: "No +, no leading 0, e.g. 447903555424",
         }),
         email: fields.text({ label: "Email" }),
+        trainingPhoneDisplay: fields.text({ label: "Training phone (display)" }),
+        trainingPhoneNumber: fields.text({ label: "Training phone (digits only)" }),
+        trainingEmail: fields.text({ label: "Training email" }),
+        address: fields.text({
+          label: "Business town (for Google)",
+          description: "Used in structured data, e.g. Aldershot.",
+        }),
         facebook: fields.url({ label: "Facebook URL" }),
         instagram: fields.url({ label: "Instagram URL" }),
         areasLabel: fields.text({ label: "Areas label" }),
@@ -331,9 +386,11 @@ export default config({
           defaultValue: "Book via our portal →",
         }),
         bookingUrl: fields.text({
-          label: "Booking CTA — portal URL",
-          description: "Paste the real PetSitterPlus portal URL here at go-live.",
+          label: "Booking CTA — general booking form URL",
+          description: "The online booking form (currently Cognito Forms).",
         }),
+        trainingBookingUrl: fields.text({ label: "Training booking form URL" }),
+        vaccinationUrl: fields.text({ label: "Vaccination records form URL" }),
       },
     }),
 
@@ -397,6 +454,23 @@ export default config({
             text: fields.text({ label: "Text", multiline: true }),
           }),
           { label: "Woodland — features", itemLabel: (p) => p.fields.title.value }
+        ),
+
+        moreSections: fields.array(
+          fields.object({
+            eyebrow: fields.text({ label: "Eyebrow" }),
+            heading: fields.text({ label: "Heading" }),
+            intro: fields.text({ label: "Intro", multiline: true }),
+            photo: fields.text({ label: "Photo URL (optional)" }),
+            features: fields.array(
+              fields.object({
+                title: fields.text({ label: "Title" }),
+                text: fields.text({ label: "Text", multiline: true }),
+              }),
+              { label: "Features", itemLabel: (p) => p.fields.title.value }
+            ),
+          }),
+          { label: "More sections (home, salon, training field, table rental…)", itemLabel: (p) => p.fields.heading.value }
         ),
 
         safetyEyebrow: fields.text({ label: "Safety — eyebrow" }),

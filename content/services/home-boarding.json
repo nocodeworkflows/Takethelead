@@ -1,19 +1,52 @@
 {
   "title": "Home Boarding",
+  "order": 2,
   "short": "Home Boarding",
   "tagline": "Holidays sorted",
   "feature": false,
   "icon": "home",
-  "excerpt": "A real home from home while you're away — no kennels, no cages, just a warm bed, familiar routine and a family that dotes on your dog.",
-  "intro": "Licensed home boarding in a genuine family home, not a kennel. Your dog keeps their routine, sleeps somewhere cosy and is treated as one of the family — so you can relax knowing they're safe, settled and loved.",
+  "excerpt": "A loving family home instead of kennels. Daycare is included in the price, so your dog has company, walks and play every day you're away.",
+  "intro": "Home boarding is a loving alternative to kennels. Your dog stays in our family home, not a noisy, unfamiliar environment. Our boarding price includes our daycare service, so while you're away your dog enjoys daily walks, playtime, cuddles and their usual routine, with plenty of one-to-one attention.",
   "highlights": [
-    "Licensed home boarding — no kennels",
-    "One family, fully focused on your dog",
-    "Familiar routines, walks and feeding kept the same",
-    "Daily photo & video updates",
-    "Meet & greet before every stay",
-    "Fully insured and DBS checked"
+    "Licensed by Rushmoor Borough Council (Licence No. 25/00868/AWRHOM)",
+    "Daycare included in the boarding price",
+    "Your dog lives as part of our family, with a secure 100ft garden",
+    "We board up to 3 dogs at a time, alongside our own",
+    "Less stress and less exposure to infections such as kennel cough than kennels",
+    "Especially suitable for older dogs, small breeds and rescues",
+    "Discounts for more than one dog from the same household"
   ],
-  "order": 2,
-  "photo": "https://www.taketheleadservices.co.uk/uploads/1/7/4/6/17463779/pheb.jpeg"
+  "pricingNote": "Spaces fill quickly, especially over holidays and weekends. Every dog completes a trial stay or daycare session before a longer booking. Please bring your dog's usual food. We have plenty of beds, bowls and toys, but you're welcome to bring their own. Home boarding cancellations need 4 weeks' notice.",
+  "seoArea": "Aldershot & Farnborough",
+  "prices": [],
+  "areas": [],
+  "notes": [
+    "We cannot accept entire males (unless young pups) due to our licensing conditions.",
+    "Unneutered females cannot stay while in season.",
+    "We are unable to board dogs with aggressive tendencies towards people or other dogs, as they share our family home."
+  ],
+  "bookingUrl": "",
+  "photo": "/uploads/1/7/4/6/17463779/pheb.jpeg",
+  "gallery": [
+    {
+      "src": "/uploads/1/7/4/6/17463779/6041444.jpeg",
+      "caption": "Kira & Mel, exhausted after a good run"
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/7681236.jpg",
+      "caption": "Ralph sneaking in some cuddles on the bed"
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/2332732.jpeg",
+      "caption": "Bella relaxing on the sofa"
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/7166631.jpeg",
+      "caption": "Sam & Bailey, taking up most of the sofa"
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/7820409.jpg",
+      "caption": "Sophie taking full advantage"
+    }
+  ]
 }

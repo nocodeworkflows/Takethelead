@@ -1,15 +1,21 @@
 ---
 import Icon from "./Icon.astro";
-import { getServices } from "../lib/content";
+import { getServices, getSiteSettings } from "../lib/content";
 interface Props { preselect?: string; }
 const { preselect } = Astro.props;
 const services = await getServices();
+const site = await getSiteSettings();
 ---
 
-<form class="lead-form" id="leadForm" novalidate>
+<form
+  class="lead-form"
+  id="leadForm"
+  novalidate
+  data-fallback={`Sorry, we couldn't send that. Please call us on ${site.phoneDisplay} or email ${site.email}.`}
+>
   <div id="formBody">
-    <h3>Book a free trial day</h3>
-    <p class="fsub">Fill this in and we'll be in touch the same day to arrange your free meet & greet.</p>
+    <h3>Book a free meet & greet</h3>
+    <p class="fsub">Fill this in and we'll be in touch to arrange your free introductory meeting.</p>
 
     <div class="row2">
       <div class="field">
@@ -67,7 +73,7 @@ const services = await getServices();
   <div class="form-success" id="formSuccess">
     <div class="check"><Icon name="check" /></div>
     <h3>Thank you — request received!</h3>
-    <p class="fsub">We've got your details and we'll be in touch the same day to arrange your free meet & greet. Keep an eye on your phone and inbox.</p>
+    <p class="fsub">We've got your details and we'll be in touch soon to arrange your free meet & greet. Keep an eye on your phone and inbox.</p>
   </div>
 </form>
 
@@ -105,8 +111,7 @@ const services = await getServices();
     } catch (err) {
       if (feedback) {
         feedback.classList.add("error");
-        feedback.textContent =
-          "Sorry, we couldn't send that. Please call us on 07903 555424 or email hello@taketheleadservices.co.uk.";
+        feedback.textContent = form.dataset.fallback || "Sorry, we couldn't send that. Please call us.";
       }
       if (btn) { btn.disabled = false; btn.textContent = "Send my request"; }
     }

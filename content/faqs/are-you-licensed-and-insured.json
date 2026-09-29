@@ -1,4 +1,6 @@
 {
   "question": "Are you licensed and insured?",
-  "answer": "Absolutely. We're fully licensed for day care and home boarding, fully insured, and DBS checked. We're happy to share our paperwork at any time."
+  "answer": "Yes. Our daycare centre holds a 5★ licence, and our home boarding is licensed by Rushmoor Borough Council (Licence No. 25/00868/AWRHOM). We're insured with Petplan Sanctuary, including public and employer liability, and our team are DBS checked.",
+  "category": "General",
+  "order": 1
 }

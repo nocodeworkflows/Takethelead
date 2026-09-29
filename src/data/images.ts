@@ -13,7 +13,9 @@
 // so the production site never shows a broken image while you fill these in.
 // ---------------------------------------------------------------------------
 
-const WEEBLY_BASE = "https://www.taketheleadservices.co.uk/uploads/1/7/4/6/17463779";
+// Photos originally uploaded to Weebly, now bundled in /public/uploads so they
+// keep working after the domain moves off Weebly.
+const WEEBLY_BASE = "/uploads/1/7/4/6/17463779";
 
 /** Build a full Weebly image URL from a filename. */
 export const weebly = (filename: string) => `${WEEBLY_BASE}/${filename}`;
@@ -40,7 +42,7 @@ export const images = {
   // [service].astro route reads service.photo and falls back to heroMain.
 
   // About / team
-  about: weebly("a79i2712_orig.jpg"),
+  about: weebly("a79i2169.jpg"),
   team: weebly("published/terena.jpg"),
 
   // Open Graph / social share

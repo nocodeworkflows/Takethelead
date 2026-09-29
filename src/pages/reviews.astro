@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Reviews from "../components/Reviews.astro";
+import CtaBand from "../components/CtaBand.astro";
+---
+
+<BaseLayout
+  title="Reviews"
+  description="What local dog owners say about Take The Lead Services day care, home boarding, dog walking, training and cat sitting."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs reveal"><a href="/">Home</a> &nbsp;/&nbsp; Reviews</p>
+      <span class="eyebrow reveal">Testimonials</span>
+      <h1 class="reveal">What our <em>clients say</em></h1>
+      <p class="lead reveal">A few words from the owners (and dogs) we look after.</p>
+    </div>
+  </section>
+
+  <Reviews limit={100} />
+
+  <CtaBand />
+</BaseLayout>

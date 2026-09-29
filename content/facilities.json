@@ -1,53 +1,118 @@
 {
-  "metaDescription": "See where your dog plays, rests, and thrives. Our purpose-built daycare facility and private woodland in Fleet & Farnham are designed for safety and enrichment.",
+  "metaDescription": "Our 5★ licensed daycare centre, secure 4-acre private woodland, licensed home boarding and The Stylish Dog grooming salon in Ash, on the Surrey–Hampshire border.",
   "heroEyebrow": "Where your dog plays, rests and thrives",
   "heroHeading": "Our Facilities",
-  "heroLead": "Two distinct spaces designed for your dog's safety and happiness — a purpose-built daycare facility and our private woodland enrichment area.",
-  "daycareEyebrow": "Day Care & Boarding",
-  "daycareHeading": "The Daycare Facility",
-  "daycareIntro": "Our primary space for day care and boarding is a secure, purpose-built facility designed with your dog's comfort and safety at the heart of everything. Fully licensed and supervised throughout the day by qualified staff, it provides a safe and stimulating environment where dogs can play, rest, and socialise.",
+  "heroLead": "A 5★ licensed daycare centre, a secure 4-acre private woodland, a family home for boarding and our own grooming salon. Here's where your dog spends their time with us.",
+  "daycareEyebrow": "Day care",
+  "daycareHeading": "The Daycare Centre",
+  "daycareIntro": "Our 5★ licensed daycare centre has secure indoor and outdoor play facilities. Dogs get a balanced mix of exercise, mental stimulation and downtime, fully supervised by our team all day.",
   "daycareFeatures": [
     {
-      "title": "Secure, purpose-built facility",
-      "text": "Enclosed and purpose-designed for dog day care and boarding — safe from the moment your dog arrives."
+      "title": "Secure private paddock",
+      "text": "Exclusive use of a secure, private outdoor paddock for safe play."
     },
     {
-      "title": "Indoor rest and play areas",
-      "text": "Dedicated indoor spaces give dogs somewhere calm to rest and recharge between activity sessions."
+      "title": "Two large heated indoor playrooms",
+      "text": "Somewhere warm to play and rest, with sofas and beds for a snooze. There's a sheltered area outside for shade or shelter too."
     },
     {
-      "title": "Constant qualified supervision",
-      "text": "Our vet-nurse-led team is present at all times, ensuring every dog receives attentive, expert care."
+      "title": "Enrichment for busy minds",
+      "text": "Paddling pools, sniffing and enrichment areas, interactive toys and agility equipment, all used safely under supervision."
     },
     {
-      "title": "Fully licensed and insured",
-      "text": "We hold all required licences and insurance, so you can drop off with complete confidence."
+      "title": "Never left unattended",
+      "text": "Our experienced team supervise the dogs at all times. Puppies get extra structure and downtime while they grow."
+    },
+    {
+      "title": "Secure transport",
+      "text": "Dogs travel to and from daycare in professionally fitted, secure dog vans, each in its own crate."
     }
   ],
-  "woodlandEyebrow": "Enrichment Walks",
-  "woodlandHeading": "Private Woodland — Enrichment Walks",
-  "woodlandIntro": "Separate from the daycare facility, our private woodland is an added benefit that dogs access during structured walk time. It is <strong>not</strong> the daycare area — it is a natural enrichment space used for off-road walks and sensory exploration, available to day care and boarding dogs as part of their daily experience.",
+  "woodlandEyebrow": "Off-lead adventures",
+  "woodlandHeading": "Our 4-Acre Private Woodland",
+  "woodlandIntro": "Exclusive access to a securely fenced 4-acre private woodland, for safe off-lead adventures away from public paths.",
   "woodlandFeatures": [
     {
-      "title": "Private, off-road woodland walks",
-      "text": "Dogs explore a dedicated private woodland — away from public footpaths and other hazards."
+      "title": "Securely fenced",
+      "text": "Dogs can run, sniff and explore off lead in safety."
     },
     {
-      "title": "Sensory stimulation and natural exploration",
-      "text": "Natural terrain, scents, and variety offer meaningful enrichment that complements their time in the facility."
+      "title": "Private",
+      "text": "Exclusive to the dogs in our care, so no surprises from other dogs or the public."
     },
     {
-      "title": "Structured, supervised access",
-      "text": "Woodland time is always structured and supervised — never unsupervised or free-roaming."
-    },
-    {
-      "title": "Available for day care and boarding dogs",
-      "text": "Both day care and boarding dogs benefit from woodland enrichment as part of their daily routine."
+      "title": "Supervised",
+      "text": "Woodland time is always led and supervised by our team."
     }
   ],
-  "safetyEyebrow": "Credentials & Safety",
+  "moreSections": [
+    {
+      "eyebrow": "Home boarding",
+      "heading": "A Family Home, Not Kennels",
+      "intro": "Boarding dogs stay in our family home, licensed by Rushmoor Borough Council (Licence No. 25/00868/AWRHOM). We board up to 3 dogs at a time alongside our own.",
+      "photo": "",
+      "features": [
+        {
+          "title": "Secure 100ft garden",
+          "text": "Plenty of room to potter, play and sunbathe."
+        },
+        {
+          "title": "Home comforts",
+          "text": "Sofas, cuddles and relaxing evenings, with walks, outings and daycare included."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Grooming",
+      "heading": "The Stylish Dog Salon",
+      "intro": "Our grooming salon at 55 Guildford Road, Ash, GU12 6BQ.",
+      "photo": "/uploads/1/7/4/6/17463779/published/shop-front.jpg",
+      "features": [
+        {
+          "title": "Bathing and drying",
+          "text": "Full bathing and drying facilities, with gentle shampoos to suit different coats and skin."
+        },
+        {
+          "title": "Calm and safe",
+          "text": "Dogs are kept safe and secure throughout their groom."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Training",
+      "heading": "Our Training Field in Normandy",
+      "intro": "Home of our workshops, including our Have-a-Go Dog Agility Workshop. Tea, coffee, biscuits, wagging tails and plenty of like-minded dog lovers.",
+      "photo": "",
+      "features": []
+    },
+    {
+      "eyebrow": "For professional groomers",
+      "heading": "Rent a Grooming Table at The Stylish Dog",
+      "intro": "Already running your own grooming business? You can rent a table at our salon in Ash. We have space for two grooming businesses at a time. You must have professional training from a recognised establishment, or have groomed full time for at least a year. Your business stays fully independent of ours. We don't employ groomers, supply dogs or provide training. To register interest, email taketheleadservices@hotmail.co.uk with your experience, qualifications, how long you've been operating and your ideal start date.",
+      "photo": "",
+      "features": [
+        {
+          "title": "£45 per day",
+          "text": "Minimum 2 days per week. Contracts run for 6 months, with one month's notice on either side."
+        },
+        {
+          "title": "What's included",
+          "text": "Grooming table, straps and restraints, stand dryer, bathing and drying facilities, towels and blaster, and caging for dogs waiting (no persistent barkers). Power, heating, light, water and waste are included, as are toilet and kitchen facilities."
+        },
+        {
+          "title": "What you provide",
+          "text": "Your own public liability insurance, PPE, grooming tools and consumables (shampoos, conditioners, ear and eye cleaner, clipper oil and so on). And, of course, your customers' dogs."
+        },
+        {
+          "title": "Access",
+          "text": "Your own keys and alarm code, for use within our licensed opening times on your contracted days. You'll sign a confidentiality agreement and follow our salon rules."
+        }
+      ]
+    }
+  ],
+  "safetyEyebrow": "Credentials & safety",
   "safetyHeading": "Safe Hands, Every Time",
-  "safetyIntro": "Every aspect of our facilities is underpinned by professional qualifications, proper licensing, and a genuine commitment to your dog's welfare.",
+  "safetyIntro": "Licensed, insured with Petplan Sanctuary, DBS checked and led by a registered veterinary nurse.",
   "ctaTitle": "Want to see it for yourself?",
-  "ctaText": "Book a free meet & greet and trial day — no pressure, no cost. Come and see our facilities in person across {areasLabel}."
+  "ctaText": "Book a free meet & greet and come and see where your dog will spend their day."
 }

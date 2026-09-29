@@ -5,14 +5,89 @@
   "tagline": "Most popular",
   "feature": true,
   "icon": "sun",
-  "excerpt": "Supervised, social days out in our secure location so your dog comes home happy and tired, not bored and lonely.",
-  "intro": "A proper day out for your dog. Our secure, purpose-built daycare facility means supervised, social days in a safe and stimulating environment — with access to our private woodland for enriching walks and exploration. Small, carefully matched groups, constant supervision and vet-nurse oversight, so health and happiness come first every single day.",
+  "excerpt": "Supervised days of play, enrichment and rest at our 5★ licensed daycare centre, with collection and drop-off in our own dog vans.",
+  "intro": "A qualified team of dog lovers, on hand to give your dog 5★ care. Our licensed daycare centre has a secure private paddock, two large heated indoor playrooms and plenty to explore, and our team know dog behaviour and body language inside out. Your dog gets a balanced day of exercise, mental stimulation and downtime, then comes home happy and tired.",
   "highlights": [
-    "Small, temperament-matched groups",
-    "Constant qualified supervision",
-    "Free collection & drop-off in our local areas",
-    "Photo updates so you never miss a moment",
-    "Free trial day to see if it's the right fit"
+    "5★ licensed daycare centre with secure indoor and outdoor play areas",
+    "Exclusive use of a secure private paddock and two large heated indoor playrooms",
+    "Paddling pools, sniffing and enrichment areas, interactive toys and agility equipment",
+    "Fully supervised all day. Dogs are never left unattended",
+    "Balanced mix of exercise, mental stimulation and downtime",
+    "Several of the team are qualified dog trainers who tailor care to each dog",
+    "Pick-up and drop-off in professionally fitted, secure dog vans",
+    "Each team member covers a dedicated collection area, so less time on the road"
   ],
-  "photo": "https://www.taketheleadservices.co.uk/uploads/1/7/4/6/17463779/a79i2366.jpg"
+  "pricingNote": "Every dog starts with a trial session with one of our training and behaviour team, so they can sniff things out and make new friends. Get in touch for current prices and availability.",
+  "seoArea": "Aldershot, Fleet & Farnham",
+  "prices": [],
+  "areas": [
+    "Ash",
+    "Aldershot",
+    "Farnborough",
+    "North Camp",
+    "Mytchett",
+    "Camberley",
+    "Frimley",
+    "Farnham",
+    "Guildford",
+    "Fleet",
+    "Hartley Wintney"
+  ],
+  "notes": [
+    "All dogs must be sociable and comfortable around other dogs.",
+    "We are unable to accept adult entire males or females in season.",
+    "Puppies are welcome from 10 weeks old, or once their vaccinations are complete. If your pup still has three meals a day, please send a lunchbox."
+  ],
+  "bookingUrl": "",
+  "photo": "/uploads/1/7/4/6/17463779/a79i2366.jpg",
+  "gallery": [
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2016.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2018-copy.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2037.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2054.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2080.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2169.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2182.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2308.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2323.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2351.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2288.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i2370.jpg",
+      "caption": ""
+    }
+  ]
 }

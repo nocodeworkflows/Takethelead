@@ -1,19 +1,85 @@
 {
   "title": "Dog Grooming",
+  "order": 5,
   "short": "Grooming",
   "tagline": "The Stylish Dog",
   "feature": false,
   "icon": "scissors",
-  "excerpt": "Gentle, stress-free grooming that leaves your dog looking and feeling their best — from a quick tidy to a full spa day.",
-  "intro": "The Stylish Dog is Take The Lead's dedicated grooming service — calm, caring grooming at a pace your dog is comfortable with. Bath, brush, nails, ears and full breed-standard styling, all delivered with patience and plenty of fuss so grooming day becomes something to look forward to.",
+  "excerpt": "Our grooming salon, The Stylish Dog, in Ash. Full pamper sessions, puppy grooms, hand stripping and a quick wash and go after muddy walks.",
+  "intro": "The Stylish Dog is Take The Lead's grooming salon at 55 Guildford Road, Ash. We use gentle daily shampoos with a fresh fragrance and finish every groom with a coat-conditioning spray, and we stock shampoos and conditioners for different coat types and skin conditions.",
   "highlights": [
-    "Bath, brush, blow-dry & de-shed",
-    "Nail trim, ear clean & sanitary tidy",
-    "Full breed-standard styling",
-    "Gentle handling for anxious dogs",
-    "Premium, skin-kind products",
-    "Flexible appointments to suit you"
+    "Full breed styling, clips and scissor trims",
+    "Hand stripping for wire-coated breeds",
+    "Gentle puppy grooms to build confidence",
+    "Shampoos and conditioners for different coats and skin conditions",
+    "Cash and card accepted"
   ],
-  "order": 5,
-  "photo": "https://www.taketheleadservices.co.uk/uploads/1/7/4/6/17463779/storm.jpg"
+  "pricingNote": "Prices depend on your dog's size, coat condition and the style you want. We'll give you an estimate when you book and confirm it on the day. Cancellations with less than 24 hours' notice may be charged.",
+  "seoArea": "Ash, Aldershot & Farnham",
+  "prices": [
+    {
+      "label": "Full pamper session",
+      "price": "From £50",
+      "detail": "Bath, brush out and hand dry. Clip or scissor trim. Nails clipped. Ears plucked and cleaned."
+    },
+    {
+      "label": "Mini groom",
+      "price": "From £35",
+      "detail": "Bath, brush out and hand dry. Nails clipped. Feet trimmed. Ears plucked and cleaned."
+    },
+    {
+      "label": "Puppy groom",
+      "price": "From £30",
+      "detail": "Bath, brush out and hand dry. Nails clipped. Ears cleaned."
+    },
+    {
+      "label": "Hand stripping",
+      "price": "From £70",
+      "detail": "Bath, brush out and hand dry. Hand stripping of the dead coat (for non-shedding wire-coated breeds). Nails clipped. Ears plucked and cleaned."
+    },
+    {
+      "label": "Wash and go",
+      "price": "£20",
+      "detail": "Bathed and blast dried. Perfect after wet, muddy walks. Subject to availability."
+    },
+    {
+      "label": "Nail clipping",
+      "price": "£15",
+      "detail": ""
+    }
+  ],
+  "areas": [],
+  "notes": [],
+  "bookingUrl": "",
+  "photo": "/uploads/1/7/4/6/17463779/storm.jpg",
+  "gallery": [
+    {
+      "src": "/uploads/1/7/4/6/17463779/published/alfie-pre.jpg",
+      "caption": "Alfie, before"
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/published/alfie-post.jpg",
+      "caption": "Alfie, after"
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/published/arlo-pre.jpg",
+      "caption": "Arlo, before"
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/published/arlo-post.jpg",
+      "caption": "Arlo, after"
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/published/puppies.jpg",
+      "caption": "Puppy grooms"
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/published/mr-fudge.jpg",
+      "caption": "Mr Fudge"
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/published/shop-front.jpg",
+      "caption": "The Stylish Dog, 55 Guildford Road, Ash"
+    }
+  ]
 }

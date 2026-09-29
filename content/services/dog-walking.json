@@ -1,19 +1,85 @@
 {
   "title": "Dog Walking",
+  "order": 3,
   "short": "Dog Walking",
   "tagline": "Rain or shine",
   "feature": false,
   "icon": "paw",
-  "excerpt": "Reliable solo and small-group walks that keep your dog fit, stimulated and content while you're at work or busy.",
-  "intro": "Dependable, insured dog walking tailored to your dog. Whether they need a calm solo stroll or a sociable group adventure, we keep them active, happy and safe — with a key-safe service so it fits seamlessly around your day.",
+  "excerpt": "Small group walks of no more than 4 dogs, plus puppy visits with a short walk, play and a little training at home.",
+  "intro": "Group walks in small groups of no more than 4 dogs, so your dog makes friends and gets extra stimulation. With your permission, and after an assessment on their first walk, dogs can go off lead in public areas. Dogs without reliable recall use our secure local fields and woodland instead, so every dog gets the most out of their walk.",
   "highlights": [
-    "Solo or small-group walks to suit your dog",
-    "Flexible scheduling around your work day",
-    "Secure key handling & lock-up service",
-    "GPS-tracked routes on request",
-    "Towel-dry and fresh water on return",
-    "Fully insured & DBS checked walkers"
+    "Small groups of no more than 4 dogs",
+    "Off-lead only with your permission and after an assessment walk",
+    "Secure local fields and woodland for dogs still working on recall",
+    "Puppy visits with a short walk, play or basic training, and any accidents cleaned up",
+    "Key holding at no extra charge",
+    "Insured with Petplan Sanctuary. DBS-checked walkers"
   ],
-  "order": 3,
-  "photo": "https://www.taketheleadservices.co.uk/uploads/1/7/4/6/17463779/a79i1518.jpg"
+  "pricingNote": "All prices include VAT. Walk and daycare cancellations need 48 hours' notice, otherwise a 50% fee applies. Bank holidays, Christmas and New Year are charged at double rate.",
+  "seoArea": "Ash, Aldershot & Farnborough",
+  "prices": [
+    {
+      "label": "30 minute puppy visit",
+      "price": "£12",
+      "detail": "A 10–15 minute walk, then 10–15 minutes of play or basic training at home. Ideal for puppies who need more frequent meals and company."
+    },
+    {
+      "label": "1 hour group walk",
+      "price": "£18",
+      "detail": "A walk in a small group of no more than 4 dogs."
+    },
+    {
+      "label": "Additional dog from the same family",
+      "price": "£12",
+      "detail": "Per hour."
+    }
+  ],
+  "areas": [
+    "Ash",
+    "Aldershot",
+    "North Camp",
+    "Farnborough",
+    "Mytchett"
+  ],
+  "notes": [],
+  "bookingUrl": "",
+  "photo": "/uploads/1/7/4/6/17463779/a79i1518.jpg",
+  "gallery": [
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i1496.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i1500.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i4079.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i4085.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i4091.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i4162.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i4171.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i4189.jpg",
+      "caption": ""
+    },
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i4197.jpg",
+      "caption": ""
+    }
+  ]
 }

@@ -39,7 +39,7 @@ const images = await getImages();
           ))}
         </div>
         <div class="hero-actions">
-          <a class="btn btn-red" href="/contact/">Book a Free Trial Day</a>
+          <a class="btn btn-red" href="/contact/">Book a Free Meet &amp; Greet</a>
           <a class="btn btn-ghost" href="#services">Explore Services</a>
         </div>
         <div class="hero-rating">
@@ -104,9 +104,9 @@ const images = await getImages();
   <section class="sec why" id="why">
     <div class="wrap why-grid">
       <div class="why-media reveal">
-        <div class="ph tall"><img src={images.whyTall} alt="Dogs playing in secure woodland" loading="lazy" /></div>
-        <div class="ph"><img src={images.whySquare1} alt="A dog being cared for" loading="lazy" /></div>
-        <div class="ph"><img src={images.whySquare2} alt="A relaxed dog at home boarding" loading="lazy" /></div>
+        <div class="ph tall"><img src={images.whyTall} alt="Dogs enjoying day care at Take The Lead Services" loading="lazy" /></div>
+        <div class="ph"><img src={images.whySquare1} alt="A dog out on a walk with Take The Lead Services" loading="lazy" /></div>
+        <div class="ph"><img src={images.whySquare2} alt="A dog during a training session" loading="lazy" /></div>
       </div>
       <div class="reveal">
         <span class="eyebrow">{hp?.whyEyebrow}</span>
@@ -150,7 +150,7 @@ const images = await getImages();
         }
       </div>
       <div class="steps-cta">
-        <a class="btn btn-red" href="/contact/">Start with a Free Trial</a>
+        <a class="btn btn-red" href="/contact/">Book a Free Meet &amp; Greet</a>
       </div>
     </div>
   </section>
@@ -179,7 +179,7 @@ const images = await getImages();
     </div>
   </section>
 
-  <FAQ />
+  <FAQ limit={6} />
 
   <CtaBand />
 </BaseLayout>

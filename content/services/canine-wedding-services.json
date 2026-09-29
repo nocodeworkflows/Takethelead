@@ -1,0 +1,35 @@
+{
+  "title": "Canine Wedding Services",
+  "order": 7,
+  "short": "Weddings",
+  "tagline": "Your dog, your big day",
+  "feature": false,
+  "icon": "heart",
+  "excerpt": "Want your dog at your wedding? We'll look after them on the day, whether they have a starring role in the ceremony or simply join the photos.",
+  "intro": "For many couples, the big day isn't complete without the dog. We'll bring our professional, experienced help to make sure your day runs smoothly. Whether your dog plays a key part in the ceremony or joins you at the venue for the photos, we'll take care of them so you don't have to.",
+  "highlights": [
+    "Dog chaperone for the ceremony, photos or the whole day",
+    "Collection from home and safe transport to your venue",
+    "Experienced handlers who keep your dog calm, comfortable and camera-ready",
+    "Planned around your timings and venue"
+  ],
+  "pricingNote": "Give us a call to talk through your plans. We look forward to helping make your day the best it can be.",
+  "seoArea": "Surrey & Hampshire",
+  "prices": [
+    {
+      "label": "Wedding attendance",
+      "price": "£60 per hour",
+      "detail": ""
+    },
+    {
+      "label": "Mileage",
+      "price": "80p per mile",
+      "detail": "Charged from Aldershot."
+    }
+  ],
+  "areas": [],
+  "notes": [],
+  "bookingUrl": "",
+  "photo": "/uploads/1/7/4/6/17463779/wedding_orig.jpg",
+  "gallery": []
+}

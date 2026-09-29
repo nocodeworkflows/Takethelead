@@ -1,4 +1,6 @@
 {
-  "question": "Do you take puppies and older dogs?",
-  "answer": "We welcome dogs of all ages. Groups are matched by temperament and energy, and our quieter spaces suit older dogs or those who prefer a calmer day."
+  "question": "When will my dog be picked up and dropped home?",
+  "answer": "For a full day we collect dogs around 9–10:30am and bring them home between 3:30 and 5pm. We can't be exact because routes and traffic change each day, but if you're out for a particularly long day, let us know and we'll try to work around you.",
+  "category": "Day care",
+  "order": 3
 }

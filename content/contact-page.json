@@ -1,12 +1,14 @@
 {
   "heroEyebrow": "Let's chat",
-  "heroHeading": "Book a *free trial day*",
-  "heroLead": "Ready to give your dog the best day out? Send us a message or give us a call — we'll get back to you the same day to arrange your free meet & greet.",
+  "heroHeading": "Book your *free meet & greet*",
+  "heroLead": "Tell us about your dog and what you need. Send us a message or give us a call and we'll arrange a free introductory meeting and assessment.",
   "sideEyebrow": "Get in touch",
   "sideHeading": "We'd love to hear about your dog",
-  "sideText": "However you like to chat, we're here. No pushy sales — just honest, friendly advice.",
+  "sideText": "Boarding, day care, walking, grooming and cat sitting: call the main line. Dog training has its own line.",
   "bookingHeading": "Already know what you need?",
-  "bookingText": "Skip straight to our booking portal to see availability and book online.",
-  "bookingButtonLabel": "Book via our portal →",
-  "bookingUrl": "TODO_PETSITTERPLUS_URL"
+  "bookingText": "Fill in our online booking form, or send us your dog's vaccination record before their first visit.",
+  "bookingButtonLabel": "Open the booking form",
+  "bookingUrl": "https://services.cognitoforms.com/f/LK9K1BXkP0mDtsBNiWA7Ig?id=1",
+  "trainingBookingUrl": "https://services.cognitoforms.com/f/fwAD8hBOd06ZzLghMRQUkg?id=1",
+  "vaccinationUrl": "https://services.cognitoforms.com/f/fwAD8hBOd06ZzLghMRQUkg?id=4"
 }

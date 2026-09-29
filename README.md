@@ -54,7 +54,7 @@ Almost all site content is editable in the CMS (stored as JSON under
 | About page copy (hero, body paragraphs, promise, closing CTA) | **About page content** singleton |
 | Contact page copy (hero, side column) | **Contact page content** singleton |
 | Default call-to-action band | **Call-to-action band** singleton |
-| Phone, email, WhatsApp, hours, socials, areas label, meta description | **Site settings** singleton |
+| Phone, email, training phone/email, WhatsApp, hours, socials, areas label, meta description (leave WhatsApp, Instagram or hours blank to hide them) | **Site settings** singleton |
 | Areas covered (chips) | **Areas covered** singleton |
 | Photos — hero, why-us, about, social share | **Photos** singleton |
 
@@ -82,8 +82,10 @@ edit the local files directly (no login needed).
 ### Images
 
 Photos can be changed in the CMS — **Photos** singleton, and the **photo**
-field on each Service. Paste a full image URL (e.g. right-click a photo on the
-live Weebly site → *Copy image address*). Any field left **blank** falls back
+and **gallery** fields on each Service. The original Weebly photos are bundled
+in `public/uploads/…`, so paths like `/uploads/1/7/4/6/17463779/storm.jpg` keep
+working after the domain moves off Weebly. For a new photo, add the file under
+`public/` (or paste any full image URL). Any field left **blank** falls back
 to the default in `src/data/images.ts`, so nothing ever appears broken.
 
 `src/data/images.ts` holds those defaults and the Weebly base URL helper. To

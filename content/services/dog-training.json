@@ -1,19 +1,44 @@
 {
   "title": "Dog Training",
+  "order": 4,
   "short": "Training",
   "tagline": "",
   "feature": false,
   "icon": "star",
-  "excerpt": "Kind, reward-based training that builds confidence and good manners — from playful puppies to dogs who need a little extra help.",
-  "intro": "Positive, reward-based training that works with your dog, not against them. From puppy foundations and recall to lead manners and confidence building, we give you practical, lasting results — and a calmer, happier dog.",
+  "excerpt": "1-2-1 training at your home or locally with a qualified trainer, plus fun workshops such as Have-a-Go Agility at our field in Normandy.",
+  "intro": "Group classes aren't right for every dog or every diary. Our qualified, friendly trainers offer 1-2-1 sessions at your home or in your local area, tailored to you and your dog. We assess what your dog needs and take your handling into account too. We want to set you up for success.",
   "highlights": [
-    "Reward-based, force-free methods",
-    "Puppy foundations & socialisation",
-    "Recall, lead walking & manners",
-    "Confidence building for nervous dogs",
-    "1-to-1 sessions tailored to your goals",
-    "Support and guidance between sessions"
+    "Loose lead walking",
+    "Recall",
+    "Sit, down and stand",
+    "Stay and wait",
+    "Leave and drop",
+    "Door manners",
+    "Jumping up",
+    "Meeting dogs and people politely"
   ],
-  "order": 4,
-  "photo": "https://www.taketheleadservices.co.uk/uploads/1/7/4/6/17463779/a79i9611.jpg"
+  "pricingNote": "Training has its own booking line: call 07714 944241 or email TTLS.training@hotmail.com.",
+  "seoArea": "Surrey & Hampshire",
+  "prices": [
+    {
+      "label": "1-2-1 training consultation",
+      "price": "£100",
+      "detail": "A one-hour session at your home or locally, including an assessment of your dog's needs, an emailed training plan and two weeks of email support."
+    },
+    {
+      "label": "Have-a-Go Dog Agility Workshop",
+      "price": "Ask us",
+      "detail": "Tea, coffee, biscuits and wagging tails at our training field in Normandy. Whether your dog is a future agility star or just loves an adventure, come and have a go."
+    }
+  ],
+  "areas": [],
+  "notes": [],
+  "bookingUrl": "https://services.cognitoforms.com/f/fwAD8hBOd06ZzLghMRQUkg?id=1",
+  "photo": "/uploads/1/7/4/6/17463779/a79i9611.jpg",
+  "gallery": [
+    {
+      "src": "/uploads/1/7/4/6/17463779/a79i4470_orig.jpg",
+      "caption": ""
+    }
+  ]
 }

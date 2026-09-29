@@ -1,19 +1,37 @@
 {
-  "title": "Cat Sitting & Home Visits",
+  "title": "Cat Sitting",
   "order": 6,
-  "short": "Cat Services",
+  "short": "Cat Sitting",
   "tagline": "Stress-free care at home",
   "feature": false,
   "icon": "cat",
-  "excerpt": "In-home visits so your cat stays in their own territory, stress-free, while you're away.",
-  "intro": "Cats are creatures of habit. Our in-home visit service keeps them in their own environment — no strange kennels, no upheaval. Daily visits, feeding, play, and a reassuring update for you.",
+  "excerpt": "Once or twice daily home visits while you're away, so your cat avoids the stress of an unfamiliar cattery.",
+  "intro": "Dedicated, experienced cat sitting. We visit your cat once or twice a day while you're on holiday, so they stay in their own home instead of an unfamiliar cattery. We can also keep your home looking lived-in while you're away.",
   "highlights": [
-    "Daily visits at a time that suits your cat's routine",
-    "Feeding, fresh water, and litter tray care",
-    "Playtime and companionship",
-    "Photo updates so you know all is well",
-    "DBS checked, fully insured"
+    "Feeding, cuddles and play",
+    "Litter trays cleaned and grooming",
+    "Let out in the morning and called in for the evening, if you'd like them safe indoors overnight",
+    "Plants watered and post picked up",
+    "Curtains opened and drawn, and lights timed, for added security",
+    "Karina, our co-owner, is a registered veterinary nurse, so medication is in safe hands"
   ],
-  "photo": "https://www.taketheleadservices.co.uk/uploads/1/7/4/6/17463779/editor/cat.jpg",
-  "pricingNote": "Priced per visit. Get in touch for a tailored quote based on your cat's needs and visit frequency."
+  "pricingNote": "All prices include VAT. Key holding is free.",
+  "seoArea": "the Surrey–Hampshire border",
+  "prices": [
+    {
+      "label": "One daily visit",
+      "price": "£14",
+      "detail": ""
+    },
+    {
+      "label": "Two daily visits",
+      "price": "£26",
+      "detail": ""
+    }
+  ],
+  "areas": [],
+  "notes": [],
+  "bookingUrl": "",
+  "photo": "/uploads/1/7/4/6/17463779/editor/cat.jpg",
+  "gallery": []
 }

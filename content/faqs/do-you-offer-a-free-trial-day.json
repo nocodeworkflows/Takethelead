@@ -1,4 +1,6 @@
 {
-  "question": "Do you offer a free trial day?",
-  "answer": "Yes. Every new dog starts with a free meet & greet and trial day so we can make sure day care is the right fit — with no pressure and no cost."
+  "question": "How many dogs do you board at one time?",
+  "answer": "Aside from our own dogs, we board up to 3 dogs at a time.",
+  "category": "Home boarding",
+  "order": 6
 }
