@@ -307,8 +307,8 @@ export default config({
           itemLabel: (p) => p.value,
         }),
         ratingText: fields.text({ label: "Hero rating text" }),
-        floatTopNumber: fields.text({ label: "Float badge — number", defaultValue: "4" }),
-        floatTopLabel: fields.text({ label: "Float badge — label", defaultValue: "Acre Woodland" }),
+        floatTopNumber: fields.text({ label: "Float badge — number", defaultValue: "10+" }),
+        floatTopLabel: fields.text({ label: "Float badge — label", defaultValue: "Years of local care" }),
         floatCardTitle: fields.text({ label: "Float card — title" }),
         floatCardText: fields.text({ label: "Float card — text" }),
 
@@ -441,7 +441,7 @@ export default config({
           { label: "Daycare — features", itemLabel: (p) => p.fields.title.value }
         ),
 
-        woodlandEyebrow: fields.text({ label: "Woodland — eyebrow" }),
+        woodlandEyebrow: fields.text({ label: "Second section — eyebrow (leave heading blank to hide)" }),
         woodlandHeading: fields.text({ label: "Woodland — heading" }),
         woodlandIntro: fields.text({
           label: "Woodland — intro",

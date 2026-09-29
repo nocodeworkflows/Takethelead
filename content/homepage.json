@@ -8,8 +8,8 @@
     "DBS Checked"
   ],
   "ratingText": "Trusted by local dog owners for over 10 years",
-  "floatTopNumber": "4",
-  "floatTopLabel": "Acre Woodland",
+  "floatTopNumber": "10+",
+  "floatTopLabel": "Years of local care",
   "floatCardTitle": "Free meet & greet",
   "floatCardText": "Your introductory meeting and assessment costs nothing",
   "servicesEyebrow": "What we do",
@@ -36,8 +36,8 @@
       "text": "Collection 9–10:30am, home 3:30–5pm"
     },
     {
-      "icon": "tree",
-      "text": "Secure 4-acre private woodland"
+      "icon": "shield",
+      "text": "Insured with Petplan Sanctuary"
     },
     {
       "icon": "key",

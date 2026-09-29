@@ -1,8 +1,8 @@
 {
-  "metaDescription": "Our 5★ licensed daycare centre, secure 4-acre private woodland, licensed home boarding and The Stylish Dog grooming salon in Ash, on the Surrey–Hampshire border.",
+  "metaDescription": "Our 5★ licensed daycare centre, licensed home boarding and The Stylish Dog grooming salon in Ash, plus a private woodland and grooming table available to hire.",
   "heroEyebrow": "Where your dog plays, rests and thrives",
   "heroHeading": "Our Facilities",
-  "heroLead": "A 5★ licensed daycare centre, a secure 4-acre private woodland, a family home for boarding and our own grooming salon. Here's where your dog spends their time with us.",
+  "heroLead": "A 5★ licensed daycare centre, a family home for boarding and our own grooming salon. Here's where your dog spends their time with us, plus the spaces we offer for private hire.",
   "daycareEyebrow": "Day care",
   "daycareHeading": "The Daycare Centre",
   "daycareIntro": "Our 5★ licensed daycare centre has secure indoor and outdoor play facilities. Dogs get a balanced mix of exercise, mental stimulation and downtime, fully supervised by our team all day.",
@@ -28,23 +28,10 @@
       "text": "Dogs travel to and from daycare in professionally fitted, secure dog vans, each in its own crate."
     }
   ],
-  "woodlandEyebrow": "Off-lead adventures",
-  "woodlandHeading": "Our 4-Acre Private Woodland",
-  "woodlandIntro": "Exclusive access to a securely fenced 4-acre private woodland, for safe off-lead adventures away from public paths.",
-  "woodlandFeatures": [
-    {
-      "title": "Securely fenced",
-      "text": "Dogs can run, sniff and explore off lead in safety."
-    },
-    {
-      "title": "Private",
-      "text": "Exclusive to the dogs in our care, so no surprises from other dogs or the public."
-    },
-    {
-      "title": "Supervised",
-      "text": "Woodland time is always led and supervised by our team."
-    }
-  ],
+  "woodlandEyebrow": "",
+  "woodlandHeading": "",
+  "woodlandIntro": "",
+  "woodlandFeatures": [],
   "moreSections": [
     {
       "eyebrow": "Home boarding",
@@ -84,6 +71,22 @@
       "intro": "Home of our workshops, including our Have-a-Go Dog Agility Workshop. Tea, coffee, biscuits, wagging tails and plenty of like-minded dog lovers.",
       "photo": "",
       "features": []
+    },
+    {
+      "eyebrow": "Private hire",
+      "heading": "Hire Our 4-Acre Private Woodland",
+      "intro": "Our securely fenced 4-acre private woodland is available to hire on its own, separate from our dog care services. Get in touch for availability and prices.",
+      "photo": "",
+      "features": [
+        {
+          "title": "Securely fenced",
+          "text": "Safe for off-lead exercise, training or play."
+        },
+        {
+          "title": "Private",
+          "text": "Exclusive to you for your booking, away from public paths."
+        }
+      ]
     },
     {
       "eyebrow": "For professional groomers",

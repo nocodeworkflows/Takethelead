@@ -47,7 +47,8 @@ const ctaText = (fac?.ctaText || "").replace("{areasLabel}", site.areasLabel);
     </div>
   </section>
 
-  <!-- SECTION 2: Private Woodland -->
+  <!-- SECTION 2: optional extra section (hidden when the heading is blank) -->
+  {fac?.woodlandHeading && (
   <section class="sec why">
     <div class="wrap">
       <div class="sec-head reveal">
@@ -70,10 +71,11 @@ const ctaText = (fac?.ctaText || "").replace("{areasLabel}", site.areasLabel);
       </ul>
     </div>
   </section>
+  )}
 
   <!-- More sections: home boarding, salon, training field, table rental -->
   {(fac?.moreSections || []).map((sec, i) => (
-    <section class={`sec${i % 2 === 0 ? "" : " why"}`}>
+    <section class={`sec${i % 2 === 0 ? " why" : ""}`}>
       <div class={`wrap${sec.photo ? " split" : ""}`}>
         <div>
           <div class="sec-head reveal">
