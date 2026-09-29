@@ -54,9 +54,10 @@ Almost all site content is editable in the CMS (stored as JSON under
 | About page copy (hero, body paragraphs, promise, closing CTA) | **About page content** singleton |
 | Contact page copy (hero, side column) | **Contact page content** singleton |
 | Default call-to-action band | **Call-to-action band** singleton |
-| Phone, email, training phone/email, WhatsApp, hours, socials, areas label, meta description (leave WhatsApp, Instagram or hours blank to hide them) | **Site settings** singleton |
+| Phone, email, training phone/email, salon address, boarding licence, WhatsApp, hours, socials, areas label, meta description (leave WhatsApp, Instagram or hours blank to hide them) | **Site settings** singleton |
 | Areas covered (chips) | **Areas covered** singleton |
 | Photos — hero, why-us, about, social share | **Photos** singleton |
+| Terms & conditions | **Terms & Conditions** singleton |
 
 > **Tip:** in heading fields, wrap words in `*asterisks*` to make them the
 > highlighted (red italic) part, e.g. `Book a *free trial day*`.
@@ -81,12 +82,14 @@ edit the local files directly (no login needed).
 
 ### Images
 
-Photos can be changed in the CMS — **Photos** singleton, and the **photo**
-and **gallery** fields on each Service. The original Weebly photos are bundled
-in `public/uploads/…`, so paths like `/uploads/1/7/4/6/17463779/storm.jpg` keep
-working after the domain moves off Weebly. For a new photo, add the file under
-`public/` (or paste any full image URL). Any field left **blank** falls back
-to the default in `src/data/images.ts`, so nothing ever appears broken.
+Photos are uploaded in the CMS: **Photos** singleton (homepage, about, social
+share), the **photo** and **gallery** fields on each Service, **photo** on each
+Team member, and section photos on the Facilities page. Uploads are committed to
+`src/assets/images/…` and resized to WebP at build time (`src/lib/images.ts`),
+so full-size phone photos are fine.
+
+The original Weebly photos also stay in `public/uploads/…` so any old links to
+Weebly image addresses keep working after the domain moves.
 
 `src/data/images.ts` holds those defaults and the Weebly base URL helper. To
 use a self-hosted logo instead of the built-in SVG, drop the file in `/public`

@@ -5,9 +5,14 @@ import TrustStrip from "../components/TrustStrip.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { getSiteSettings, getFacilitiesPage } from "../lib/content";
 import { emphasis } from "../lib/emphasis";
+import { optimise } from "../lib/images";
 
 const site = await getSiteSettings();
 const fac = await getFacilitiesPage();
+
+const sections = await Promise.all(
+  (fac?.moreSections || []).map(async (sec) => ({ ...sec, photo: await optimise(sec.photo, 1000) }))
+);
 
 const ctaText = (fac?.ctaText || "").replace("{areasLabel}", site.areasLabel);
 ---
@@ -74,7 +79,7 @@ const ctaText = (fac?.ctaText || "").replace("{areasLabel}", site.areasLabel);
   )}
 
   <!-- More sections: home boarding, salon, training field, table rental -->
-  {(fac?.moreSections || []).map((sec, i) => (
+  {sections.map((sec, i) => (
     <section class={`sec${i % 2 === 0 ? " why" : ""}`}>
       <div class={`wrap${sec.photo ? " split" : ""}`}>
         <div>

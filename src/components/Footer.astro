@@ -57,13 +57,15 @@ const year = new Date().getFullYear();
           {site.training.phoneDisplay && <li><a href={site.training.phoneHref}>Training: {site.training.phoneDisplay}</a></li>}
           <li><a href={site.emailHref}>{site.email}</a></li>
         </ul>
-        <div style="margin-top:1rem"><span class="licence">Home boarding licence 25/00868/AWRHOM</span></div>
+        {site.boardingLicence && (
+          <div style="margin-top:1rem"><span class="licence">Home boarding licence {site.boardingLicence}</span></div>
+        )}
       </div>
     </div>
 
     <div class="foot-bottom">
       <span>© {year} {site.name}. All rights reserved.</span>
-      <span>The Stylish Dog, 55 Guildford Road, Ash, GU12 6BQ</span>
+      {site.salonAddress && <span>The Stylish Dog, {site.salonAddress}</span>}
     </div>
   </div>
 </footer>

@@ -51,34 +51,34 @@
   "areas": [],
   "notes": [],
   "bookingUrl": "",
-  "photo": "/uploads/1/7/4/6/17463779/storm.jpg",
+  "photo": "/src/assets/images/services/dog-grooming/storm.jpg",
   "gallery": [
     {
-      "src": "/uploads/1/7/4/6/17463779/published/alfie-pre.jpg",
+      "src": "/src/assets/images/services/dog-grooming/alfie-pre.jpg",
       "caption": "Alfie, before"
     },
     {
-      "src": "/uploads/1/7/4/6/17463779/published/alfie-post.jpg",
+      "src": "/src/assets/images/services/dog-grooming/alfie-post.jpg",
       "caption": "Alfie, after"
     },
     {
-      "src": "/uploads/1/7/4/6/17463779/published/arlo-pre.jpg",
+      "src": "/src/assets/images/services/dog-grooming/arlo-pre.jpg",
       "caption": "Arlo, before"
     },
     {
-      "src": "/uploads/1/7/4/6/17463779/published/arlo-post.jpg",
+      "src": "/src/assets/images/services/dog-grooming/arlo-post.jpg",
       "caption": "Arlo, after"
     },
     {
-      "src": "/uploads/1/7/4/6/17463779/published/puppies.jpg",
+      "src": "/src/assets/images/services/dog-grooming/puppies.jpg",
       "caption": "Puppy grooms"
     },
     {
-      "src": "/uploads/1/7/4/6/17463779/published/mr-fudge.jpg",
+      "src": "/src/assets/images/services/dog-grooming/mr-fudge.jpg",
       "caption": "Mr Fudge"
     },
     {
-      "src": "/uploads/1/7/4/6/17463779/published/shop-front.jpg",
+      "src": "/src/assets/images/services/dog-grooming/shop-front.jpg",
       "caption": "The Stylish Dog, 55 Guildford Road, Ash"
     }
   ]

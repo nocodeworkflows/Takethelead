@@ -31,6 +31,17 @@ const iconOptions = [
   { label: "Key", value: "key" },
 ];
 
+// Photo upload helper. Files are committed to src/assets/images/<folder>
+// (collections add an <entry-slug>/ subfolder) and resized at build time,
+// so full-size phone photos are fine to upload.
+const photo = (label: string, folder: string, description?: string) =>
+  fields.image({
+    label,
+    description,
+    directory: `src/assets/images/${folder}`,
+    publicPath: `/src/assets/images/${folder}/`,
+  });
+
 const iconField = (label = "Icon", defaultValue = "paw") =>
   fields.select({ label, options: iconOptions, defaultValue });
 
@@ -73,11 +84,7 @@ export default config({
           fields.text({ label: "Highlight" }),
           { label: "What's included", itemLabel: (p) => p.value }
         ),
-        photo: fields.text({
-          label: "Service photo URL (optional)",
-          description:
-            "Full image URL. Leave blank to use the default site photo.",
-        }),
+        photo: photo("Service photo", "services", "Leave blank to use the homepage hero photo."),
         pricingNote: fields.text({
           label: "Pricing note (optional)",
           multiline: true,
@@ -110,10 +117,13 @@ export default config({
         }),
         gallery: fields.array(
           fields.object({
-            src: fields.text({ label: "Photo URL" }),
+            src: photo("Photo", "services"),
             caption: fields.text({ label: "Caption (optional)" }),
           }),
-          { label: "Photo gallery", itemLabel: (p) => p.fields.caption.value || p.fields.src.value }
+          {
+            label: "Photo gallery",
+            itemLabel: (p) => p.fields.caption.value || p.fields.src.value?.filename || "Photo",
+          }
         ),
       },
     }),
@@ -232,10 +242,7 @@ export default config({
         }),
         role: fields.text({ label: "Role" }),
         bio: fields.text({ label: "Bio", multiline: true }),
-        photo: fields.text({
-          label: "Photo URL (optional)",
-          description: "Full image URL. Leave blank for a paw-icon placeholder.",
-        }),
+        photo: photo("Photo", "team", "Leave blank for a paw-icon placeholder."),
       },
     }),
   },
@@ -261,6 +268,8 @@ export default config({
         trainingPhoneDisplay: fields.text({ label: "Training phone (display)" }),
         trainingPhoneNumber: fields.text({ label: "Training phone (digits only)" }),
         trainingEmail: fields.text({ label: "Training email" }),
+        salonAddress: fields.text({ label: "Grooming salon address", description: "Shown in the footer and on the contact page." }),
+        boardingLicence: fields.text({ label: "Home boarding licence number", description: "Shown in the footer." }),
         address: fields.text({
           label: "Business town (for Google)",
           description: "Used in structured data, e.g. Aldershot.",
@@ -410,12 +419,12 @@ export default config({
       path: "content/images",
       format: { data: "json" },
       schema: {
-        heroMain: fields.text({ label: "Homepage hero photo URL" }),
-        whyTall: fields.text({ label: "Why us — tall photo URL" }),
-        whySquare1: fields.text({ label: "Why us — square photo 1 URL" }),
-        whySquare2: fields.text({ label: "Why us — square photo 2 URL" }),
-        about: fields.text({ label: "About page photo URL" }),
-        og: fields.text({ label: "Social share (Open Graph) image URL" }),
+        heroMain: photo("Homepage hero photo", "site"),
+        whyTall: photo("Why us — tall photo", "site"),
+        whySquare1: photo("Why us — square photo 1", "site"),
+        whySquare2: photo("Why us — square photo 2", "site"),
+        about: photo("About page photo", "site"),
+        og: photo("Social share image", "site", "Shown when the site is shared on Facebook, WhatsApp etc."),
       },
     }),
 
@@ -461,7 +470,7 @@ export default config({
             eyebrow: fields.text({ label: "Eyebrow" }),
             heading: fields.text({ label: "Heading" }),
             intro: fields.text({ label: "Intro", multiline: true }),
-            photo: fields.text({ label: "Photo URL (optional)" }),
+            photo: photo("Photo (optional)", "facilities"),
             features: fields.array(
               fields.object({
                 title: fields.text({ label: "Title" }),
@@ -482,6 +491,25 @@ export default config({
           label: "Closing CTA — text",
           description: "Use {areasLabel} to insert the areas label.",
           multiline: true,
+        }),
+      },
+    }),
+
+    terms: singleton({
+      label: "Terms & Conditions",
+      path: "content/terms",
+      format: { data: "json" },
+      schema: {
+        heroLead: fields.text({ label: "Intro", multiline: true }),
+        generalHeading: fields.text({ label: "General terms — heading", defaultValue: "General terms" }),
+        general: fields.array(fields.text({ label: "Term", multiline: true }), {
+          label: "General terms",
+          itemLabel: (p) => p.value.slice(0, 70),
+        }),
+        groomingHeading: fields.text({ label: "Grooming terms — heading", defaultValue: "Dog grooming terms (The Stylish Dog)" }),
+        grooming: fields.array(fields.text({ label: "Term", multiline: true }), {
+          label: "Grooming terms",
+          itemLabel: (p) => p.value.slice(0, 70),
         }),
       },
     }),

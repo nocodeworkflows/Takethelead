@@ -11,6 +11,7 @@
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "../../keystatic.config";
 import { images as defaultImages } from "../data/images";
+import { optimise } from "./images";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -60,6 +61,8 @@ export type SiteSettings = {
   emailHref: string;
   training: { phoneDisplay: string; phoneHref: string; email: string; emailHref: string };
   address: string;
+  salonAddress: string;
+  boardingLicence: string;
   areasLabel: string;
   hours: { day: string; time: string }[];
   credentials: string[];
@@ -92,6 +95,8 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       emailHref: `mailto:${s?.trainingEmail || ""}`,
     },
     address: s?.address || "",
+    salonAddress: s?.salonAddress || "",
+    boardingLicence: s?.boardingLicence || "",
     areasLabel: s?.areasLabel || "",
     hours: (s?.hours || []).map((h) => ({ day: h.day, time: h.time })),
     credentials: CONST.credentials,
@@ -108,8 +113,20 @@ let _services: Service[] | null = null;
 export async function getServices(): Promise<Service[]> {
   if (_services) return _services;
   const entries = await reader.collections.services.all();
-  _services = entries
-    .map(({ slug, entry }) => ({
+  const withPhotos = await Promise.all(
+    entries.map(async ({ slug, entry }) => ({
+      slug,
+      entry,
+      photo: await optimise(entry.photo, 1000),
+      gallery: await Promise.all(
+        (entry.gallery || [])
+          .filter((g) => g.src)
+          .map(async (g) => ({ src: await optimise(g.src, 600), caption: g.caption || "" }))
+      ),
+    }))
+  );
+  _services = withPhotos
+    .map(({ slug, entry, photo, gallery }) => ({
       slug,
       title: entry.title,
       short: entry.short || entry.title,
@@ -119,7 +136,7 @@ export async function getServices(): Promise<Service[]> {
       icon: entry.icon || "paw",
       intro: entry.intro || "",
       highlights: [...(entry.highlights || [])],
-      photo: entry.photo || "",
+      photo,
       pricingNote: entry.pricingNote || "",
       seoArea: entry.seoArea || "",
       prices: (entry.prices || []).map((p) => ({
@@ -130,9 +147,7 @@ export async function getServices(): Promise<Service[]> {
       areas: [...(entry.areas || [])],
       notes: [...(entry.notes || [])],
       bookingUrl: entry.bookingUrl || "",
-      gallery: (entry.gallery || [])
-        .filter((g) => g.src)
-        .map((g) => ({ src: g.src, caption: g.caption || "" })),
+      gallery,
       order: entry.order ?? 99,
     }))
     .sort((a, b) => a.order - b.order)
@@ -156,12 +171,15 @@ let _teamMembers: TeamMember[] | null = null;
 export async function getTeamMembers(): Promise<TeamMember[]> {
   if (_teamMembers) return _teamMembers;
   const entries = await reader.collections.teamMembers.all();
-  _teamMembers = entries
-    .map(({ entry }) => ({
+  const withPhotos = await Promise.all(
+    entries.map(async ({ entry }) => ({ entry, photo: await optimise(entry.photo, 700) }))
+  );
+  _teamMembers = withPhotos
+    .map(({ entry, photo }) => ({
       name: entry.name,
       role: entry.role || "",
       bio: entry.bio || "",
-      photo: entry.photo || "",
+      photo,
       order: entry.order ?? 99,
     }))
     .sort((a, b) => a.order - b.order)
@@ -272,6 +290,9 @@ export async function getFaqsPage() {
 export async function getStylishDog() {
   return await reader.singletons.stylishDog.read();
 }
+export async function getTerms() {
+  return await reader.singletons.terms.read();
+}
 export async function getCta() {
   return await reader.singletons.cta.read();
 }
@@ -283,11 +304,12 @@ export async function getImages() {
     override && override.trim() ? override.trim() : fallback;
   return {
     ...defaultImages,
-    heroMain: pick(cms?.heroMain, defaultImages.heroMain),
-    whyTall: pick(cms?.whyTall, defaultImages.whyTall),
-    whySquare1: pick(cms?.whySquare1, defaultImages.whySquare1),
-    whySquare2: pick(cms?.whySquare2, defaultImages.whySquare2),
-    about: pick(cms?.about, defaultImages.about),
-    og: pick(cms?.og, defaultImages.og),
+    heroMain: await optimise(pick(cms?.heroMain, defaultImages.heroMain), 1200),
+    whyTall: await optimise(pick(cms?.whyTall, defaultImages.whyTall), 800),
+    whySquare1: await optimise(pick(cms?.whySquare1, defaultImages.whySquare1), 600),
+    whySquare2: await optimise(pick(cms?.whySquare2, defaultImages.whySquare2), 600),
+    about: await optimise(pick(cms?.about, defaultImages.about), 1000),
+    // Social networks are pickiest about formats, so keep the share image a JPEG.
+    og: await optimise(pick(cms?.og, defaultImages.og), 1200, "jpg"),
   };
 }

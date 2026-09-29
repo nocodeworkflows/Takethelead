@@ -73,13 +73,15 @@ const areas = await getAreas();
             <span>{areas.join(", ")}</span>
           </div>
         </div>
-        <div class="contact-card">
-          <span class="ic"><Icon name="scissors" /></span>
-          <div>
-            <b>The Stylish Dog grooming salon</b>
-            <span>55 Guildford Road, Ash, GU12 6BQ</span>
+        {site.salonAddress && (
+          <div class="contact-card">
+            <span class="ic"><Icon name="scissors" /></span>
+            <div>
+              <b>The Stylish Dog grooming salon</b>
+              <span>{site.salonAddress}</span>
+            </div>
           </div>
-        </div>
+        )}
         {site.hours.length > 0 && (
           <div class="contact-card">
             <span class="ic"><Icon name="clock" /></span>

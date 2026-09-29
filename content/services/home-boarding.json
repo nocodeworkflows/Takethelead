@@ -26,26 +26,26 @@
     "We are unable to board dogs with aggressive tendencies towards people or other dogs, as they share our family home."
   ],
   "bookingUrl": "",
-  "photo": "/uploads/1/7/4/6/17463779/pheb.jpeg",
+  "photo": "/src/assets/images/services/home-boarding/pheb.jpeg",
   "gallery": [
     {
-      "src": "/uploads/1/7/4/6/17463779/6041444.jpeg",
+      "src": "/src/assets/images/services/home-boarding/6041444.jpeg",
       "caption": "Kira & Mel, exhausted after a good run"
     },
     {
-      "src": "/uploads/1/7/4/6/17463779/7681236.jpg",
+      "src": "/src/assets/images/services/home-boarding/7681236.jpg",
       "caption": "Ralph sneaking in some cuddles on the bed"
     },
     {
-      "src": "/uploads/1/7/4/6/17463779/2332732.jpeg",
+      "src": "/src/assets/images/services/home-boarding/2332732.jpeg",
       "caption": "Bella relaxing on the sofa"
     },
     {
-      "src": "/uploads/1/7/4/6/17463779/7166631.jpeg",
+      "src": "/src/assets/images/services/home-boarding/7166631.jpeg",
       "caption": "Sam & Bailey, taking up most of the sofa"
     },
     {
-      "src": "/uploads/1/7/4/6/17463779/7820409.jpg",
+      "src": "/src/assets/images/services/home-boarding/7820409.jpg",
       "caption": "Sophie taking full advantage"
     }
   ]

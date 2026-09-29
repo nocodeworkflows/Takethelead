@@ -34,10 +34,10 @@
   "areas": [],
   "notes": [],
   "bookingUrl": "https://services.cognitoforms.com/f/fwAD8hBOd06ZzLghMRQUkg?id=1",
-  "photo": "/uploads/1/7/4/6/17463779/a79i9611.jpg",
+  "photo": "/src/assets/images/services/dog-training/a79i9611.jpg",
   "gallery": [
     {
-      "src": "/uploads/1/7/4/6/17463779/a79i4470_orig.jpg",
+      "src": "/src/assets/images/services/dog-training/a79i4470_orig.jpg",
       "caption": ""
     }
   ]
