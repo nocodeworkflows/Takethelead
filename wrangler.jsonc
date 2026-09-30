@@ -9,7 +9,11 @@
   "main": "dist/_worker.js/index.js",
   "assets": {
     "binding": "ASSETS",
-    "directory": "dist"
+    "directory": "dist",
+    // Send every request through the worker (src/worker.ts) so it can add a
+    // noindex header on *.workers.dev preview addresses. Unmatched requests
+    // are still served from the static files via the ASSETS binding.
+    "run_worker_first": true
   },
   "observability": {
     "enabled": true

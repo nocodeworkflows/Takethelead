@@ -16,6 +16,8 @@ export default defineConfig({
     platformProxy: { enabled: true },
     // Optimise images with sharp at build time (Cloudflare has no sharp at runtime).
     imageService: "compile",
+    // Wraps the default handler to add noindex on *.workers.dev addresses.
+    workerEntryPoint: { path: "src/worker.ts" },
   }),
   integrations: [react(), keystatic(), sitemap()],
   compressHTML: true,
