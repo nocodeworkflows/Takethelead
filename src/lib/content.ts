@@ -46,6 +46,23 @@ export type Service = {
   notes: string[];
   bookingUrl: string;
   gallery: { src: string; caption: string }[];
+  workshop: Workshop | null;
+};
+
+export type Workshop = {
+  title: string;
+  subtitle: string;
+  intro: string;
+  date: string;
+  time: string;
+  price: string;
+  places: string;
+  location: string;
+  points: string[];
+  tagline: string;
+  bookingLabel: string;
+  photo: string;
+  logo: string;
 };
 
 export type SiteSettings = {
@@ -118,6 +135,23 @@ export async function getServices(): Promise<Service[]> {
       slug,
       entry,
       photo: await optimise(entry.photo, 1000),
+      workshop: entry.workshop?.title
+        ? {
+            title: entry.workshop.title,
+            subtitle: entry.workshop.subtitle || "",
+            intro: entry.workshop.intro || "",
+            date: entry.workshop.date || "",
+            time: entry.workshop.time || "",
+            price: entry.workshop.price || "",
+            places: entry.workshop.places || "",
+            location: entry.workshop.location || "",
+            points: [...(entry.workshop.points || [])],
+            tagline: entry.workshop.tagline || "",
+            bookingLabel: entry.workshop.bookingLabel || "Book your spot",
+            photo: await optimise(entry.workshop.photo, 900),
+            logo: await optimise(entry.workshop.logo, 240),
+          }
+        : null,
       gallery: await Promise.all(
         (entry.gallery || [])
           .filter((g) => g.src)
@@ -126,7 +160,7 @@ export async function getServices(): Promise<Service[]> {
     }))
   );
   _services = withPhotos
-    .map(({ slug, entry, photo, gallery }) => ({
+    .map(({ slug, entry, photo, gallery, workshop }) => ({
       slug,
       title: entry.title,
       short: entry.short || entry.title,
@@ -148,6 +182,7 @@ export async function getServices(): Promise<Service[]> {
       notes: [...(entry.notes || [])],
       bookingUrl: entry.bookingUrl || "",
       gallery,
+      workshop,
       order: entry.order ?? 99,
     }))
     .sort((a, b) => a.order - b.order)

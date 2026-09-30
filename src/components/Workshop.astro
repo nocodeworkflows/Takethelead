@@ -1,0 +1,255 @@
+---
+// Poster-style promo for a one-off workshop (e.g. Have a Go Dog Agility).
+// All content comes from the service's "Workshop / event" fields in the CMS.
+// Once the date has passed, the section switches to "next date coming soon":
+// at build time, and again in the browser in case the site hasn't rebuilt.
+import Icon from "./Icon.astro";
+import type { Workshop } from "../lib/content";
+import { emphasis } from "../lib/emphasis";
+
+interface Props {
+  workshop: Workshop;
+  bookingUrl: string;
+}
+const { workshop: w, bookingUrl } = Astro.props;
+
+// End of the event day, UK time is close enough for a date-only field.
+const ends = w.date ? new Date(`${w.date}T23:59:59`) : null;
+const past = ends ? ends.getTime() < Date.now() : false;
+const dateLabel = w.date
+  ? new Date(`${w.date}T12:00:00`).toLocaleDateString("en-GB", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+    })
+  : "";
+const pointIcons = ["paw", "star", "check", "heart"];
+const taglineParts = w.tagline ? w.tagline.split(/\s*[·•|]\s*/).filter(Boolean) : [];
+---
+
+<section class={`workshop${past ? " is-past" : ""}`} data-ends={ends?.toISOString()} id="workshop">
+  <div class="wrap ws-grid">
+    <div class="ws-copy">
+      <div class="ws-top">
+        {w.logo && <img class="ws-logo" src={w.logo} alt="Aylinbreeze Working Dogs" loading="lazy" />}
+        <span class="ws-kicker">Workshop{w.location && <> · {w.location}</>}</span>
+      </div>
+
+      <h2 class="ws-title" set:html={emphasis(w.title)} />
+      {w.subtitle && <p class="ws-strip"><span>{w.subtitle}</span></p>}
+      {w.intro && <p class="ws-intro">{w.intro}</p>}
+
+      {w.points.length > 0 && (
+        <ul class="ws-points">
+          {w.points.map((pt, i) => (
+            <li>
+              <span class="ws-ring"><Icon name={pointIcons[i % pointIcons.length]} /></span>
+              {pt}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div class="ws-facts">
+        {w.price && <span class="ws-price">{w.price}</span>}
+        <div class="ws-when">
+          {w.time && <span class="ws-pill"><Icon name="clock" /> {w.time}</span>}
+          {dateLabel && (
+            <span class="ws-pill ws-live"><Icon name="calendar" /> {dateLabel}</span>
+          )}
+          <span class="ws-pill ws-past-note">Next date coming soon</span>
+        </div>
+      </div>
+
+      <div class="ws-actions">
+        <a class="btn btn-red ws-live" href={bookingUrl || "/contact/"} target={bookingUrl ? "_blank" : undefined} rel="noopener">
+          {w.bookingLabel}
+        </a>
+        <a class="btn btn-red ws-past-note" href="/contact/">Register your interest</a>
+      </div>
+
+      {taglineParts.length > 0 && (
+        <p class="ws-tagline">
+          {taglineParts.map((t, i) => (
+            <>
+              {i > 0 && <span class="dot">•</span>}
+              {t}
+            </>
+          ))}
+        </p>
+      )}
+    </div>
+
+    {w.photo && (
+      <div class="ws-media">
+        <img src={w.photo} alt="A spaniel running out of an agility tunnel" loading="lazy" />
+        {w.places && <span class="ws-sticker ws-live">{w.places}</span>}
+      </div>
+    )}
+  </div>
+</section>
+
+<script>
+  // If the page was built before the workshop date, flip to the "coming soon"
+  // state once the date has passed, without waiting for a rebuild.
+  document.querySelectorAll<HTMLElement>(".workshop[data-ends]").forEach((el) => {
+    const ends = Date.parse(el.dataset.ends || "");
+    if (!Number.isNaN(ends) && Date.now() > ends) el.classList.add("is-past");
+  });
+</script>
+
+<style>
+  .workshop {
+    --ws-red: #d4231b;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(212, 35, 27, 0.28), transparent 45%),
+      #0f0d0c;
+    color: #f4eee8;
+    padding: clamp(56px, 8vw, 96px) 0;
+    overflow: hidden;
+  }
+  .ws-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(28px, 5vw, 60px);
+    align-items: center;
+  }
+  .ws-top { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem; }
+  .ws-logo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid var(--ws-red); }
+  .ws-kicker { font-weight: 700; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: #cfc6bd; }
+  .ws-title {
+    font-family: "Anton", "Hanken Grotesk", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(2.6rem, 6.5vw, 4.6rem);
+    line-height: 0.98;
+    letter-spacing: 0.01em;
+    color: #fff;
+    margin: 0;
+  }
+  .ws-title :global(em) {
+    display: block;
+    font-style: normal;
+    color: var(--ws-red);
+    font-size: 1.18em;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+  }
+  .ws-strip { margin: 1.1rem 0 0; }
+  .ws-strip span {
+    display: inline-block;
+    background: #f4eee8;
+    color: #111;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+    padding: 0.35rem 1.1rem;
+    transform: rotate(-2deg);
+    clip-path: polygon(1% 8%, 99% 0, 100% 88%, 0 100%);
+  }
+  .ws-intro { color: #d9d0c7; font-size: 1.05rem; max-width: 56ch; margin: 1.3rem 0 0; }
+  .ws-points {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem 1.2rem;
+  }
+  .ws-points li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+  }
+  .ws-ring {
+    flex: 0 0 auto;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid var(--ws-red);
+    display: grid;
+    place-items: center;
+  }
+  .ws-ring :global(svg) { width: 22px; height: 22px; color: #fff; }
+  .ws-facts { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.4rem; margin-top: 1.8rem; }
+  .ws-price {
+    font-family: "Anton", sans-serif;
+    font-size: clamp(2.6rem, 6vw, 3.6rem);
+    line-height: 1;
+    color: #fff;
+    background: var(--ws-red);
+    padding: 0.35rem 1.1rem 0.45rem;
+    transform: rotate(-3deg);
+    clip-path: polygon(3% 0, 100% 6%, 97% 100%, 0 92%);
+  }
+  .ws-when { display: flex; flex-direction: column; gap: 0.55rem; }
+  .ws-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 10px;
+    padding: 0.45rem 0.9rem;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    width: fit-content;
+  }
+  .ws-pill :global(svg) { width: 20px; height: 20px; color: var(--ws-red); }
+  .ws-actions { margin-top: 1.8rem; }
+  .ws-tagline {
+    margin-top: 1.6rem;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+    color: #fff;
+  }
+  .ws-tagline .dot { color: var(--ws-red); margin: 0 0.6rem; }
+  .ws-media { position: relative; }
+  .ws-media img {
+    width: 100%;
+    aspect-ratio: 520 / 590;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 3px solid var(--ws-red);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    display: block;
+  }
+  .ws-sticker {
+    position: absolute;
+    top: -18px;
+    right: -10px;
+    max-width: 62%;
+    background: var(--ws-red);
+    color: #fff;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+    line-height: 1.1;
+    text-align: center;
+    padding: 0.7rem 1rem;
+    transform: rotate(4deg);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Live vs past state */
+  .ws-past-note { display: none; }
+  .is-past .ws-live { display: none; }
+  .is-past .ws-past-note { display: inline-flex; }
+
+  @media (max-width: 860px) {
+    .ws-grid { grid-template-columns: 1fr; }
+    .ws-media { order: -1; max-width: 420px; margin: 0 auto 0.5rem; width: 100%; }
+    .ws-sticker { right: 0; }
+  }
+  @media (max-width: 480px) {
+    .ws-points { grid-template-columns: 1fr; }
+  }
+</style>

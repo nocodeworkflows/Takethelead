@@ -115,6 +115,33 @@ export default config({
           label: "Online booking form URL (optional)",
           description: "Adds a 'Book online' button. Blank uses the site-wide booking form.",
         }),
+        workshop: fields.object(
+          {
+            title: fields.text({
+              label: "Title",
+              description: "Leave blank to hide. Wrap words in *asterisks* to make them red, e.g. Have a Go *Dog Agility* Workshop",
+            }),
+            subtitle: fields.text({ label: "Subtitle strip", description: "e.g. Introduction to agility" }),
+            intro: fields.text({ label: "Description", multiline: true }),
+            date: fields.date({
+              label: "Date",
+              description: "After this date the section says the next date is coming soon and hides the places badge.",
+            }),
+            time: fields.text({ label: "Time", description: "e.g. 12:15 – 13:45" }),
+            price: fields.text({ label: "Price", description: "e.g. £35" }),
+            places: fields.text({ label: "Places badge (optional)", description: "e.g. 4 handler places remaining!" }),
+            location: fields.text({ label: "Location" }),
+            points: fields.array(fields.text({ label: "Point" }), {
+              label: "Key points",
+              itemLabel: (p) => p.value,
+            }),
+            tagline: fields.text({ label: "Tagline (optional)", description: "e.g. Fun · Learn · Connect" }),
+            bookingLabel: fields.text({ label: "Booking button label", defaultValue: "Book your spot" }),
+            photo: photo("Photo", "services"),
+            logo: photo("Logo (optional)", "services"),
+          },
+          { label: "Workshop / event (optional)" }
+        ),
         gallery: fields.array(
           fields.object({
             src: photo("Photo", "services"),

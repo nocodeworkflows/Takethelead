@@ -5,6 +5,7 @@ import TrustStrip from "../components/TrustStrip.astro";
 import Reviews from "../components/Reviews.astro";
 import CtaBand from "../components/CtaBand.astro";
 import ContactForm from "../components/ContactForm.astro";
+import Workshop from "../components/Workshop.astro";
 import { getSiteSettings, getServices, getImages, getStylishDog } from "../lib/content";
 
 export async function getStaticPaths() {
@@ -95,6 +96,8 @@ const stylishDog = await getStylishDog();
       </div>
     </div>
   </section>
+
+  {service.workshop && <Workshop workshop={service.workshop} bookingUrl={service.bookingUrl} />}
 
   {service.prices.length > 0 && (
     <section class="sec prices-sec">
