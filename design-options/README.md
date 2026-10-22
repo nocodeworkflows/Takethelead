@@ -17,7 +17,7 @@ To show it on a phone, run `npx serve design-options` and open the address it pr
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | The brochure: both options side by side, questions to decide, inspiration board |
+| `index.html` | The brochure: every option side by side, questions to decide, inspiration board |
 | `option-a-red-slab/` | Option A: red welcome card, credentials ticker, priced service cards |
 | `option-b-shapes-and-woodland/` | Option B: Yardstick-style service shapes, High Tails-style photo sections |
 | `option-c-muddy-paws/` | Option C: rural, photo-led, forest green with OS-map touches |
@@ -25,6 +25,7 @@ To show it on a phone, run `npx serve design-options` and open the address it pr
 | `option-e-village-noticeboard/` | Option E: corkboard notes, Polaroids, hand-drawn and chatty |
 | `option-f-bold-and-loud/` | Option F: black and red, poster type, spinning stamp, marquee |
 | `option-g-clean-modern/` | Option G: clean and modern, scroll animations, cursor-tracking spaniel who catches thrown treats in slow motion. `dog3/` holds 42 frames of one real head turn (frames 125–190 of `inspiration/Spaniel_moving_head_in_studio_….mp4`, after the fly has gone) and two catch clips cut from the treat-catching video, lined up to the same framing, with the slow-motion sections motion-interpolated |
+| Option H | The current Astro build, live at https://takethelead.damiankennedy-pt.workers.dev/. No folder here: the brochure card links to the live site, with screenshots in `thumbs/option-h-current-build-*.jpg` |
 | `shared/` | Compressed real photos and the logo, used by options C to F |
 | `thumbs/` | Laptop and phone screenshots of the first screen of each option |
 | `inspiration/` | Screenshots of the sites the ideas came from |
@@ -41,4 +42,4 @@ To show it on a phone, run `npx serve design-options` and open the address it pr
 
 ## Adding another option
 
-Make a new folder `option-h-<name>/` with an `index.html`. Add a screenshot pair to `thumbs/`. Copy one of the `<article class="opt">` blocks in `index.html` and point it at the new folder.
+Make a new folder `option-i-<name>/` with an `index.html`. Add a screenshot pair to `thumbs/`. Copy one of the `<article class="opt">` blocks in `index.html` and point it at the new folder.
