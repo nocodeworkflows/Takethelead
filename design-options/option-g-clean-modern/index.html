@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Option G · Clean Modern · Take The Lead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: white page, black type, brand red for actions; the hero is a full-width studio stage in the exact colour of the dog's backdrop, so the footage sits inside the page. Motion on scroll, never on the content itself. */
+:root {
+  --paper: #FBFAF9;
+  --ink: #0F0D0D;
+  --ink-2: #625C59;
+  --line: #E8E3DF;
+  --red: #C42019;
+  --red-dark: #9E1912;
+  --studio: #E0DCD7;   /* sampled from the studio backdrop in both clips */
+  --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  --ease: cubic-bezier(.2, .7, .1, 1);
+}
+* { box-sizing: border-box; }
+html { background: var(--paper); }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 18px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-weight: 700; letter-spacing: -.035em; line-height: 1; text-wrap: balance; }
+img, video { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.wrap { max-width: 1280px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font: 500 12px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); display: inline-flex; align-items: center; gap: 8px; }
+.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+.preview { background: var(--ink); color: #CFC8C4; text-align: center; font-size: 13px; padding: 8px 16px; }
+
+.btn { display: inline-flex; align-items: center; gap: 10px; font: 600 15px/1 var(--sans); padding: 15px 22px; border-radius: 999px; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: background .2s, transform .2s var(--ease); }
+.btn svg { transition: transform .25s var(--ease); }
+.btn:hover svg { transform: translateX(3px); }
+.btn-red { background: var(--red); color: #fff; }
+.btn-red:hover { background: var(--red-dark); }
+.btn-ink { background: var(--ink); color: #fff; }
+.btn-line { border-color: rgba(15,13,13,.18); background: transparent; }
+.btn-line:hover { border-color: var(--ink); }
+
+/* NAV */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(251,250,249,.86); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s; }
+.nav.scrolled { border-bottom-color: var(--line); }
+.nav .wrap { display: flex; align-items: center; gap: 28px; padding-block: 14px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; letter-spacing: -.02em; font-size: 1.1rem; white-space: nowrap; }
+.brand img { width: 40px; height: 40px; border-radius: 50%; }
+.links { display: flex; gap: 26px; margin-left: auto; font-size: 16px; font-weight: 500; color: var(--ink-2); }
+.links a { text-decoration: none; transition: color .2s; }
+.links a:hover { color: var(--ink); }
+
+/* HERO: one continuous studio shot. Real frames of a head turn follow the pointer;
+   a click throws a treat and the real catch plays in the same spot, in slow motion. */
+.stage { position: relative; background: var(--studio); height: clamp(640px, 86vh, 900px); overflow: hidden; isolation: isolate; cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 40 40'><rect x='7' y='7' width='26' height='26' rx='7' fill='%23A8642E' stroke='%23fff' stroke-width='2'/><rect x='12' y='11' width='11' height='5' rx='2.5' fill='%23D9A066'/></svg>") 17 17, pointer; }
+.stage a, .stage button { cursor: pointer; }
+.rig { position: absolute; inset: 0; z-index: 1; }
+.dogwrap { position: absolute; bottom: 0; right: max(3vw, calc(50% - 620px)); height: 93%; aspect-ratio: 600 / 1125; transform-origin: 50% 0%; transition: transform 1.1s var(--ease);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent), linear-gradient(180deg, transparent, #000 10%);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent), linear-gradient(180deg, transparent, #000 10%); mask-composite: intersect; }
+.dogwrap canvas, .dogwrap video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.dogwrap video { opacity: 0; transition: opacity .2s linear; }
+.dogwrap video.on { opacity: 1; }
+.stage.zoom .dogwrap { transform: scale(1.13); }
+.rig.shake { animation: shake .45s cubic-bezier(.36,.07,.19,.97); }
+@keyframes shake { 15% { transform: translate(-7px, 3px) rotate(-.4deg); } 30% { transform: translate(6px, -4px) rotate(.4deg); } 45% { transform: translate(-4px, 2px); } 60% { transform: translate(3px, -1px); } 80% { transform: translate(-1px, 1px); } }
+.light { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(520px circle at var(--mx, 72%) var(--my, 30%), rgba(255,255,255,.55), transparent 62%); mix-blend-mode: soft-light; }
+.copy { position: relative; z-index: 3; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 24px; max-width: min(640px, 52%); padding-block: 48px; transition: opacity .5s, transform .7s var(--ease); }
+.hero h1 { font-size: clamp(3rem, 6.2vw, 6.2rem); letter-spacing: -.055em; line-height: .92; }
+.hero h1 .red { color: var(--red); }
+.hero h1 .line { display: block; overflow: hidden; padding-bottom: .06em; }
+.hero h1 .line > span { display: inline-block; animation: rise 1s var(--ease) both; }
+.hero h1 .line:nth-child(2) > span { animation-delay: .08s; }
+.hero h1 .line:nth-child(3) > span { animation-delay: .16s; }
+@keyframes rise { from { transform: translateY(105%); } }
+.hero .lede { font-size: 1.25rem; color: #3C3634; max-width: 44ch; animation: fade .9s .3s var(--ease) both; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 10px; animation: fade .9s .4s var(--ease) both; }
+@keyframes fade { from { opacity: 0; transform: translateY(12px); } }
+.play { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; animation: fade .9s .55s var(--ease) both; }
+.throw-btn { background: #fff; color: var(--ink); border-color: rgba(15,13,13,.12); box-shadow: 0 10px 30px -14px rgba(15,13,13,.45); }
+.throw-btn:hover { border-color: var(--ink); }
+.throw-btn[disabled] { opacity: .55; cursor: default; }
+.score { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); display: inline-flex; gap: 8px; align-items: center; }
+.score b { font-weight: 500; background: var(--ink); color: #fff; border-radius: 6px; padding: 6px 8px; font-variant-numeric: tabular-nums; }
+.hint { font: 500 12px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); display: inline-flex; gap: 8px; align-items: center; }
+.hint i { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: blink 1.6s infinite; flex: none; }
+@keyframes blink { 50% { opacity: .2; } }
+
+/* cinema mode while he catches */
+.stage::before, .stage::after { content: ""; position: absolute; left: 0; right: 0; height: 0; background: #0B0A0A; z-index: 4; transition: height .55s var(--ease); }
+.stage::before { top: 0; }
+.stage::after { bottom: 0; }
+.stage.cine::before, .stage.cine::after { height: 6.5%; }
+.stage.cine .copy { opacity: .1; transform: translateX(-24px); pointer-events: none; }
+.hud { position: absolute; z-index: 5; left: 0; right: 0; top: 0; height: 6.5%; display: flex; align-items: center; justify-content: space-between; padding-inline: max(20px, calc(50% - 620px)); color: #fff; font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.stage.cine .hud { opacity: 1; transition-delay: .25s; }
+.hud .rec { display: inline-flex; gap: 8px; align-items: center; }
+.hud .rec i { width: 8px; height: 8px; border-radius: 50%; background: #FF3B30; animation: blink 1s infinite; }
+.hud .mode { color: #FFB4AE; opacity: 0; transition: opacity .3s; }
+.stage.slowmo .hud .mode { opacity: 1; }
+.flash { position: absolute; inset: 0; z-index: 6; background: #fff; opacity: 0; pointer-events: none; }
+.flash.go { animation: flash .4s ease-out; }
+@keyframes flash { 0% { opacity: .85; } 100% { opacity: 0; } }
+.slam { position: absolute; z-index: 7; left: 0; right: 0; top: 50%; text-align: center; font: 800 clamp(3.4rem, 11vw, 10rem)/.9 var(--sans); letter-spacing: -.06em; color: var(--red); opacity: 0; pointer-events: none; text-shadow: 0 18px 50px rgba(196,32,25,.28); padding-inline: 16px; }
+.slam.go { animation: slam 1.7s var(--ease) forwards; }
+@keyframes slam { 0% { opacity: 0; transform: translateY(-50%) scale(1.9) rotate(-7deg); } 14% { opacity: 1; transform: translateY(-50%) scale(.95) rotate(-3deg); } 22% { transform: translateY(-50%) scale(1) rotate(-3deg); } 78% { opacity: 1; } 100% { opacity: 0; transform: translateY(-50%) scale(1.05) rotate(-3deg); } }
+.treat { position: fixed; left: 0; top: 0; z-index: 60; width: 40px; height: 40px; pointer-events: none; }
+.crumb { position: fixed; z-index: 59; width: 7px; height: 7px; border-radius: 2px; background: #A8642E; pointer-events: none; }
+
+@media (max-width: 860px) {
+  .stage { height: auto; display: flex; flex-direction: column; }
+  .copy { max-width: none; padding-block: 32px 8px; gap: 18px; }
+  .rig { position: relative; inset: auto; height: min(118vw, 560px); display: flex; justify-content: center; }
+  .dogwrap { position: relative; right: auto; }
+  .hud { height: 6.5%; }
+  .slam { top: 62%; }
+}
+
+/* TRUST STRIP */
+.stats { padding-block: clamp(40px, 6vw, 72px); }
+.stats .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.stat { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px 24px 28px; display: grid; gap: 12px; align-content: start; transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .3s; }
+.stat .ic { width: 46px; height: 46px; border-radius: 14px; background: #FBEAE8; color: var(--red); display: grid; place-items: center; margin-bottom: 10px; }
+.stat b { font-size: clamp(2.6rem, 4.4vw, 3.8rem); font-weight: 700; letter-spacing: -.05em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat b em { font-style: normal; color: var(--red); }
+.stat p { color: var(--ink-2); font-size: 17px; line-height: 1.45; max-width: 24ch; }
+@media (hover: hover) { .stat:hover { transform: translateY(-4px); border-color: #D8D1CC; box-shadow: 0 24px 40px -28px rgba(15,13,13,.35); } }
+
+/* SERVICES: sticky picture + scrolling list */
+.section { padding-block: clamp(64px, 9vw, 128px); }
+.svc-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 96px); }
+.svc-grid > * { min-width: 0; }
+.sticky { position: sticky; top: 96px; align-self: start; display: grid; gap: 24px; }
+.sticky h2 { font-size: clamp(2.4rem, 5vw, 4.4rem); }
+.frame { position: relative; aspect-ratio: 4 / 3; border-radius: 20px; overflow: hidden; background: var(--line); }
+.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity .5s var(--ease), transform 1.2s var(--ease); }
+.frame img.on { opacity: 1; transform: none; }
+.frame .tagline { position: absolute; left: 14px; bottom: 14px; z-index: 1; background: rgba(15,13,13,.75); color: #fff; font: 500 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 7px 10px; border-radius: 999px; }
+.svc-list { display: grid; }
+.svc { padding-block: 36px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 54px 1fr; gap: 0 18px; transition: opacity .4s; }
+.svc:last-child { border-bottom: 1px solid var(--line); }
+.svc .n { font: 500 13px/2.6 var(--mono); color: var(--ink-2); }
+.svc h3 { font-size: clamp(1.8rem, 3vw, 2.4rem); transition: color .3s; }
+.svc p { grid-column: 2; color: var(--ink-2); margin-top: 10px; max-width: 52ch; }
+.svc .meta { grid-column: 2; margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: 500 12.5px/1 var(--mono); border: 1px solid var(--line); padding: 8px 10px; border-radius: 999px; color: #3C3634; }
+.chip.price { background: var(--ink); color: #fff; border-color: var(--ink); }
+.svc-list.has-active .svc { opacity: .4; }
+.svc-list.has-active .svc.active { opacity: 1; }
+.svc.active h3 { color: var(--red); }
+.svc-photo { display: none; }
+
+/* STATEMENT: words fill in as you scroll */
+.statement { background: var(--ink); color: #fff; }
+.statement .wrap { padding-block: clamp(80px, 12vw, 168px); display: grid; gap: 32px; }
+.statement .eyebrow { color: #A49C98; }
+.statement p.big { font-size: clamp(2rem, 4.6vw, 4rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.1; max-width: 22ch; }
+.statement p.big span { color: #4A4341; transition: color .25s; }
+.statement p.big span.lit { color: #fff; }
+.statement p.big span.lit.r { color: #FF5A4F; }
+
+/* PHOTO STRIP with parallax */
+.strip { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 14px; padding-block: clamp(64px, 9vw, 128px) 0; }
+.strip figure { margin: 0; border-radius: 20px; overflow: hidden; aspect-ratio: 3 / 4; position: relative; }
+.strip figure:first-child { aspect-ratio: auto; }
+.strip img { position: absolute; left: 0; width: 100%; height: 118%; top: -9%; object-fit: cover; will-change: transform; }
+
+/* TEAM */
+.head { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; margin-bottom: 44px; }
+.head h2 { font-size: clamp(2.4rem, 5vw, 4.4rem); }
+.head p { color: var(--ink-2); max-width: 48ch; }
+.people { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.person { border-radius: 20px; overflow: hidden; background: #fff; border: 1px solid var(--line); }
+.person .ph { aspect-ratio: 16 / 10; overflow: hidden; }
+.person .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+.person:hover .ph img { transform: scale(1.04); }
+.person .body { padding: 22px 24px 26px; display: grid; gap: 8px; }
+.person h3 { font-size: 1.7rem; }
+.person .role { font: 500 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--red); }
+.person p { color: var(--ink-2); }
+
+/* REVIEWS: swipeable row */
+.reviews { overflow: hidden; }
+.rail { display: grid; grid-auto-flow: column; grid-auto-columns: min(420px, 82vw); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; scrollbar-width: thin; }
+.card { scroll-snap-align: start; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 26px; display: grid; gap: 18px; align-content: space-between; }
+.card blockquote { margin: 0; font-size: 1.2rem; line-height: 1.5; letter-spacing: -.01em; }
+.card .stars { color: var(--red); letter-spacing: 2px; }
+.card cite { font-style: normal; font-weight: 600; font-size: 16px; display: grid; gap: 2px; }
+.card cite span { font: 400 13px var(--mono); color: var(--ink-2); }
+
+/* CTA */
+.cta .box { background: var(--ink); color: #fff; border-radius: 28px; padding: clamp(32px, 6vw, 80px); display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: end; position: relative; overflow: hidden; }
+.cta .box::after { content: ""; position: absolute; right: -120px; top: -120px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(closest-side, rgba(196,32,25,.55), transparent); pointer-events: none; }
+.cta h2 { font-size: clamp(2.6rem, 6vw, 5.2rem); letter-spacing: -.05em; }
+.cta p { color: #C9C1BD; margin-top: 16px; max-width: 46ch; }
+.cta .side { display: grid; gap: 14px; justify-items: start; position: relative; z-index: 1; }
+.cta .tel { font-size: 1.8rem; font-weight: 600; letter-spacing: -.02em; }
+
+footer { margin-top: clamp(56px, 8vw, 104px); background: var(--ink); color: #A49C98; padding-block: clamp(48px, 6vw, 80px) 32px; }
+.foot-grid { display: grid; grid-template-columns: 1.4fr .8fr .8fr 1.2fr; gap: 40px 32px; }
+.foot-brand .brand { color: #fff; font-size: 1.35rem; }
+.foot-brand .brand img { width: 48px; height: 48px; background: #fff; }
+.foot-brand p { margin-top: 18px; font-size: 16px; max-width: 34ch; }
+footer h4 { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #6F6764; margin: 0 0 18px; }
+footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+footer ul a { color: #E9E4E1; text-decoration: none; font-size: 16px; overflow-wrap: anywhere; transition: color .2s; }
+footer ul a:hover { color: #FF5A4F; }
+.foot-bottom { margin-top: clamp(40px, 6vw, 64px); padding-top: 22px; border-top: 1px solid #2A2524; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font: 500 12px/1.5 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: #6F6764; }
+
+/* scroll reveals: only things below the first screen start hidden, and only once the script runs */
+.motion .reveal.pending { opacity: 0; transform: translateY(28px); }
+.motion .reveal { transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0s); }
+
+@media (max-width: 980px) {
+  .links { display: none; }
+  .nav .btn { margin-left: auto; }
+  .stats .wrap { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat { padding: 20px 18px 22px; }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+  .foot-brand { grid-column: 1 / -1; }
+  .svc-grid, .head, .cta .box { grid-template-columns: 1fr; }
+  .sticky { position: static; }
+  .sticky .frame { display: none; }
+  .svc-photo { display: block; grid-column: 2; margin-top: 16px; border-radius: 14px; aspect-ratio: 16 / 10; width: 100%; object-fit: cover; }
+  .svc-list.has-active .svc { opacity: 1; }
+  .strip { grid-template-columns: 1fr 1fr; }
+  .strip figure:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+  .people { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .svc { grid-template-columns: 1fr; }
+  .svc .n { line-height: 1.6; margin-bottom: 6px; }
+  .svc p, .svc .meta, .svc-photo { grid-column: 1; }
+  .nav .btn { padding: 12px 14px; font-size: 14px; }
+  .nav .brand span { display: none; }
+  .foot-grid > div:last-child { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 .line > span, .hero .lede, .hero .ctas { animation: none; }
+  .motion .reveal.pending { opacity: 1; transform: none; }
+  .strip img { transform: none !important; }
+  .hint i { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="preview">Design preview of the homepage in Option G. Move your mouse around, then click to throw him a treat.</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="../shared/logo.webp" alt="Take The Lead Services logo"><span>Take The Lead</span></a>
+    <nav class="links" aria-label="Main"><a href="#services">Services</a><a href="#why">Why us</a><a href="#team">Team</a><a href="#reviews">Reviews</a></nav>
+    <a class="btn btn-ink" href="#book">Book a meet &amp; greet</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="stage" id="stage">
+    <div class="rig" id="rig">
+      <div class="dogwrap" id="dogwrap">
+        <canvas id="dogCanvas" width="600" height="1125" role="img" aria-label="A springer spaniel who turns his head to follow your pointer"></canvas>
+        <video id="clipB" src="dog3/catch-b.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+        <video id="clipA" src="dog3/catch-a.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+      </div>
+    </div>
+    <div class="light" id="light"></div>
+    <div class="wrap" style="height:100%">
+      <div class="copy">
+        <span class="eyebrow">Vet-nurse led · Aldershot, Fleet &amp; Farnham</span>
+        <h1><span class="line"><span>Exceptional</span></span><span class="line"><span>dog care that</span></span><span class="line"><span class="red">leads the way.</span></span></h1>
+        <p class="lede">Day care, home boarding, walks, training and grooming on the Surrey–Hampshire border. Our team are experts in canine behaviour and body language, so every dog gets safer handling and a better day.</p>
+        <div class="ctas">
+          <a class="btn btn-red" href="#book">Book a free meet &amp; greet <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn-line" href="#services">Explore services</a>
+        </div>
+        <div class="play">
+          <button class="btn throw-btn" id="throwBtn" type="button"><svg width="18" height="18" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="7" fill="#A8642E"/><rect x="12" y="11" width="11" height="5" rx="2.5" fill="#D9A066"/></svg><span id="throwLabel">Throw him a treat</span></button>
+          <span class="score">Catches <b id="score">0</b></span>
+        </div>
+        <span class="hint" id="hint"><i></i>Move your mouse, he's watching. Click anywhere to throw.</span>
+      </div>
+    </div>
+    <div class="hud" aria-hidden="true"><span class="rec"><i></i>Treat cam</span><span class="mode">Slow motion · 0.29×</span><span id="tc">00:00:00</span></div>
+    <div class="flash" id="flash"></div>
+    <div class="slam" id="slam" role="status" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="stats" aria-label="Key facts">
+  <div class="wrap">
+    <div class="stat reveal"><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><b><span data-count="5">5</span><em>★</em></b><p>Licensed daycare centre</p></div>
+    <div class="stat reveal" style="--d:.08s"><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="10" r="1.8"/><circle cx="9.5" cy="5.5" r="1.8"/><circle cx="14.5" cy="5.5" r="1.8"/><circle cx="18.5" cy="10" r="1.8"/><path d="M12 11c-2.6 0-5 3.6-5 6.2 0 1.7 1.3 2.8 2.9 2.8.8 0 1.4-.4 2.1-.4s1.3.4 2.1.4c1.6 0 2.9-1.1 2.9-2.8C17 14.6 14.6 11 12 11z"/></svg></span><b><span data-count="4">4</span></b><p>Dogs at most on any group walk</p></div>
+    <div class="stat reveal" style="--d:.16s"><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg></span><b><span data-count="3">3</span></b><p>Boarding guests at a time, in our family home</p></div>
+    <div class="stat reveal" style="--d:.24s"><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><b><span data-count="10">10</span><em>+</em></b><p>Years caring for local dogs</p></div>
+  </div>
+</section>
+
+<section class="section" id="services" style="padding-top:clamp(32px,5vw,64px)">
+  <div class="wrap svc-grid">
+    <div class="sticky">
+      <span class="eyebrow">What we do</span>
+      <h2>Everything your dog needs, in one place.</h2>
+      <div class="frame" id="frame">
+        <img class="on" data-key="daycare" src="../shared/daycare-trio.webp" alt="Three cockapoos at day care">
+        <img data-key="boarding" src="../shared/boarding-sofa.webp" alt="A dog asleep upside down on a cushion">
+        <img data-key="walks" src="../shared/woodland-pair.webp" alt="Two dogs exploring woodland">
+        <img data-key="training" src="../shared/agility.webp" alt="A spaniel running through an agility tunnel">
+        <img data-key="grooming" src="../shared/groom-puppies.webp" alt="Two puppies after a groom">
+        <img data-key="cats" src="../shared/cat.webp" alt="A Siamese cat on the stairs">
+        <span class="tagline" id="frameTag">Day care</span>
+      </div>
+    </div>
+    <div class="svc-list" id="svcList">
+      <article class="svc reveal" data-key="daycare"><span class="n">01</span><h3>Day care</h3><p>Supervised play, enrichment and rest at our 5★ licensed centre, with a private paddock and two heated indoor playrooms. Collection and drop-off in our own crated vans.</p><div class="meta"><span class="chip">Mon–Fri</span><span class="chip">Collection included</span><span class="chip price">Price on request</span></div><img class="svc-photo" src="../shared/daycare-trio.webp" alt="" loading="lazy"></article>
+      <article class="svc reveal" data-key="boarding"><span class="n">02</span><h3>Home boarding</h3><p>A loving family home instead of kennels, licensed by Rushmoor Borough Council. Day care is included in the price, every day you're away.</p><div class="meta"><span class="chip">Up to 3 dogs</span><span class="chip">100ft garden</span><span class="chip price">Price on request</span></div><img class="svc-photo" src="../shared/boarding-sofa.webp" alt="" loading="lazy"></article>
+      <article class="svc reveal" data-key="walks"><span class="n">03</span><h3>Dog walking</h3><p>Small groups of no more than four. Off lead only with your permission and after an assessment walk. Puppy visits too.</p><div class="meta"><span class="chip">Max 4 dogs</span><span class="chip">Puppy visits £12</span><span class="chip price">£18 / hour</span></div><img class="svc-photo" src="../shared/woodland-pair.webp" alt="" loading="lazy"></article>
+      <article class="svc reveal" data-key="training"><span class="n">04</span><h3>Training</h3><p>1-2-1 sessions at your home or locally with a qualified trainer, plus Have a Go Dog Agility Workshops at our training field in Normandy.</p><div class="meta"><span class="chip">Recall &amp; lead work</span><span class="chip">Written plan</span><span class="chip price">£100 consultation</span></div><img class="svc-photo" src="../shared/agility.webp" alt="" loading="lazy"></article>
+      <article class="svc reveal" data-key="grooming"><span class="n">05</span><h3>Grooming</h3><p>The Stylish Dog, our salon at 55 Guildford Road, Ash. Full pamper sessions, puppy grooms, hand stripping and a wash and go after muddy walks.</p><div class="meta"><span class="chip">Full groom from £50</span><span class="chip price">From £15</span></div><img class="svc-photo" src="../shared/groom-puppies.webp" alt="" loading="lazy"></article>
+      <article class="svc reveal" data-key="cats"><span class="n">06</span><h3>Cat sitting</h3><p>Once or twice daily visits while you're away, so your cat stays at home instead of going to a cattery.</p><div class="meta"><span class="chip">Feeding, litter, cuddles</span><span class="chip price">£14 / visit</span></div><img class="svc-photo" src="../shared/cat.webp" alt="" loading="lazy"></article>
+    </div>
+  </div>
+</section>
+
+<section class="statement" id="why">
+  <div class="wrap">
+    <span class="eyebrow">Why owners choose us</span>
+    <p class="big" id="statement">Led by a <span class="r">registered veterinary nurse</span> and a qualified dog trainer. If something isn't right with your dog, we'll spot it. That's why owners in Aldershot, Fleet and Farnham have trusted us for over ten years.</p>
+  </div>
+</section>
+
+<div class="wrap strip" aria-label="Photos of dogs in our care">
+  <figure class="reveal"><img src="../shared/meadow-spaniel.webp" alt="A springer spaniel bounding through a meadow" data-speed="0.10"></figure>
+  <figure class="reveal" style="--d:.1s"><img src="../shared/daycare-tug.webp" alt="Dogs playing tug at day care" data-speed="0.18"></figure>
+  <figure class="reveal" style="--d:.2s"><img src="../shared/woodland-ivy.webp" alt="A dog leaping through ivy" data-speed="0.06"></figure>
+</div>
+
+<section class="section" id="team">
+  <div class="wrap">
+    <div class="head">
+      <div class="reveal"><span class="eyebrow">Who you'll meet</span><h2 style="margin-top:16px">Run by Karina and Matt.</h2></div>
+      <p class="reveal" style="--d:.1s">A family business with a DBS-checked team of daycare staff, walkers and groomers, insured with Petplan Sanctuary.</p>
+    </div>
+    <div class="people">
+      <article class="person reveal"><div class="ph"><img src="../shared/karina.webp" alt="Karina Hart on a beach walk"></div><div class="body"><span class="role">Director · Registered Veterinary Nurse</span><h3>Karina Hart</h3><p>Spots health problems early and handles medication, so owners of puppies and older dogs can relax.</p></div></article>
+      <article class="person reveal" style="--d:.1s"><div class="ph"><img src="../shared/matt.webp" alt="Matt Hart kneeling beside a small dog"></div><div class="body"><span class="role">Director · Dog Trainer</span><h3>Matt Hart</h3><p>A former Surrey Police officer and qualified trainer. Leads our 1-2-1 training and agility workshops.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews" id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <div class="reveal"><span class="eyebrow">Reviews</span><h2 style="margin-top:16px">Tired dogs. Happy owners.</h2></div>
+      <p class="reveal" style="--d:.1s">Swipe or scroll sideways for more.</p>
+    </div>
+    <div class="rail reveal" tabindex="0" aria-label="Reviews">
+      <figure class="card" style="margin:0"><span class="stars" aria-label="5 stars">★★★★★</span><blockquote>"It was a huge relief to find such an amazing day care service. Phoebe returns home tired but happy."</blockquote><cite>Diane &amp; Phoebe<span>Day care</span></cite></figure>
+      <figure class="card" style="margin:0"><span class="stars" aria-label="5 stars">★★★★★</span><blockquote>"Because one of the trainers is veterinary trained, they identified a medical concern which could easily have gone unnoticed."</blockquote><cite>Nathan<span>Puppy training</span></cite></figure>
+      <figure class="card" style="margin:0"><span class="stars" aria-label="5 stars">★★★★★</span><blockquote>"So refreshing to have a boarding service that is reliable and professional. It surpasses 5 stars!"</blockquote><cite>Vicky &amp; Al, with Barnaby<span>Home boarding</span></cite></figure>
+      <figure class="card" style="margin:0"><span class="stars" aria-label="5 stars">★★★★★</span><blockquote>"Came and met our cockapoo pup beforehand and answered any questions I had. He was well and truly worn out when I got home."</blockquote><cite>Lauren &amp; Jonathan<span>Day care</span></cite></figure>
+      <figure class="card" style="margin:0"><span class="stars" aria-label="5 stars">★★★★★</span><blockquote>"At the drop of a hat we can change Digby's schedule. Their service and flexibility really sets TTL above others."</blockquote><cite>Pete &amp; Digby<span>Day care</span></cite></figure>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="book">
+  <div class="wrap">
+    <div class="box reveal">
+      <div>
+        <h2>Let's meet your dog.</h2>
+        <p>Every new dog starts with a free meet &amp; greet and assessment. No charge, no obligation.</p>
+      </div>
+      <div class="side">
+        <span class="tel">07903 555424</span>
+        <a class="btn btn-red" href="#book">Book a free meet &amp; greet <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top"><img src="../shared/logo.webp" alt="Take The Lead Services logo"><span>Take The Lead</span></a>
+        <p>Vet-nurse-led day care, home boarding, walking, training and grooming in Aldershot, Fleet &amp; Farnham.</p>
+      </div>
+      <div><h4>Services</h4><ul><li><a href="#services">Day care</a></li><li><a href="#services">Home boarding</a></li><li><a href="#services">Dog walking</a></li><li><a href="#services">Training</a></li><li><a href="#services">Grooming</a></li><li><a href="#services">Cat sitting</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#why">Why us</a></li><li><a href="#team">Team</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#book">Book a meet &amp; greet</a></li><li><a href="#book">Terms</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="#book">07903 555424</a></li><li><a href="#book">Training: 07714 944241</a></li><li><a href="#book">taketheleadservices@hotmail.co.uk</a></li><li><a href="#book">Facebook</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Take The Lead Services</span><span>Licence 25/00868/AWRHOM · Petplan Sanctuary insured</span></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('motion');
+
+  /* ---------- the dog ---------- */
+  // 42 frames of one real head turn, spaced evenly by movement: 0 = profile to the viewer's left, 24 = at you, 41 = profile right.
+  var N = 42, CENTRE = 24;
+  var stage = document.getElementById('stage'), rig = document.getElementById('rig'), wrapEl = document.getElementById('dogwrap');
+  var canvas = document.getElementById('dogCanvas'), ctx = canvas.getContext('2d');
+  var frames = [];
+  var cur = CENTRE, target = CENTRE, drawn = -1, lastMove = 0, nextWander = 0, busy = false;
+  for (var f = 0; f < N; f++) {
+    var im = new Image();
+    im.onload = function () { drawn = -1; };
+    im.src = 'dog3/s' + (f < 10 ? '0' : '') + f + '.webp';
+    frames.push(im);
+  }
+  function draw(force) {
+    var i = Math.max(0, Math.min(N - 1, Math.round(cur)));
+    if ((!force && i === drawn) || !frames[i].complete || !frames[i].naturalWidth) return;
+    ctx.drawImage(frames[i], 0, 0, canvas.width, canvas.height);
+    drawn = i;
+  }
+  function aimAt(px) {
+    var r = wrapEl.getBoundingClientRect();
+    var span = Math.max(window.innerWidth * 0.4, 260);
+    var nx = Math.max(-1, Math.min(1, (px - (r.left + r.width / 2)) / span));
+    target = nx < 0 ? CENTRE + nx * CENTRE : CENTRE + nx * (N - 1 - CENTRE);
+  }
+  function tick(t) {
+    if (!busy && !reduce && t - lastMove > 2600 && t > nextWander) {
+      target = Math.random() < .45 ? CENTRE : Math.random() * (N - 1);
+      nextWander = t + 1400 + Math.random() * 2200;
+    }
+    var d = target - cur;
+    if (Math.abs(d) > .02) cur += Math.max(-1.1, Math.min(1.1, d * .16));
+    draw();
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+  window.ttlDog = { get frame() { return cur; }, get busy() { return busy; } };  // handy for testing
+
+  var light = document.getElementById('light');
+  window.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var r = stage.getBoundingClientRect();
+    light.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    light.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    if (busy) return;
+    lastMove = performance.now(); aimAt(e.clientX);
+  }, { passive: true });
+  if (window.matchMedia('(hover: none)').matches) document.getElementById('hint').lastChild.textContent = 'Tap him to throw a treat.';
+
+  /* ---------- the treat: one continuous shot ---------- */
+  var clips = [
+    { v: document.getElementById('clipB'), slowIn: .72, catchAt: 2.05, slowOut: 4.5 },
+    { v: document.getElementById('clipA'), slowIn: 1.25, catchAt: 2.48, slowOut: 5.45 }
+  ];
+  var throwBtn = document.getElementById('throwBtn'), throwLabel = document.getElementById('throwLabel');
+  var scoreEl = document.getElementById('score'), slam = document.getElementById('slam'), flash = document.getElementById('flash'), tc = document.getElementById('tc');
+  var caught = 0, MAX = 6;
+  var LINES = ['GOOD BOY.', 'WHAT A CATCH.', 'TEN OUT OF TEN.', 'ONE MORE?', 'OKAY, LAST ONE.', 'HE\u2019S ON A DIET.'];
+  var TREAT = '<svg viewBox="0 0 40 40" width="40" height="40"><rect x="7" y="7" width="26" height="26" rx="7" fill="#A8642E"/><rect x="12" y="11" width="11" height="5" rx="2.5" fill="#D9A066"/></svg>';
+
+  function restart(el, cls) { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
+  function crumbs() {
+    if (reduce) return;
+    var r = wrapEl.getBoundingClientRect(), x = r.left + r.width * .5, y = r.top + r.height * .27;
+    for (var i = 0; i < 14; i++) {
+      var c = document.createElement('i'); c.className = 'crumb'; document.body.appendChild(c);
+      var a = Math.random() * Math.PI * 2, d = 40 + Math.random() * 90;
+      c.animate([{ transform: 'translate(' + x + 'px,' + y + 'px) rotate(0)', opacity: 1 },
+                 { transform: 'translate(' + (x + Math.cos(a) * d) + 'px,' + (y + Math.sin(a) * d + 60) + 'px) rotate(' + (Math.random() * 540) + 'deg)', opacity: 0 }],
+                { duration: 900 + Math.random() * 400, easing: 'cubic-bezier(.2,.7,.1,1)' }).onfinish = function () { this.effect.target.remove(); };
+    }
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  function throwFrom(px, py) {
+    if (busy || caught >= MAX) return;
+    busy = true;
+    target = CENTRE;
+    var clip = clips[caught % clips.length], v = clip.v;
+    try { v.currentTime = 0; } catch (e) {}
+    // the treat goes up and out of the top of the frame; the clip brings it back down
+    var r = wrapEl.getBoundingClientRect(), sr = stage.getBoundingClientRect();
+    var ex = r.left + r.width * .55, ey = sr.top - 80;
+    var t = document.createElement('div'); t.className = 'treat'; t.innerHTML = TREAT; document.body.appendChild(t);
+    var mx = (px + ex) / 2, my = Math.min(py, sr.top + 60) - 60;
+    t.animate([
+      { transform: 'translate(' + (px - 20) + 'px,' + (py - 20) + 'px) rotate(0deg) scale(1)' },
+      { transform: 'translate(' + (mx - 20) + 'px,' + my + 'px) rotate(260deg) scale(1.1)', offset: .55 },
+      { transform: 'translate(' + (ex - 20) + 'px,' + ey + 'px) rotate(480deg) scale(.8)' }
+    ], { duration: reduce ? 1 : 560, easing: 'cubic-bezier(.25,.1,.5,1)' }).onfinish = function () { t.remove(); };
+    stage.classList.add('cine');
+    var flags = {}, started = false;
+    function begin() {
+      if (started) return; started = true;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () { end(); });
+      v.classList.add('on');
+      requestAnimationFrame(watch);
+    }
+    function watch() {
+      if (!busy) return;
+      var s = v.currentTime;
+      tc.textContent = '00:' + pad(Math.floor(s)) + ':' + pad(Math.floor((s % 1) * 24));
+      if (!flags.slow && s >= clip.slowIn) { flags.slow = true; stage.classList.add('slowmo'); if (!reduce) stage.classList.add('zoom'); }
+      if (!flags.hit && s >= clip.catchAt) { flags.hit = true; restart(flash, 'go'); if (!reduce) restart(rig, 'shake'); crumbs(); }
+      if (!flags.out && s >= clip.slowOut) { flags.out = true; stage.classList.remove('zoom', 'slowmo'); }
+      if (v.ended) return end();
+      requestAnimationFrame(watch);
+    }
+    var safety = setTimeout(function () { end(); }, 9000);
+    function end() {
+      if (!busy) return;
+      clearTimeout(safety);
+      cur = target = CENTRE; draw(true);
+      v.classList.remove('on'); v.pause();
+      stage.classList.remove('zoom', 'slowmo');
+      setTimeout(function () { stage.classList.remove('cine'); }, reduce ? 0 : 1250);  // keep the headline dimmed while the slam lands
+      caught++;
+      scoreEl.textContent = caught;
+      slam.textContent = LINES[Math.min(caught - 1, LINES.length - 1)];
+      restart(slam, 'go');
+      lastMove = performance.now();
+      busy = false;
+      if (caught >= MAX) { throwBtn.disabled = true; throwLabel.textContent = 'He\u2019s had plenty'; stage.style.cursor = 'default'; }
+    }
+    // let him turn to face you before the clip takes over
+    setTimeout(begin, reduce ? 0 : 420);
+  }
+  throwBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var b = throwBtn.getBoundingClientRect();
+    throwFrom(b.left + 24, b.top + b.height / 2);
+  });
+  stage.addEventListener('click', function (e) {
+    if (e.target.closest('a, button')) return;
+    throwFrom(e.clientX, e.clientY);
+  });
+
+  /* ---------- nav border ---------- */
+  var nav = document.getElementById('nav');
+
+  /* ---------- reveals & counters ---------- */
+  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+  if (!reduce && 'IntersectionObserver' in window) {
+    reveals.forEach(function (el) { if (el.getBoundingClientRect().top > window.innerHeight * 0.92) el.classList.add('pending'); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.remove('pending');
+        en.target.querySelectorAll('[data-count]').forEach(countUp);
+        io.unobserve(en.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+  function countUp(el) {
+    var to = +el.dataset.count, t0 = null;
+    function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / 900); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- services: active item drives the sticky picture ---------- */
+  var list = document.getElementById('svcList');
+  var frameImgs = [].slice.call(document.querySelectorAll('#frame img'));
+  var tag = document.getElementById('frameTag');
+  var items = [].slice.call(list.querySelectorAll('.svc'));
+  function setActive(item) {
+    items.forEach(function (i) { i.classList.toggle('active', i === item); });
+    list.classList.add('has-active');
+    frameImgs.forEach(function (im) { im.classList.toggle('on', im.dataset.key === item.dataset.key); });
+    tag.textContent = item.querySelector('h3').textContent;
+  }
+
+  /* ---------- statement words ---------- */
+  var st = document.getElementById('statement');
+  var words = [];
+  [].slice.call(st.childNodes).forEach(function (node) {
+    var red = node.nodeType === 1;
+    var text = node.textContent;
+    var frag = document.createDocumentFragment();
+    text.split(/(\s+)/).forEach(function (w) {
+      if (!w) return;
+      if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(w)); return; }
+      var s = document.createElement('span'); s.textContent = w; if (red) s.className = 'r';
+      frag.appendChild(s); words.push(s);
+    });
+    st.replaceChild(frag, node);
+  });
+  if (reduce) words.forEach(function (w) { w.classList.add('lit'); });
+
+  /* ---------- parallax ---------- */
+  var para = [].slice.call(document.querySelectorAll('.strip img'));
+
+  var ticking = false;
+  function onScroll() {
+    ticking = false;
+    var vh = window.innerHeight;
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+    if (window.matchMedia('(min-width: 981px)').matches) {
+      var mid = vh * 0.5, best = null, bd = Infinity;
+      items.forEach(function (i) { var r = i.getBoundingClientRect(); var d = Math.abs(r.top + r.height / 2 - mid); if (d < bd) { bd = d; best = i; } });
+      var lr = list.getBoundingClientRect();
+      if (lr.top < vh * 0.7 && lr.bottom > vh * 0.3) setActive(best); else { list.classList.remove('has-active'); items.forEach(function (i) { i.classList.remove('active'); }); }
+    }
+    if (!reduce) {
+      var sr = st.getBoundingClientRect();
+      var p = Math.max(0, Math.min(1, (vh * 0.85 - sr.top) / (sr.height + vh * 0.35)));
+      var n = Math.round(p * words.length);
+      words.forEach(function (w, i) { w.classList.toggle('lit', i < n); });
+      para.forEach(function (im) {
+        var r = im.parentNode.getBoundingClientRect();
+        var off = (r.top + r.height / 2 - vh / 2) * -(+im.dataset.speed);
+        im.style.transform = 'translate3d(0,' + off.toFixed(1) + 'px,0)';
+      });
+    }
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+</body>
+</html>

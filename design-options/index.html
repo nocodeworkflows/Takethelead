@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Take The Lead · Design directions</title>
+<title>Take The Lead Design Directions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,650;1,8..60,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
@@ -42,7 +42,20 @@ header.top .wm small { display: block; font: 600 .62rem/1 var(--body); letter-sp
 .shots { background: var(--blush); padding: clamp(20px, 3vw, 36px); display: flex; gap: 16px; align-items: center; }
 .shots .desk { flex: 1 1 auto; min-width: 0; border-radius: 14px; overflow: hidden; box-shadow: 0 24px 50px -28px rgba(28, 18, 16, .55); border: 1px solid var(--line); }
 .shots .phone { flex: 0 0 26%; border-radius: 22px; overflow: hidden; border: 6px solid var(--ink); box-shadow: 0 24px 50px -28px rgba(28, 18, 16, .55); }
-.opt.b .shots { background: var(--ink); }
+.opt.b .shots, .opt.f .shots { background: var(--ink); }
+.opt.c .shots { background: #1E3527; }
+.opt.d .shots { background: #E7E4DD; }
+.opt.e .shots { background: #D9B98C; }
+.opt.g .shots { background: #E0DCD7; }
+.jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.jump a { text-decoration: none; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: .9rem; font-weight: 500; }
+.jump a b { color: var(--red); margin-right: 4px; }
+.jump a:hover { border-color: var(--red); }
+.group { display: grid; gap: 10px; max-width: 760px; margin: clamp(32px, 5vw, 56px) 0 4px; }
+.group .mono { color: var(--red); }
+.group h2 { font-size: clamp(1.8rem, 3.4vw, 2.4rem); }
+.group p { color: var(--ink-2); }
+.note { font-size: .88rem; color: var(--ink-2); background: var(--parchment); border-radius: 12px; padding: 10px 14px; }
 .info { padding: clamp(24px, 3.5vw, 44px); display: flex; flex-direction: column; gap: 16px; }
 .info .mono { color: var(--red); }
 .info h2 { font-size: clamp(2rem, 3.6vw, 2.7rem); }
@@ -101,13 +114,22 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
   <section class="intro">
     <span class="mono">New website · Design directions</span>
-    <h1>Two ways the new site <span class="hl">could look</span>.</h1>
-    <p>Both use the Take The Lead logo, the brand red and the same serif lettering as the logo. They differ in mood and layout. Open each one on a laptop and on your phone, then tell us which feels more like Take The Lead, or what you'd take from each.</p>
+    <h1>Seven ways the new site <span class="hl">could look</span>.</h1>
+    <p>Every option is a homepage built with your logo, your real photos and your real services and prices. A and B are close cousins. C to F push further in different directions, so you can see how far the look can move. G is clean and modern, with a dog you can play with. Open each one on a laptop and on your phone, then tell us which feels most like Take The Lead, or what you'd take from each.</p>
+    <nav class="jump" aria-label="Jump to an option">
+      <a href="#opt-a"><b>A</b>Red Slab</a><a href="#opt-b"><b>B</b>Shapes &amp; Woodland</a><a href="#opt-c"><b>C</b>Muddy Paws Outdoors</a><a href="#opt-d"><b>D</b>Clinic Calm</a><a href="#opt-e"><b>E</b>Village Noticeboard</a><a href="#opt-f"><b>F</b>Bold &amp; Loud</a><a href="#opt-g"><b>G</b>Clean Modern</a>
+    </nav>
   </section>
 
   <main class="options">
 
-    <article class="opt a">
+    <div class="group">
+      <span class="mono">First round</span>
+      <h2>A and B: the brand red, warm and polished</h2>
+      <p>Both use the brand red and a serif like the one in the logo. They differ in mood and layout.</p>
+    </div>
+
+    <article class="opt a" id="opt-a">
       <div class="shots">
         <a class="desk" href="option-a-red-slab/index.html"><img src="thumbs/option-a-red-slab-desktop.jpg" alt="Option A homepage on a laptop"></a>
         <a class="phone" href="option-a-red-slab/index.html"><img src="thumbs/option-a-red-slab-phone.jpg" alt="Option A homepage on a phone"></a>
@@ -123,12 +145,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         </dl>
         <div class="actions">
           <a class="btn btn-red" href="option-a-red-slab/index.html">Open Option A</a>
-          <a class="btn btn-line" href="thumbs/option-a-red-slab-desktop-full.jpg">See the whole page</a>
         </div>
       </div>
     </article>
 
-    <article class="opt b">
+    <article class="opt b" id="opt-b">
       <div class="shots">
         <a class="desk" href="option-b-shapes-and-woodland/index.html"><img src="thumbs/option-b-shapes-and-woodland-desktop.jpg" alt="Option B homepage on a laptop"></a>
         <a class="phone" href="option-b-shapes-and-woodland/index.html"><img src="thumbs/option-b-shapes-and-woodland-phone.jpg" alt="Option B homepage on a phone"></a>
@@ -145,7 +166,125 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         </dl>
         <div class="actions">
           <a class="btn btn-red" href="option-b-shapes-and-woodland/index.html">Open Option B</a>
-          <a class="btn btn-line" href="thumbs/option-b-shapes-and-woodland-desktop-full.jpg">See the whole page</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="group">
+      <span class="mono">Second round</span>
+      <h2>C to F: four different personalities</h2>
+      <p>Each one changes the colours, the lettering and the tone of voice. The brand red stays in all four, but it does a different job in each.</p>
+    </div>
+
+    <article class="opt c" id="opt-c">
+      <div class="shots">
+        <a class="desk" href="option-c-muddy-paws/index.html"><img src="thumbs/option-c-muddy-paws-desktop.jpg" alt="Option C homepage on a laptop"></a>
+        <a class="phone" href="option-c-muddy-paws/index.html"><img src="thumbs/option-c-muddy-paws-phone.jpg" alt="Option C homepage on a phone"></a>
+      </div>
+      <div class="info">
+        <span class="mono">Option C</span>
+        <h2>Muddy Paws Outdoors</h2>
+        <p class="lede">Rural and photo-led. A full-width field photo, forest green and oat colours, and small touches from an Ordnance Survey map, like the map key and contour lines.</p>
+        <dl>
+          <div><dt>Feels like</dt><dd>A proper outdoor dog business. Wellies, fields and happy muddy dogs. The red is used sparingly, like a red wellie.</dd></div>
+          <div><dt>Inspired by</dt><dd>The Mucky Pup (UK) for owning the muddy outdoors. Barkbus for letting real dog photos do the work.</dd></div>
+          <div><dt>Main call to action</dt><dd>Book a free meet &amp; greet.</dd></div>
+          <div><dt>Colours</dt><dd class="swatches" aria-label="Forest green, moss, oat, bark brown, brand red"><span style="background:#1E3527"></span><span style="background:#4D6B3C"></span><span style="background:#EFE7D6"></span><span style="background:#3B2A1E"></span><span style="background:#A3261D"></span></dd></div>
+        </dl>
+        <div class="actions">
+          <a class="btn btn-red" href="option-c-muddy-paws/index.html">Open Option C</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="opt d" id="opt-d">
+      <div class="shots">
+        <a class="desk" href="option-d-clinic-calm/index.html"><img src="thumbs/option-d-clinic-calm-desktop.jpg" alt="Option D homepage on a laptop"></a>
+        <a class="phone" href="option-d-clinic-calm/index.html"><img src="thumbs/option-d-clinic-calm-phone.jpg" alt="Option D homepage on a phone"></a>
+      </div>
+      <div class="info">
+        <span class="mono">Option D</span>
+        <h2>Clinic Calm</h2>
+        <p class="lede">Premium and quiet. Lots of white space, elegant lettering and one red accent. It leads with Karina being a registered veterinary nurse, and walks through a day at day care hour by hour.</p>
+        <dl>
+          <div><dt>Feels like</dt><dd>A high-end, trustworthy service for owners who worry. Licence number, insurer and prices are all set out plainly.</dd></div>
+          <div><dt>Inspired by</dt><dd>Small Door Vet for the calm, premium feel with one accent colour.</dd></div>
+          <div><dt>Main call to action</dt><dd>Book a free meet &amp; greet.</dd></div>
+          <div><dt>Colours</dt><dd class="swatches" aria-label="Warm white, mist, ink, sage, brand red"><span style="background:#FCFBF8"></span><span style="background:#F1EFEA"></span><span style="background:#15181B"></span><span style="background:#DCE5DD"></span><span style="background:#A8231B"></span></dd></div>
+        </dl>
+        <p class="note">The times in "A day with us" are examples. Matt and Karina would need to give us the real routine.</p>
+        <div class="actions">
+          <a class="btn btn-red" href="option-d-clinic-calm/index.html">Open Option D</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="opt e" id="opt-e">
+      <div class="shots">
+        <a class="desk" href="option-e-village-noticeboard/index.html"><img src="thumbs/option-e-village-noticeboard-desktop.jpg" alt="Option E homepage on a laptop"></a>
+        <a class="phone" href="option-e-village-noticeboard/index.html"><img src="thumbs/option-e-village-noticeboard-phone.jpg" alt="Option E homepage on a phone"></a>
+      </div>
+      <div class="info">
+        <span class="mono">Option E</span>
+        <h2>Village Noticeboard</h2>
+        <p class="lede">Friendly and handmade. Services are pinned to a corkboard as coloured notes, photos are taped-on Polaroids, and there's a "tear off a number" walking poster.</p>
+        <dl>
+          <div><dt>Feels like</dt><dd>Your local dog people, the family down the road. Chatty, warm and a bit cheeky ("Come round for a sniff").</dd></div>
+          <div><dt>Inspired by</dt><dd>Digs Dog Care for the hand-drawn, characterful feel. Village noticeboards for the rest.</dd></div>
+          <div><dt>Main call to action</dt><dd>Book a free meet &amp; greet.</dd></div>
+          <div><dt>Colours</dt><dd class="swatches" aria-label="Paper, cork, pencil grey, butter, sky, mint, brand red"><span style="background:#FFFAF0"></span><span style="background:#D9B98C"></span><span style="background:#2C2A33"></span><span style="background:#FFE79A"></span><span style="background:#CBE6F2"></span><span style="background:#D5EDCF"></span><span style="background:#B42A20"></span></dd></div>
+        </dl>
+        <div class="actions">
+          <a class="btn btn-red" href="option-e-village-noticeboard/index.html">Open Option E</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="opt f" id="opt-f">
+      <div class="shots">
+        <a class="desk" href="option-f-bold-and-loud/index.html"><img src="thumbs/option-f-bold-and-loud-desktop.jpg" alt="Option F homepage on a laptop"></a>
+        <a class="phone" href="option-f-bold-and-loud/index.html"><img src="thumbs/option-f-bold-and-loud-phone.jpg" alt="Option F homepage on a phone"></a>
+      </div>
+      <div class="info">
+        <span class="mono">Option F</span>
+        <h2>Bold &amp; Loud</h2>
+        <p class="lede">Big and confident. Huge poster lettering, black and brand red, photos turned red, a spinning "Free meet &amp; greet" stamp and a scrolling strip of services.</p>
+        <dl>
+          <div><dt>Feels like</dt><dd>Energetic and impossible to miss. It stands out from every other dog business locally, but it's the least cosy of the seven.</dd></div>
+          <div><dt>Inspired by</dt><dd>Chicago Pet Sitters for the chunky headlines. Yardstick for the big statements and the badge.</dd></div>
+          <div><dt>Main call to action</dt><dd>Book a free meet &amp; greet.</dd></div>
+          <div><dt>Colours</dt><dd class="swatches" aria-label="Near-black, bright brand red, cream, bone"><span style="background:#141010"></span><span style="background:#D7261E"></span><span style="background:#F5EDE1"></span><span style="background:#E6DACB"></span></dd></div>
+        </dl>
+        <p class="note">The team section says "A vet nurse. A copper. Your dog." Check Matt is happy with "copper" before we keep it.</p>
+        <div class="actions">
+          <a class="btn btn-red" href="option-f-bold-and-loud/index.html">Open Option F</a>
+        </div>
+      </div>
+    </article>
+    <div class="group">
+      <span class="mono">Third round</span>
+      <h2>G: clean, modern and interactive</h2>
+      <p>Red and black on white, with sections that move as you scroll, and a spaniel who watches your mouse. Best seen live on a laptop.</p>
+    </div>
+
+    <article class="opt g" id="opt-g">
+      <div class="shots">
+        <a class="desk" href="option-g-clean-modern/index.html"><img src="thumbs/option-g-clean-modern-desktop.jpg" alt="Option G homepage on a laptop"></a>
+        <a class="phone" href="option-g-clean-modern/index.html"><img src="thumbs/option-g-clean-modern-phone.jpg" alt="Option G homepage on a phone"></a>
+      </div>
+      <div class="info">
+        <span class="mono">Option G</span>
+        <h2>Clean Modern</h2>
+        <p class="lede">Crisp and current, with an interactive star. A springer spaniel in the hero turns his head to follow your mouse. Click to throw him a treat and he catches it in slow motion, right where he sits. Further down, services, numbers and photos animate in as you scroll.</p>
+        <dl>
+          <div><dt>Feels like</dt><dd>A polished modern brand that's still fun. Visitors will play with the dog, and that's memorable.</dd></div>
+          <div><dt>Inspired by</dt><dd>Modern product websites: big tight headlines, a sticky picture that changes as you scroll the services, and text that lights up word by word.</dd></div>
+          <div><dt>Main call to action</dt><dd>Book a free meet &amp; greet.</dd></div>
+          <div><dt>Colours</dt><dd class="swatches" aria-label="Off-white, ink black, brand red, studio grey"><span style="background:#FBFAF9"></span><span style="background:#0F0D0D"></span><span style="background:#C42019"></span><span style="background:#E0DCD7"></span></dd></div>
+        </dl>
+        <p class="note">The dog footage is a stand-in so you can see the idea. A short shoot of one of your own dogs on a plain backdrop (a slow head turn left to right, plus a few treat catches) would let us build it exactly like this.</p>
+        <div class="actions">
+          <a class="btn btn-red" href="option-g-clean-modern/index.html">Open Option G</a>
         </div>
       </div>
     </article>
@@ -158,11 +297,13 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <h2>Questions to answer as you look</h2>
     </div>
     <ol>
-      <li><span><b>Which first screen makes you want to book?</b> The red card (A) or the photo with the house badge (B).</span></li>
-      <li><span><b>Prices on the homepage, or not?</b> A shows them. B leaves them for the service pages.</span></li>
-      <li><span><b>Meet &amp; greet or trial day?</b> Pick the one first step we lead with everywhere.</span></li>
-      <li><span><b>How playful?</b> B's shapes are fun. Do they suit a vet-nurse-led business, or feel too young?</span></li>
-      <li><span><b>Anything to steal from the other one?</b> A winner can borrow sections from the runner-up.</span></li>
+      <li><span><b>Which first screen makes you want to book?</b> Pick your top two of the seven.</span></li>
+      <li><span><b>Is the interactive dog right for us?</b> G's spaniel is fun and memorable. Would you want a Take The Lead dog filmed the same way?</span></li>
+      <li><span><b>What should people feel first?</b> Professional and safe (A, D), outdoorsy (C), friendly and local (B, E) or bold and different (F).</span></li>
+      <li><span><b>How much should the vet nursing lead?</b> D builds the whole page around it. The others mention it alongside everything else.</span></li>
+      <li><span><b>Prices on the homepage, or not?</b> A, C, D and F show them. B and E keep them light.</span></li>
+      <li><span><b>Meet &amp; greet or trial day?</b> B leads with a free trial day. The rest lead with the free meet &amp; greet, as the current site does.</span></li>
+      <li><span><b>Anything to steal from another option?</b> The winner can borrow sections, like D's "day with us" or E's tear-off poster.</span></li>
     </ol>
   </section>
 

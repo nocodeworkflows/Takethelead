@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Option D · Clinic Calm · Take The Lead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: quiet clinical grid, wide margins, hairlines; one red accent; the care record card is the centrepiece. */
+:root {
+  --white: #FCFBF8;
+  --mist: #F1EFEA;
+  --ink: #15181B;
+  --ink-2: #5C6167;
+  --hair: #E2DFD8;
+  --red: #A8231B;
+  --sage: #DCE5DD;
+  --display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "DM Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { background: var(--white); }
+body { margin: 0; background: var(--white); color: var(--ink); font: 400 17px/1.65 var(--body); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.05; letter-spacing: -.01em; text-wrap: balance; }
+h1 em, h2 em { color: var(--red); }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+.label { font: 500 12px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.preview { background: var(--mist); color: var(--ink-2); text-align: center; font-size: 13px; padding: 8px 16px; border-bottom: 1px solid var(--hair); }
+
+.nav .wrap { display: flex; align-items: center; gap: 28px; padding-block: 22px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand img { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--hair); }
+.brand b { font: 400 1.45rem/1 var(--display); }
+.links { display: flex; gap: 26px; margin-left: auto; font-size: 15px; color: var(--ink-2); }
+.links a { text-decoration: none; }
+.btn { display: inline-flex; align-items: center; gap: 10px; font: 500 15px/1 var(--body); padding: 14px 22px; border-radius: 999px; text-decoration: none; border: 1px solid transparent; }
+.btn-ink { background: var(--ink); color: var(--white); }
+.btn-red { background: var(--red); color: var(--white); }
+.btn-line { border-color: var(--hair); }
+.btn:hover { opacity: .88; }
+
+/* HERO */
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; padding-block: clamp(40px, 7vw, 96px); }
+.hero h1 { font-size: clamp(3rem, 6.4vw, 5.6rem); }
+.hero .lede { margin-top: 24px; font-size: 1.15rem; color: var(--ink-2); max-width: 46ch; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero figure { margin: 0; position: relative; }
+.hero figure img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; }
+.hero figcaption { position: absolute; left: 16px; bottom: 16px; background: var(--white); padding: 10px 14px; border-radius: 4px; display: grid; gap: 2px; max-width: calc(100% - 32px); }
+.hero figcaption b { font: 400 1.2rem/1.2 var(--display); }
+
+/* CREDENTIALS row */
+.creds { border-block: 1px solid var(--hair); }
+.creds .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.creds div { padding: 24px 20px; display: grid; gap: 4px; border-left: 1px solid var(--hair); }
+.creds div:first-child { border-left: 0; padding-left: 0; }
+.creds b { font: 400 1.5rem/1.15 var(--display); }
+
+/* RECORD */
+.section { padding-block: clamp(64px, 9vw, 120px); }
+.intro { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 48px; }
+.intro h2 { font-size: clamp(2.4rem, 4.6vw, 3.8rem); }
+.intro p { color: var(--ink-2); max-width: 50ch; }
+.record { display: grid; grid-template-columns: 340px 1fr; border: 1px solid var(--hair); border-radius: 6px; background: var(--white); overflow: hidden; }
+.record aside { background: var(--mist); padding: 28px; display: grid; gap: 18px; align-content: start; border-right: 1px solid var(--hair); }
+.record aside img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; }
+.record dl { margin: 0; display: grid; gap: 10px; }
+.record dl div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--hair); padding-bottom: 8px; font-size: 15px; }
+.record dt { color: var(--ink-2); }
+.record dd { margin: 0; font-weight: 500; text-align: right; }
+.timeline { list-style: none; margin: 0; padding: 28px clamp(20px, 3vw, 40px); display: grid; }
+.timeline li { display: grid; grid-template-columns: 70px 20px 1fr; gap: 14px; padding-bottom: 22px; position: relative; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline time { font: 500 14px/1.6 var(--mono); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.timeline .dot { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--red); background: var(--white); margin-top: 7px; position: relative; z-index: 1; }
+.timeline li:not(:last-child)::after { content: ""; position: absolute; left: 89px; top: 18px; bottom: 0; width: 1px; background: var(--hair); }
+.timeline b { font-weight: 600; display: block; }
+.timeline span { color: var(--ink-2); font-size: 15.5px; }
+
+/* SERVICES: list with prices */
+.services { background: var(--mist); }
+.svc { display: grid; grid-template-columns: 220px 1fr auto; gap: 32px; align-items: center; padding-block: 24px; border-top: 1px solid var(--hair); }
+.svc:last-child { border-bottom: 1px solid var(--hair); }
+.svc img { width: 220px; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 4px; }
+.svc h3 { font-size: 2rem; }
+.svc p { color: var(--ink-2); font-size: 15.5px; max-width: 58ch; margin-top: 6px; }
+.svc .price { text-align: right; display: grid; gap: 2px; white-space: nowrap; }
+.svc .price b { font: 400 1.6rem/1 var(--display); }
+
+/* LEADERS */
+.leaders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+.leader img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 4px; }
+.leader h3 { font-size: 2rem; margin-top: 20px; }
+.leader .label { margin-top: 6px; display: block; color: var(--red); }
+.leader p { margin-top: 12px; color: var(--ink-2); max-width: 52ch; }
+
+/* QUOTE */
+.quote { background: var(--sage); }
+.quote .wrap { padding-block: clamp(64px, 9vw, 112px); display: grid; gap: 24px; max-width: 980px; }
+.quote blockquote { margin: 0; font: 400 clamp(1.9rem, 3.8vw, 3rem)/1.18 var(--display); }
+
+/* CTA */
+.cta .wrap { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; padding-block: clamp(64px, 9vw, 112px); }
+.cta h2 { font-size: clamp(2.6rem, 5.4vw, 4.4rem); }
+.cta p { color: var(--ink-2); margin-top: 16px; max-width: 48ch; }
+.cta .side { display: grid; gap: 12px; justify-items: end; }
+.cta .tel { font: 400 2rem/1 var(--display); }
+
+footer { border-top: 1px solid var(--hair); font-size: 14px; color: var(--ink-2); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; padding-block: 28px; }
+
+@media (max-width: 960px) {
+  .links { display: none; }
+  .nav .btn { margin-left: auto; }
+  .hero .wrap, .intro, .cta .wrap { grid-template-columns: 1fr; }
+  .cta .side { justify-items: start; }
+  .creds .wrap { grid-template-columns: 1fr 1fr; }
+  .creds div:nth-child(3) { border-left: 0; padding-left: 0; }
+  .creds div:nth-child(n+3) { border-top: 1px solid var(--hair); }
+  .record { grid-template-columns: 1fr; }
+  .record aside { border-right: 0; border-bottom: 1px solid var(--hair); grid-template-columns: 140px 1fr; align-items: start; }
+  .svc { grid-template-columns: 140px 1fr; }
+  .svc img { width: 140px; }
+  .svc .price { grid-column: 2; text-align: left; }
+  .leaders { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .hero figure img { aspect-ratio: 4 / 3; }
+  .creds .wrap { grid-template-columns: 1fr; }
+  .creds div { border-left: 0; padding-left: 0; border-top: 1px solid var(--hair); }
+  .creds div:first-child { border-top: 0; }
+  .record aside { grid-template-columns: 1fr; }
+  .svc { grid-template-columns: 1fr; gap: 12px; }
+  .svc img { width: 100%; }
+  .svc .price { grid-column: auto; }
+  .timeline li { grid-template-columns: 56px 20px 1fr; gap: 10px; }
+  .timeline li:not(:last-child)::after { left: 71px; }
+  .nav .btn { padding: 12px 16px; font-size: 14px; white-space: nowrap; }
+  .brand b { white-space: nowrap; font-size: 1.25rem; }
+  .nav .wrap { gap: 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="preview">Design preview of the homepage in Option D. Links and buttons are inactive.</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="../shared/logo.webp" alt="Take The Lead Services logo"><b>Take The Lead</b></a>
+    <nav class="links" aria-label="Main"><a href="#">Services</a><a href="#">Our standards</a><a href="#">Team</a><a href="#">Reviews</a><a href="#">FAQs</a></nav>
+    <a class="btn btn-ink" href="#">Book a meet &amp; greet</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="label">Vet-nurse led dog care · Aldershot, Fleet &amp; Farnham</span>
+      <h1 style="margin-top:18px">Care you'd expect from a <em>veterinary nurse</em>. Because it is.</h1>
+      <p class="lede">Day care, home boarding, walks, training and grooming, led by Karina Hart RVN. Every dog is handled by a team trained in canine health, behaviour and body language.</p>
+      <div class="ctas">
+        <a class="btn btn-red" href="#">Book a free meet &amp; greet</a>
+        <a class="btn btn-line" href="#">How we care for your dog</a>
+      </div>
+    </div>
+    <figure>
+      <img src="../shared/daycare-cuddle.webp" alt="A team member hugging a spaniel at day care">
+      <figcaption><span class="label">Day care</span><b>Fully supervised, all day</b></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="creds" aria-label="Credentials">
+  <div class="wrap">
+    <div><span class="label">Daycare</span><b>5★ licensed</b></div>
+    <div><span class="label">Boarding licence</span><b>25/00868/AWRHOM</b></div>
+    <div><span class="label">Insurance</span><b>Petplan Sanctuary</b></div>
+    <div><span class="label">Every team member</span><b>DBS checked</b></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="intro">
+      <div><span class="label">A day with us</span><h2 style="margin-top:14px">What a day of day care <em>looks like</em></h2></div>
+      <p>Owners tell us the routine is what puts their mind at rest. Here's a typical day, from collection to drop-off. Every dog also gets photo updates on our Facebook page.</p>
+    </div>
+    <div class="record">
+      <aside>
+        <img src="../shared/daycare-trampoline.webp" alt="A small fluffy dog sitting on a trampoline">
+        <dl>
+          <div><dt>Group size</dt><dd>Matched by temperament</dd></div>
+          <div><dt>Outdoor space</dt><dd>Private secure paddock</dd></div>
+          <div><dt>Indoor space</dt><dd>2 heated playrooms</dd></div>
+          <div><dt>Transport</dt><dd>Crated, fitted vans</dd></div>
+        </dl>
+      </aside>
+      <ol class="timeline">
+        <li><time>07:45</time><i class="dot"></i><div><b>Collection</b><span>We pick your dog up in one of our dog vans. Each dog travels in its own secure crate.</span></div></li>
+        <li><time>09:00</time><i class="dot"></i><div><b>Paddock play</b><span>Supervised play in our private paddock, with groups matched by size and temperament.</span></div></li>
+        <li><time>11:00</time><i class="dot"></i><div><b>Enrichment</b><span>Sniffing areas, agility equipment, interactive toys and paddling pools in summer.</span></div></li>
+        <li><time>12:30</time><i class="dot"></i><div><b>Rest</b><span>Quiet time on sofas and beds in a heated playroom. Lunch or medication given as you've asked.</span></div></li>
+        <li><time>14:00</time><i class="dot"></i><div><b>Afternoon play</b><span>More play and training games, watched by staff who read dog body language.</span></div></li>
+        <li><time>16:30</time><i class="dot"></i><div><b>Home, tired and happy</b><span>Drop-off at your door, with a word about how the day went.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section services">
+  <div class="wrap">
+    <div class="intro">
+      <div><span class="label">Services &amp; prices</span><h2 style="margin-top:14px">Clear prices, no surprises</h2></div>
+      <p>We'll confirm your exact price at the meet &amp; greet. Day care and boarding depend on your dog's routine, so we quote those individually.</p>
+    </div>
+    <div>
+      <article class="svc"><img src="../shared/daycare-gang.webp" alt="Four dogs sitting together at day care"><div><h3>Day care</h3><p>Supervised play, enrichment and rest at our 5★ licensed centre, with collection and drop-off.</p></div><div class="price"><span class="label">Price</span><b>On request</b></div></article>
+      <article class="svc"><img src="../shared/boarding-bed.webp" alt="A dog asleep on a soft bed"><div><h3>Home boarding</h3><p>A licensed family home instead of kennels. Up to 3 guests at a time, with day care included.</p></div><div class="price"><span class="label">Price</span><b>On request</b></div></article>
+      <article class="svc"><img src="../shared/woodland-logs.webp" alt="Two dogs exploring a woodland path"><div><h3>Group walks</h3><p>One hour in a group of no more than four dogs. Puppy visits from £12.</p></div><div class="price"><span class="label">1 hour</span><b>£18</b></div></article>
+      <article class="svc"><img src="../shared/training-spaniel.webp" alt="A spaniel running with a toy in long grass"><div><h3>1-2-1 training</h3><p>A one-hour session, a written training plan and two weeks of email support.</p></div><div class="price"><span class="label">Consultation</span><b>£100</b></div></article>
+      <article class="svc"><img src="../shared/groom-puppies.webp" alt="Two fluffy puppies after a groom"><div><h3>Grooming at The Stylish Dog</h3><p>Our salon in Ash. Full pamper sessions, puppy grooms, hand stripping and nail clips.</p></div><div class="price"><span class="label">Full groom</span><b>From £50</b></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="intro">
+      <div><span class="label">Who looks after your dog</span><h2 style="margin-top:14px">Two directors, two <em>professions</em></h2></div>
+      <p>Take The Lead is run by Karina and Matt Hart, with a team of daycare staff, walkers and groomers who have all been DBS checked.</p>
+    </div>
+    <div class="leaders">
+      <article class="leader"><img src="../shared/karina.webp" alt="Karina Hart smiling on a beach walk"><h3>Karina Hart</h3><span class="label">Director · Registered Veterinary Nurse</span><p>Karina spots health problems early and handles medication, so owners of older dogs and puppies can relax.</p></article>
+      <article class="leader"><img src="../shared/matt.webp" alt="Matt Hart crouching beside a small dog"><h3>Matt Hart</h3><span class="label">Director · Dog Trainer</span><p>A former Surrey Police officer and qualified trainer. Matt leads our 1-2-1 training and Have a Go agility workshops.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="wrap">
+    <span class="label">Nathan · Puppy training</span>
+    <blockquote>"Because one of the trainers is veterinary trained, they identified a medical concern which could easily have gone unnoticed."</blockquote>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div>
+      <h2>Start with a free <em>meet &amp; greet</em></h2>
+      <p>We'll meet you and your dog, assess their needs and answer your questions. There's no charge and no obligation.</p>
+    </div>
+    <div class="side">
+      <span class="tel">07903 555424</span>
+      <a class="btn btn-red" href="#">Book a meet &amp; greet</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Take The Lead Services · Aldershot, Fleet &amp; Farnham</span>
+    <span>Licensed by Rushmoor Borough Council · Insured with Petplan Sanctuary</span>
+  </div>
+</footer>
+
+</body>
+</html>

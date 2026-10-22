@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Option E · Village Noticeboard · Take The Lead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,500;0,700;0,800;1,600&family=Caveat:wght@600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+<style>
+/* Layout: a parish noticeboard. Pinned notes, taped photos and pencil doodles, slightly off-square; everything still reads in a clear order. */
+:root {
+  --paper: #FFFAF0;
+  --cork: #D9B98C;
+  --pencil: #2C2A33;
+  --pencil-2: #5D5866;
+  --red: #B42A20;
+  --butter: #FFE79A;
+  --sky: #CBE6F2;
+  --mint: #D5EDCF;
+  --blush: #F8D9D3;
+  --display: "Shantell Sans", "Comic Neue", "Trebuchet MS", sans-serif;
+  --hand: "Caveat", "Bradley Hand", cursive;
+  --body: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { background: var(--paper); }
+body { margin: 0; background: var(--paper); color: var(--pencil); font: 400 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.08; text-wrap: balance; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+a:focus-visible { outline: 3px dashed var(--red); outline-offset: 4px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.hand { font-family: var(--hand); font-weight: 700; }
+.preview { background: var(--pencil); color: var(--paper); text-align: center; font-size: 13px; padding: 8px 16px; }
+
+/* wobbly hand-cut edges */
+.wobble { border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; }
+.pin { position: relative; }
+.pin::before { content: ""; position: absolute; top: -9px; left: 50%; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #F27B70, var(--red) 60%); box-shadow: 0 2px 3px rgba(0,0,0,.25); z-index: 2; }
+.tape { position: relative; }
+.tape::before { content: ""; position: absolute; top: -12px; left: 50%; width: 90px; height: 26px; margin-left: -45px; background: rgba(255,240,190,.75); transform: rotate(-3deg); z-index: 2; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+
+.btn { display: inline-flex; align-items: center; gap: 10px; font: 700 16px/1 var(--display); padding: 15px 22px; text-decoration: none; border: 2.5px solid var(--pencil); background: var(--paper); box-shadow: 4px 4px 0 var(--pencil); border-radius: 14px 18px 12px 20px; }
+.btn-red { background: var(--red); color: #fff; }
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--pencil); }
+
+/* NAV */
+.nav .wrap { display: flex; align-items: center; gap: 22px; padding-block: 16px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand img { width: 56px; height: 56px; border-radius: 50%; border: 2.5px solid var(--pencil); }
+.brand b { font: 800 1.25rem/1 var(--display); display: block; }
+.brand span { font: 700 1.1rem/1 var(--hand); color: var(--red); }
+.links { display: flex; gap: 20px; margin-left: auto; font: 600 15px var(--body); }
+.links a { text-decoration: none; }
+.links a:hover { text-decoration: underline wavy var(--red); }
+
+/* HERO */
+.hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; padding-block: clamp(32px, 6vw, 72px) clamp(48px, 7vw, 88px); }
+.hero h1 { font-size: clamp(2.8rem, 6.2vw, 5.2rem); }
+.hero h1 .scribble { position: relative; white-space: nowrap; color: var(--red); }
+.hero h1 .scribble svg { position: absolute; left: -2%; bottom: -14px; width: 104%; height: 22px; }
+.hero .lede { margin-top: 22px; font-size: 1.15rem; color: var(--pencil-2); max-width: 46ch; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 30px; align-items: center; }
+.hero .aside { font-size: 1.6rem; color: var(--pencil-2); transform: rotate(-3deg); }
+.polaroids { position: relative; min-height: 470px; }
+.polaroid { position: absolute; background: #fff; padding: 12px 12px 44px; box-shadow: 0 10px 24px -10px rgba(44,42,51,.45); width: 62%; }
+.polaroid img { aspect-ratio: 1; object-fit: cover; width: 100%; }
+.polaroid figcaption { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; font: 700 1.45rem/1 var(--hand); }
+.polaroid:nth-child(1) { left: 0; top: 10px; transform: rotate(-5deg); }
+.polaroid:nth-child(2) { right: 0; top: 120px; transform: rotate(4deg); }
+.sticker { position: absolute; left: 28%; bottom: -10px; width: 150px; height: 150px; border-radius: 50%; background: var(--butter); border: 2.5px solid var(--pencil); display: grid; place-items: center; text-align: center; transform: rotate(-10deg); font: 800 1.05rem/1.15 var(--display); padding: 16px; z-index: 3; }
+.sticker b { display: block; font-size: 2rem; color: var(--red); }
+
+/* BOARD */
+.board { background-color: var(--cork); background-image: radial-gradient(rgba(120,84,40,.22) 1.2px, transparent 1.6px), radial-gradient(rgba(255,255,255,.18) 1px, transparent 1.4px); background-size: 14px 14px, 22px 22px; background-position: 0 0, 7px 9px; border-block: 10px solid #8A6440; }
+.board .wrap { padding-block: clamp(56px, 8vw, 96px); }
+.board-title { display: inline-block; background: var(--paper); padding: 14px 26px; transform: rotate(-1.5deg); margin-bottom: 44px; box-shadow: 0 6px 14px -8px rgba(0,0,0,.4); }
+.board-title h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); }
+.notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 28px; }
+.note { padding: 28px 24px 24px; box-shadow: 0 10px 18px -10px rgba(0,0,0,.45); display: grid; gap: 12px; align-content: start; }
+.note:nth-child(3n+1) { transform: rotate(-1.6deg); }
+.note:nth-child(3n+2) { transform: rotate(1.2deg); }
+.note:nth-child(3n) { transform: rotate(-.6deg); }
+.note h3 { font-size: 1.55rem; }
+.note p { font-size: 15.5px; color: var(--pencil-2); }
+.note .price { font: 700 1.7rem/1 var(--hand); color: var(--red); }
+.note.butter { background: var(--butter); }
+.note.sky { background: var(--sky); }
+.note.mint { background: var(--mint); }
+.note.blush { background: var(--blush); }
+.note.white { background: #fff; }
+.note .doodle { width: 46px; height: 46px; }
+
+/* TEAR-OFF notice */
+.tearoff { background: #fff; padding: 26px 24px 0; box-shadow: 0 10px 18px -10px rgba(0,0,0,.45); transform: rotate(.8deg); display: grid; gap: 10px; }
+.tearoff h3 { font-size: 1.6rem; }
+.tearoff p { color: var(--pencil-2); font-size: 15.5px; }
+.tabs { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 12px; border-top: 2px dashed var(--pencil-2); }
+.tabs span { writing-mode: vertical-rl; transform: rotate(180deg); font: 700 13px/1 var(--body); padding: 12px 0; text-align: center; border-left: 2px dashed var(--pencil-2); height: 116px; display: grid; place-items: center; }
+.tabs span:last-child { border-right: 2px dashed var(--pencil-2); }
+.tabs span:nth-child(2) { transform: rotate(180deg) translateY(-6px); opacity: .0; }
+
+/* TEAM */
+.section { padding-block: clamp(56px, 8vw, 104px); }
+.split { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.split h2 { font-size: clamp(2.2rem, 4.4vw, 3.4rem); }
+.split p { margin-top: 16px; color: var(--pencil-2); max-width: 52ch; }
+.team { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.team figure { margin: 0; background: #fff; padding: 12px 12px 18px; box-shadow: 0 10px 22px -12px rgba(44,42,51,.5); }
+.team figure:first-child { transform: rotate(-2deg); }
+.team figure:last-child { transform: rotate(2deg) translateY(24px); }
+.team img { aspect-ratio: 4 / 5; object-fit: cover; width: 100%; }
+.team figcaption { margin-top: 10px; display: grid; gap: 2px; }
+.team figcaption b { font: 700 1.6rem/1 var(--hand); }
+.team figcaption span { font-size: 14px; color: var(--pencil-2); }
+
+/* REVIEWS: letters */
+.letters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.letter { background: #fff; border: 2.5px solid var(--pencil); padding: 26px 24px; display: grid; gap: 14px; align-content: start; background-image: repeating-linear-gradient(transparent 0 31px, #E3E8F2 31px 32px); }
+.letter blockquote { margin: 0; font: 600 1.45rem/32px var(--hand); }
+.letter cite { font: 600 14px var(--body); font-style: normal; color: var(--red); }
+
+/* CTA */
+.cta { background: var(--red); color: #fff; }
+.cta .wrap { padding-block: clamp(56px, 8vw, 96px); display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center; }
+.cta h2 { font-size: clamp(2.4rem, 5vw, 4rem); }
+.cta p { margin-top: 14px; max-width: 48ch; color: #FBE3DE; }
+.cta .side { display: grid; gap: 14px; justify-items: start; }
+.cta .tel { font: 700 2.6rem/1 var(--hand); }
+.cta .btn { color: var(--pencil); }
+
+footer { font-size: 14px; color: var(--pencil-2); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 28px; }
+
+@media (max-width: 960px) {
+  .links { display: none; }
+  .nav .btn { margin-left: auto; }
+  .hero .wrap, .split, .cta .wrap { grid-template-columns: 1fr; }
+  .notes, .letters { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 620px) {
+  .notes, .letters { grid-template-columns: 1fr; }
+  .polaroids { min-height: 380px; }
+  .polaroid { width: 66%; }
+  .polaroid:nth-child(2) { top: 90px; }
+  .sticker { width: 120px; height: 120px; font-size: .9rem; left: 4%; bottom: -6px; }
+  .sticker b { font-size: 1.6rem; }
+  .nav .btn { padding: 12px 14px; font-size: 14px; }
+  .brand span { font-size: 0; }
+  .brand b { font-size: 1.15rem; }
+}
+@media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<div class="preview">Design preview of the homepage in Option E. Links and buttons are inactive.</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="../shared/logo.webp" alt="Take The Lead Services logo"><span><b>Take The Lead</b>your local dog people</span></a>
+    <nav class="links" aria-label="Main"><a href="#">Day care</a><a href="#">Boarding</a><a href="#">Walks</a><a href="#">Training</a><a href="#">Grooming</a><a href="#">Meet the team</a></nav>
+    <a class="btn btn-red" href="#">Say hello</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Your dog's favourite <span class="scribble">neighbours<svg viewBox="0 0 300 22" preserveAspectRatio="none" aria-hidden="true"><path d="M3 14 C 60 4, 110 20, 160 10 S 250 6, 297 12" fill="none" stroke="#B42A20" stroke-width="5" stroke-linecap="round"/></svg></span>.</h1>
+      <p class="lede">We're Karina and Matt, and a team of dog lovers in Aldershot. Day care, home boarding, walks, training and grooming for families in Aldershot, Fleet and Farnham. We've been doing it for over ten years.</p>
+      <div class="ctas">
+        <a class="btn btn-red" href="#">Book a free meet &amp; greet</a>
+        <span class="aside hand">or just ring us on 07903 555424</span>
+      </div>
+    </div>
+    <div class="polaroids">
+      <figure class="polaroid tape"><img src="../shared/daycare-tug.webp" alt="Two dogs playing tug with a rope toy at day care"><figcaption>tug-of-war Tuesday</figcaption></figure>
+      <figure class="polaroid tape"><img src="../shared/grass-spaniel.webp" alt="A happy spaniel lying on the grass"><figcaption>worn out (good)</figcaption></figure>
+      <div class="sticker"><span><b>5★</b>licensed daycare</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="board">
+  <div class="wrap">
+    <div class="board-title pin"><h2>What's on the board</h2></div>
+    <div class="notes">
+      <article class="note butter wobble pin">
+        <svg class="doodle" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="10" fill="none" stroke="#2C2A33" stroke-width="2.5"/><path d="M24 4v7M24 37v7M4 24h7M37 24h7M10 10l5 5M33 33l5 5M38 10l-5 5M15 33l-5 5" stroke="#2C2A33" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3>Day care</h3><p>Play in our private paddock, naps in two heated playrooms, and paddling pools in summer. We collect and drop off in our dog vans.</p><span class="price">ask for a quote</span>
+      </article>
+      <article class="note sky wobble pin">
+        <svg class="doodle" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 22L24 7l18 15M11 19v21h26V19" fill="none" stroke="#2C2A33" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 40V29h8v11" fill="none" stroke="#2C2A33" stroke-width="2.5"/></svg>
+        <h3>Holidays? Stay with us</h3><p>Your dog lives as part of our family, with a 100ft garden. Day care is included in the price. Up to 3 guests at a time.</p><span class="price">ask for a quote</span>
+      </article>
+      <div class="tearoff pin">
+        <h3>LOST: your dog's energy?</h3>
+        <p>Found on one of our group walks. Small groups of four at most, in local fields and woodland.</p>
+        <span class="hand" style="font-size:1.7rem;color:var(--red)">£18 an hour</span>
+        <div class="tabs" aria-label="Tear-off phone number tabs"><span>07903 555424</span><span>07903 555424</span><span>07903 555424</span><span>07903 555424</span><span>07903 555424</span><span>07903 555424</span></div>
+      </div>
+      <article class="note mint wobble pin">
+        <svg class="doodle" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 38l10-10M14 22a8 8 0 1 1 12 12" fill="none" stroke="#2C2A33" stroke-width="2.5" stroke-linecap="round"/><circle cx="34" cy="14" r="5" fill="none" stroke="#2C2A33" stroke-width="2.5"/></svg>
+        <h3>Training, 1-2-1</h3><p>Recall, lead walking, jumping up, door manners. At your home with a qualified trainer. Plus Have a Go agility days in Normandy!</p><span class="price">£100 consultation</span>
+      </article>
+      <article class="note blush wobble pin">
+        <svg class="doodle" viewBox="0 0 48 48" aria-hidden="true"><circle cx="14" cy="34" r="6" fill="none" stroke="#2C2A33" stroke-width="2.5"/><circle cx="34" cy="34" r="6" fill="none" stroke="#2C2A33" stroke-width="2.5"/><path d="M18 30L36 8M30 30L12 8" stroke="#2C2A33" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3>The Stylish Dog</h3><p>Our grooming salon at 55 Guildford Road, Ash. Muddy after a walk? Pop in for a wash and go.</p><span class="price">wash &amp; go £20</span>
+      </article>
+      <article class="note white wobble pin">
+        <svg class="doodle" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 40c0-12 4-20 14-20s14 8 14 20M14 20l-4-12 9 6M34 20l4-12-9 6" fill="none" stroke="#2C2A33" stroke-width="2.5" stroke-linejoin="round"/><circle cx="19" cy="28" r="1.6" fill="#2C2A33"/><circle cx="29" cy="28" r="1.6" fill="#2C2A33"/></svg>
+        <h3>Cats too!</h3><p>Home visits once or twice a day while you're away. Feeding, litter, cuddles, plants watered and post picked up.</p><span class="price">from £14 a visit</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div>
+      <span class="hand" style="font-size:1.8rem;color:var(--red)">hello, it's us</span>
+      <h2>A family business, run by a vet nurse and a dog trainer</h2>
+      <p>Karina is a registered veterinary nurse, so if something isn't right she'll spot it. Matt was a Surrey Police officer before qualifying as a dog trainer. Our team is DBS checked and insured with Petplan Sanctuary.</p>
+      <p>Before your dog's first day, we'll come and meet you both. It's free.</p>
+    </div>
+    <div class="team">
+      <figure><img src="../shared/karina.webp" alt="Karina Hart smiling outdoors"><figcaption><b>Karina</b><span>Director &amp; Registered Vet Nurse</span></figcaption></figure>
+      <figure><img src="../shared/matt.webp" alt="Matt Hart with a small dog"><figcaption><b>Matt</b><span>Director &amp; Dog Trainer</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div style="margin-bottom:32px"><span class="hand" style="font-size:1.8rem;color:var(--red)">post bag</span><h2 style="font-size:clamp(2.2rem,4.4vw,3.4rem)">Lovely things people have said</h2></div>
+    <div class="letters">
+      <figure class="letter" style="margin:0"><blockquote>"Sending our husky Roxy off to daycare for the first time was like sending a child to school! We were reassured as soon as we saw the pictures."</blockquote><cite>Selina &amp; Rick, with Roxy</cite></figure>
+      <figure class="letter" style="margin:0"><blockquote>"At the drop of a hat we can change Digby's schedule. Their flexibility really sets TTL above others."</blockquote><cite>Pete &amp; Digby</cite></figure>
+      <figure class="letter" style="margin:0"><blockquote>"It is so refreshing to have a boarding service that is reliable and professional. It surpasses 5 stars!"</blockquote><cite>Vicky &amp; Al, with Barnaby</cite></figure>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div>
+      <h2>Come round for a sniff</h2>
+      <p>Every new dog starts with a free meet &amp; greet. We'll say hello, ask about their routine and answer all your questions.</p>
+    </div>
+    <div class="side">
+      <span class="tel">07903 555424</span>
+      <a class="btn" href="#">Book a free meet &amp; greet</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Take The Lead Services · Aldershot, Fleet &amp; Farnham</span>
+    <span>Home boarding licence 25/00868/AWRHOM</span>
+  </div>
+</footer>
+
+</body>
+</html>
